@@ -38,6 +38,8 @@ ConvBNReLU(512,512)
 vgg:add(MaxPooling(2,2,2,2):ceil())
 vgg:add(nn.View(512))
 
+-- get the output of the network from here
+
 classifier = nn.Sequential()
 classifier:add(nn.Dropout(0.5))
 classifier:add(nn.Linear(512,512))
