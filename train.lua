@@ -160,6 +160,10 @@ function test()
   model:evaluate()
   print(c.blue '==>'.." testing")
   local bs = 125
+  print('********')
+  print(provider.testData.data:size())
+  print('********')
+  
   for i=1,provider.testData.data:size(1),bs do
     local outputs = model:forward(provider.testData.data:narrow(1,i,bs))
     confusion:batchAdd(outputs, provider.testData.labels:narrow(1,i,bs))
