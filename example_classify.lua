@@ -46,7 +46,7 @@ local function normalize(imgRGB)
 end
 
 local model = torch.load(model_path)
-model:add(nn.SoftMax():cuda())
+-- model:add(nn.SoftMax():cuda())
 model:evaluate()
 
 -- model definition should set numInputDims
@@ -73,16 +73,14 @@ for _, img_path in ipairs(image_paths) do
   -- get probabilities
   local output = model:forward(img:cuda()):squeeze()
   print(output)
-  print('************')
   print(output:size())
+  print('************')
   
   
-  -- get features
-  -- local features = model:get(55):forward(img:cuda()):squeeze()
-  
-  --print('*********')
-  --print(model:get(55))
-  --print('*********')
+   --get features
+   --local features = model:get(53):forward(img:cuda()):squeeze()
+    
+  --print(model:get(53))
   --print(model)
   --print(features:size())
   
