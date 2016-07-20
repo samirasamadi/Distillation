@@ -74,7 +74,7 @@ for _, img_path in ipairs(image_paths) do
   --local output = model:forward(img:cuda()):squeeze()
   
   -- get features
-  local features = model:get(3):forward(img:cuda()):squeeze()
+  local features = model:get(53):forward(img:cuda()):squeeze()
   
   print('*********')
   print(model:get(53))
