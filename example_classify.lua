@@ -75,6 +75,7 @@ for _, img_path in ipairs(image_paths) do
   print(output)
   print(output:size())
   print('************')
+  print(model)
   
   
    --get features
