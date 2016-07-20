@@ -79,7 +79,7 @@ for _, img_path in ipairs(image_paths) do
   print('*********')
   print(model:get(55))
   print('*********')
-  -- (model)
+   print(model)
   print(features:size())
   
   -- display
