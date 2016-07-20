@@ -59,13 +59,19 @@ print(c.blue '==>' ..' configuring model')
 local model = nn.Sequential()
 model:add(nn.BatchFlip():float())
 model:add(cast(nn.Copy('torch.FloatTensor', torch.type(cast(torch.Tensor())))))
-model:add(cast(dofile('models/'..opt.model..'.lua')))
-model:get(2).updateGradInput = function(input) return end
 
+-- here it goes inside vgg_bn_drop
+model:add(cast(dofile('models/'..opt.model..'.lua')))
+print('after loading the nn')
+model:get(2).updateGradInput = function(input) return end
+print('******** model:get(2)', model:get(2))
 if opt.backend == 'cudnn' then
    require 'cudnn'
    cudnn.convert(model:get(3), cudnn)
 end
+print('******** model:get(3)', model:get(3))
+print('************************************')
+
 
 print(model)
 
@@ -133,6 +139,9 @@ function train()
       return f,gradParameters
     end
     optim.sgd(feval, parameters, optimState)
+	
+	
+	
   end
 
   confusion:updateValids()
