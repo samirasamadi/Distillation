@@ -75,7 +75,7 @@ if opt.backend == 'cudnn' then
 end
 
 
-print(model)
+-- print(model)
 
 print(c.blue '==>' ..' loading data')
 provider = torch.load 'provider.t7'
