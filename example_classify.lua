@@ -72,10 +72,10 @@ for _, img_path in ipairs(image_paths) do
 
   -- get probabilities
   local output = model:get(1):forward(img:cuda()):squeeze()
-  print(output)
+  -- print(output)
   print(output:size())
   print('************')
-  print(model)
+  -- print(model)
   
   
    --get features

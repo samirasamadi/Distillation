@@ -69,8 +69,6 @@ if opt.backend == 'cudnn' then
    require 'cudnn'
    cudnn.convert(model:get(3), cudnn)
 end
-print('******** model:get(3)', model:get(3))
-print('************************************')
 
 
 print(model)
@@ -160,10 +158,6 @@ function test()
   model:evaluate()
   print(c.blue '==>'.." testing")
   local bs = 125
-  print('********')
-  print(provider.testData.data:size())
-  print('********')
-  
   for i=1,provider.testData.data:size(1),bs do
     local outputs = model:forward(provider.testData.data:narrow(1,i,bs))
     confusion:batchAdd(outputs, provider.testData.labels:narrow(1,i,bs))
