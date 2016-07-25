@@ -66,6 +66,7 @@ print('********************')
 print(model)
 model:get(2).updateGradInput = function(input) return end
 print('******** model:get(2)', model:get(2))
+print('**********************')
 if opt.backend == 'cudnn' then
    require 'cudnn'
    cudnn.convert(model:get(3), cudnn)
