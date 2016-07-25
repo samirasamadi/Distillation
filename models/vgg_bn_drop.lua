@@ -38,9 +38,9 @@ ConvBNReLU(512,512)
 vgg:add(MaxPooling(2,2,2,2):ceil())
 vgg:add(nn.View(512))
 
-print('***********************')
-print(vgg)
-print(vgg.output)
+-- print('***********************')
+-- print(vgg)
+-- print(vgg.output)
 
 classifier = nn.Sequential()
 classifier:add(nn.Dropout(0.5))
