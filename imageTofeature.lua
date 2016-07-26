@@ -3,6 +3,24 @@ require 'cudnn'
 require 'cunn'
 local tablex = require 'pl.tablex'
 
+
+opt = lapp[[
+   -s,--save                  (default "logs")      subdirectory to save logs
+   -b,--batchSize             (default 128)          batch size
+   -r,--learningRate          (default 1)        learning rate
+   --learningRateDecay        (default 1e-7)      learning rate decay
+   --weightDecay              (default 0.0005)      weightDecay
+   -m,--momentum              (default 0.9)         momentum
+   --epoch_step               (default 50)          epoch step
+   --model                    (default vgg_bn_drop)     model name
+   --max_epoch                (default 300)           maximum number of iterations
+   --backend                  (default nn)            backend
+   --type                     (default cuda)          cuda/float/cl
+]]
+
+print(opt)
+
+
 if #arg < 2 then
   io.stderr:write('Usage: th example_classify.lua [MODEL] [FILE]...\n')
   os.exit(1)
@@ -63,7 +81,8 @@ local cls = {'airplane', 'automobile', 'bird', 'cat',
              'deer', 'dog', 'frog', 'horse', 'ship', 'truck'}
 
 c = 1
-for file in image_paths.file(opt.dir) do
+
+for file in image_paths.file() do
 	print(c)
 	c = c+1	
 end
