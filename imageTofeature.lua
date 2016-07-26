@@ -10,6 +10,8 @@ opt = lapp[[
 ]]
 
 print(opt)
+print(opt.model)
+print(opt.dir)
 
 
 if #arg < 2 then
