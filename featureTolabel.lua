@@ -81,12 +81,13 @@ for _, img_path in ipairs(image_paths) do
   -- print(output)
  
   
-  
+   print(model:get(53))
+   print('*****************')
    -- get features
    local features = model:get(53):forward(img:cuda()):squeeze()
    print(features:size())
     
-  -- print(model:get(53))
+  
   --print(model)
   --print(features:size())
   
