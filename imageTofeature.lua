@@ -5,6 +5,8 @@ local tablex = require 'pl.tablex'
 
 
 opt = lapp[[
+--model                    (default "logs/vgg/trainedModel.net")     model address
+--dir                      (default "test")                          directory containing images
 ]]
 
 print(opt)
