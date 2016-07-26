@@ -69,6 +69,8 @@ for _, img_path in ipairs(image_paths) do
   img = normalize(img)
   -- make it batch mode (for BatchNormalization)
   img = img:view(1, 3, 32, 32)
+  print('here')
+  print(model)
 
   -- get features
   local features = model:get(53):forward(img:cuda()):squeeze() 
