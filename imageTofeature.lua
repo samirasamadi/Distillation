@@ -8,7 +8,7 @@ if #arg < 2 then
   os.exit(1)
 end
 for _, f in ipairs(arg) do
-  if not paths.filep(f) then
+  if not paths.dirp(f) then
     io.stderr:write('file not found: ' .. f .. '\n')
     os.exit(1)
   end
