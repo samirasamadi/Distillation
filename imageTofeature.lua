@@ -75,11 +75,9 @@ end
 local cls = {'airplane', 'automobile', 'bird', 'cat',
              'deer', 'dog', 'frog', 'horse', 'ship', 'truck'}
 
-c = 1
 
 for file in paths.files(opt.dir) do
-	print(c)
-	c = c+1	
+	print(file)
 end
 
 -- counter = 0
