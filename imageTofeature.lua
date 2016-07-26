@@ -29,14 +29,15 @@ end
 for _, f in ipairs(arg) do
 	print('here')
 	print(f)
-  if not paths.filep(f) then
-    io.stderr:write('file not found: ' .. f .. '\n')
-    os.exit(1)
-  end
+  --if not paths.filep(f) then
+  --  io.stderr:write('file not found: ' .. f .. '\n')
+  --  os.exit(1)
+  --end
 end
 
 local model_path = arg[1]
 local image_paths = tablex.sub(arg, 2, -1)
+print(image_paths)
 
 -- loads the normalization parameters
 require 'provider'
