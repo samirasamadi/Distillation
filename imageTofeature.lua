@@ -17,14 +17,14 @@ if #arg < 2 then
   os.exit(1)
 end
 
-for _, f in ipairs(arg) do
-	print('here')
-	print(f)
+--for _, f in ipairs(arg) do
+--	print('here')
+--	print(f)
   --if not paths.filep(f) then
   --  io.stderr:write('file not found: ' .. f .. '\n')
   --  os.exit(1)
   --end
-end
+  --end
 
 local model_path = arg[1]
 local image_paths = tablex.sub(arg, 2, -1)
@@ -74,7 +74,7 @@ local cls = {'airplane', 'automobile', 'bird', 'cat',
 
 c = 1
 
-for file in image_paths.file(opt.dir) do
+for file in opt.dir do
 	print(c)
 	c = c+1	
 end
