@@ -70,27 +70,8 @@ for _, img_path in ipairs(image_paths) do
   -- make it batch mode (for BatchNormalization)
   img = img:view(1, 3, 32, 32)
 
-  -- get probabilities
-  local output = model:forward(img:cuda()):squeeze()
-  -- print(output)
-  print(output:size())
-  print('************')
-  print(model)
-  
-  
-   -- get features
-   print('************')
-   local features = model:get(53):forward(img:cuda()):squeeze()
-   print(features:size())
-    
-  --print(model:get(53))
-  --print(model)
-  --print(features:size())
-  
-  -- display
-  --print('Probabilities for '..img_path)
-  --for cl_id, cl in ipairs(cls) do
-  --  print(string.format('%-10s: %-05.2f%%', cl, output[cl_id] * 100))
-  --end
+  -- get features
+  local features = model:get():forward(img:cuda()):squeeze() 
+  print(feature:type())
   
 end
