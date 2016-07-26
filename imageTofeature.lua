@@ -77,7 +77,7 @@ local cls = {'airplane', 'automobile', 'bird', 'cat',
 
 c = 1
 
-for file in opt.dir do
+for file in paths.files(opt.dir) do
 	print(c)
 	c = c+1	
 end
