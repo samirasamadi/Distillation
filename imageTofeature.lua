@@ -5,17 +5,8 @@ local tablex = require 'pl.tablex'
 
 
 opt = lapp[[
-   -s,--save                  (default "logs")      subdirectory to save logs
-   -b,--batchSize             (default 128)          batch size
-   -r,--learningRate          (default 1)        learning rate
-   --learningRateDecay        (default 1e-7)      learning rate decay
-   --weightDecay              (default 0.0005)      weightDecay
-   -m,--momentum              (default 0.9)         momentum
-   --epoch_step               (default 50)          epoch step
-   --model                    (default vgg_bn_drop)     model name
-   --max_epoch                (default 300)           maximum number of iterations
-   --backend                  (default nn)            backend
-   --type                     (default cuda)          cuda/float/cl
+   -m,--model                 (default "logs/vgg/trainedModel.net")    where the model is saved
+   -d,--dir                   (default "test")                         directory
 ]]
 
 print(opt)
@@ -83,16 +74,10 @@ local cls = {'airplane', 'automobile', 'bird', 'cat',
 
 c = 1
 
-for file in image_paths.file() do
+for file in image_paths.file(opt.dir) do
 	print(c)
 	c = c+1	
 end
-
-
-
-
-
-
 
 -- counter = 0
 for _, img_path in ipairs(image_paths) do
