@@ -3,6 +3,8 @@ require 'cudnn'
 require 'cunn'
 local tablex = require 'pl.tablex'
 
+paths = logs/vgg
+
 if #arg < 2 then
   io.stderr:write('Usage: th example_classify.lua [MODEL] [FILE]...\n')
   os.exit(1)
@@ -80,9 +82,7 @@ for _, img_path in ipairs(image_paths) do
   -- local output = model:forward(img:cuda()):squeeze()
   -- print(output)
  
-  
-   print(model)
-   print('*****************')
+ 
    -- get features
    -- local features = model:get(52):forward(img:cuda()):squeeze()
    -- print(features)
