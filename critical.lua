@@ -1,3 +1,7 @@
+-- Use imageTofature function to convert all the images in the training set to feature vectors. Save these feature vectors in some file.
+--1 choose two feature vectors from the saved file and do binary serach on them to find the critical point between them. This includes passing the midpoint to featureTolabel function each time and getting the soft and hard lables of the points using that function.
+
+
 local function findCriticalPoints(points, labels, f){
 	-- Points are passed to the function as feature vectors
 	-- f is the function that converts any feature vector to soft labels and then outputs the label with highest probability as hard label 

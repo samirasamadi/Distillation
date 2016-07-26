@@ -58,11 +58,24 @@ end
 
 local cls = {'airplane', 'automobile', 'bird', 'cat',
              'deer', 'dog', 'frog', 'horse', 'ship', 'truck'}
-counter = 0
+
+c = 1
+for file in image_paths.file(opt.dir) do
+	print(c)
+	c = c+1	
+end
+
+
+
+
+
+
+
+-- counter = 0
 for _, img_path in ipairs(image_paths) do
 	
-	counter = counter + 1
-	print('image', counter)
+--	counter = counter + 1
+--	print('image', counter)
   
   -- load image
   local img = image.load(img_path, 3, 'float'):mul(255)
