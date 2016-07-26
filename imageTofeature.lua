@@ -3,6 +3,8 @@ require 'cudnn'
 require 'cunn'
 local tablex = require 'pl.tablex'
 
+paths = logs/vgg
+
 if #arg < 2 then
   io.stderr:write('Usage: th example_classify.lua [MODEL] [FILE]...\n')
   os.exit(1)
