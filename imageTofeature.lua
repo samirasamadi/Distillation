@@ -72,6 +72,6 @@ for _, img_path in ipairs(image_paths) do
 
   -- get features
   local features = model:get(53):forward(img:cuda()):squeeze() 
-  print(feature:type())
+  print(features:type())
   
 end
