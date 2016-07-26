@@ -27,7 +27,7 @@ end
   --end
 
 local model_path = opt.model
-local image_paths = model.dir
+local image_paths = opt.dir
 --print(image_paths)
 
 -- loads the normalization parameters
