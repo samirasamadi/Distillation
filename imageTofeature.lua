@@ -26,9 +26,9 @@ end
   --end
   --end
 
-local model_path = arg[1]
-local image_paths = tablex.sub(arg, 2, -1)
-print(image_paths)
+local model_path = opt.model
+local image_paths = model.dir
+--print(image_paths)
 
 -- loads the normalization parameters
 require 'provider'
