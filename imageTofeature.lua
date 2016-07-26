@@ -12,7 +12,7 @@ for _, f in ipairs(arg) do
 	print('here')
 	print(f)
   if not paths.filep(f) then
-    io.std/err:write('file not found: ' .. f .. '\n')
+    io.stderr:write('file not found: ' .. f .. '\n')
     os.exit(1)
   end
 end
