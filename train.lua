@@ -61,14 +61,9 @@ model:add(nn.BatchFlip():float())
 model:add(cast(nn.Copy('torch.FloatTensor', torch.type(cast(torch.Tensor())))))
 
 -- here it goes inside vgg_bn_drop
-print('**********1111**********')
-print(model)
 model:add(cast(dofile('models/'..opt.model..'.lua')))
-print('**********22222**********')
-print(model)
 model:get(2).updateGradInput = function(input) return end
-print('***********33333***********')
-print('******** model:get(2)', model:get(2))
+
 if opt.backend == 'cudnn' then
    require 'cudnn'
    cudnn.convert(model:get(3), cudnn)
