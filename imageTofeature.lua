@@ -7,10 +7,12 @@ if #arg < 2 then
   io.stderr:write('Usage: th example_classify.lua [MODEL] [FILE]...\n')
   os.exit(1)
 end
+
 for _, f in ipairs(arg) do
+	print('here')
 	print(f)
   if not paths.filep(f) then
-    io.stderr:write('file not found: ' .. f .. '\n')
+    io.std/err:write('file not found: ' .. f .. '\n')
     os.exit(1)
   end
 end
