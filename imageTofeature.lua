@@ -76,6 +76,7 @@ for _, img_path in ipairs(image_paths) do
   local features10 = model:get(53):forward(img:cuda()):squeeze() 
   print(features10:size())
   
+  print('here')
   local trainedFeatures = paths.concat(opt.save, 'features10.net')
   torch.save(trainedFeatures, features10)
   
