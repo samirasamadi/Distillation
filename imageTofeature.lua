@@ -58,8 +58,12 @@ end
 
 local cls = {'airplane', 'automobile', 'bird', 'cat',
              'deer', 'dog', 'frog', 'horse', 'ship', 'truck'}
-
+counter = 0
 for _, img_path in ipairs(image_paths) do
+	
+	counter = counter + 1
+	print('image', counter)
+  
   -- load image
   local img = image.load(img_path, 3, 'float'):mul(255)
 
@@ -71,6 +75,7 @@ for _, img_path in ipairs(image_paths) do
   img = img:view(1, 3, 32, 32)
   
   -- get features
+  
   local features10 = model:get(53):forward(img:cuda()):squeeze() 
   print(features10:size())
   
