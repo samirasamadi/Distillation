@@ -74,7 +74,7 @@ for _, img_path in ipairs(image_paths) do
   --	 model:remove(1) 
   -- end
   
-  print(model)
+  -- print(model)
   
   -- get probabilities
   -- local output = model:forward(img:cuda()):squeeze()
@@ -83,10 +83,10 @@ for _, img_path in ipairs(image_paths) do
   
   
    -- get features
-   --local features = model:get(53):forward(img:cuda()):squeeze()
-   
+   local features = model:get(53):forward(img:cuda()):squeeze()
+   print(features:size())
     
-  --print(model:get(53))
+  -- print(model:get(53))
   --print(model)
   --print(features:size())
   
