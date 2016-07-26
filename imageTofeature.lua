@@ -10,6 +10,7 @@ opt = lapp[[
 ]]
 
 print(opt)
+print('************')
 print(opt.model)
 print(opt.dir)
 
