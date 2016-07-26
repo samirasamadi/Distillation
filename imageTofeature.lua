@@ -5,8 +5,6 @@ local tablex = require 'pl.tablex'
 
 
 opt = lapp[[
-   --model                 (default "logs/vgg/trainedModel.net")    where the model is saved
-   --dir                   (default "test")                         directory
 ]]
 
 print(opt)
