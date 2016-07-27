@@ -20,14 +20,10 @@ if #arg < 2 then
   os.exit(1)
 end
 
-
 local model_path = opt.model
--- local image_paths = opt.dir
-
 
 
 -- loads the training data
--- require 'provider'
 local provider = torch.load 'provider.t7'
 
 print(c.blue '==>' ..' loading data')
@@ -36,13 +32,6 @@ provider.trainData.data = provider.trainData.data:float()
 -- provider.trainData.data is a floatTensor
 local indices = torch.randperm(provider.trainData.data:size(1)):long():split(1)
 
-
-
--- local inputs = provider.trainData.data:index(1, length)
--- print('inputs:size()', inputs:size())
--- local targets = provider.trainData.labels:index(1, length)
--- print('targets:size()', targets:size())
--- local outputs = model:forward(inputs)
 
 local model = torch.load(model_path)
 model:add(nn.SoftMax():cuda())
@@ -55,40 +44,26 @@ if #view > 0 then
   view[1].numInputDims = 3
 end
 
-local cls = {'airplane', 'automobile', 'bird', 'cat',
-             'deer', 'dog', 'frog', 'horse', 'ship', 'truck'}
+print(c.blue '==>' ..' calculating + saving feature vectors of training set ')
 
--- features = {}
--- for file in paths.files(opt.dir) do
---	local path = "test/"..file
---	print(file)
-
--- for input in provider.trainData.data do
---	print(input)
---	print('************')
--- load image
-
+table = {{}}
 for t,v in ipairs(indices) do
-  local input = provider.trainData.data:index(1,v)
-  local target = provider.trainData.labels:index(1,v)
-  print(input)
-  print(target)
-  -- local img = image.load(path, 3, 'float'):mul(255)
-
-  -- resize it to 32x32
-  -- img = image.scale(img, 32, 32)
-  -- normalize
-  -- img = normalize(img)
-  -- make it batch mode (for BatchNormalization)
-  -- img = img:view(1, 3, 32, 32)
-  
-  -- get features
-  
-   local output = model:get(53):forward(input:cuda()):squeeze()
-   print(output)
+	print('t:', t, 'v:', v)
+    local input = provider.trainData.data:index(1,v)
+	-- floatTensor of size 1*3*32*32
    
-   break
+    local target = provider.trainData.labels:index(1,v)
+    -- DoubleTensor of size 1
   
+    local output = model:get(53):forward(input:cuda()):squeeze()
+    -- output os a cudaTemsor of size 6*512
+    
+    -- save this information in a table. Each row is the feature vector + the label for it
+	
+	
+	
+	
+    break
 end
   
   
