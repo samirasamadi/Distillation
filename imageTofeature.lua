@@ -78,7 +78,7 @@ local cls = {'airplane', 'automobile', 'bird', 'cat',
 features = {}
 for file in paths.files(opt.dir) do
 	local path = "test/"..file
-	print(path)
+	print(file)
 	
   -- load image
   local img = image.load(path, 3, 'float'):mul(255)
