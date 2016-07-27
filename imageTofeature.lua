@@ -86,6 +86,8 @@ for t,v in ipairs(indices) do
   
    local output = model:forward(input:cuda()):squeeze()
    print(output)
+   
+   break
   
 end
   
