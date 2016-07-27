@@ -75,19 +75,11 @@ end
 local cls = {'airplane', 'automobile', 'bird', 'cat',
              'deer', 'dog', 'frog', 'horse', 'ship', 'truck'}
 
-
+features = {}
 for file in paths.files(opt.dir) do
-	print(file)
-end
-
--- counter = 0
-for _, img_path in ipairs(image_paths) do
 	
---	counter = counter + 1
---	print('image', counter)
-  
   -- load image
-  local img = image.load(img_path, 3, 'float'):mul(255)
+  local img = image.load(file, 3, 'float'):mul(255)
 
   -- resize it to 32x32
   img = image.scale(img, 32, 32)
@@ -98,10 +90,8 @@ for _, img_path in ipairs(image_paths) do
   
   -- get features
   
-  local features10 = model:get(53):forward(img:cuda()):squeeze() 
-  print(features10:size())
+  local feature = model:get(53):forward(img:cuda()):squeeze() 
+  print(feature:size())
   
-  
-  torch.save('logs/vgg/features10.t7', features10)
   
 end
