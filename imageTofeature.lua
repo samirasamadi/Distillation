@@ -97,7 +97,8 @@ local cls = {'airplane', 'automobile', 'bird', 'cat',
 for t,v in ipairs(indices) do
   local input = provider.trainData.data:index(1,v)
   local target = provider.trainData.labels:index(1,v)
-  
+  print(input)
+  print(target)
   -- local img = image.load(path, 3, 'float'):mul(255)
 
   -- resize it to 32x32
