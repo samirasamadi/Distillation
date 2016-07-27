@@ -8,7 +8,7 @@ opt = lapp[[
 --model                    (default "logs/vgg/trainedModel.net")     model address
 ]]
 
-print(model)
+print(opt.model)
 
 if #arg < 2 then
   io.stderr:write('Usage: th example_classify.lua [MODEL] [FILE]...\n')
@@ -25,7 +25,7 @@ local model_path = opt.model
 require 'provider'
 local provider = torch.load 'provider.t7'
 
-print(c.blue '==>' ..' loading data')
+print('loading data')
 provider = torch.load 'provider.t7'
 provider.trainData.data = provider.trainData.data:float()
 
