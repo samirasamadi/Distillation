@@ -84,7 +84,7 @@ for t,v in ipairs(indices) do
   
   -- get features
   
-  local feature = model:forward(input)
+ -- model:forward(input)
   -- print(feature:size())
   
 end
