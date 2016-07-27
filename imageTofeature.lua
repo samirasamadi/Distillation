@@ -33,8 +33,6 @@ local provider = torch.load 'provider.t7'
 print(c.blue '==>' ..' loading data')
 provider = torch.load 'provider.t7'
 provider.trainData.data = provider.trainData.data:float()
-print('aaaaa')
-print(provider.trainData.data:size())
 
 -- length = provider.trainData.data:size(1):long()
 
@@ -89,10 +87,11 @@ features = {}
 --	local path = "test/"..file
 --	print(file)
 
-for input in inputs do
+for input in provider.trainData.data do
 	print(input)
+	print('************')
   -- load image
-  local img = image.load(path, 3, 'float'):mul(255)
+  -local img = image.load(path, 3, 'float'):mul(255)
 
   -- resize it to 32x32
   img = image.scale(img, 32, 32)
