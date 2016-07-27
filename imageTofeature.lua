@@ -1,6 +1,10 @@
 require 'image'
 require 'cudnn'
 require 'cunn'
+require 'xlua'
+require 'optim'
+require 'nn'
+dofile './provider.lua'
 local c = require 'trepl.colorize'
 local tablex = require 'pl.tablex'
 
