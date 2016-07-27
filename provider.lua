@@ -5,8 +5,8 @@ require 'xlua'
 local Provider = torch.class 'Provider'
 
 function Provider:__init(full)
-  local trsize = 500
-  local tesize = 100
+  local trsize = 50000
+  local tesize = 10000
 
   -- download dataset
   if not paths.dirp('cifar-10-batches-t7') then
@@ -17,15 +17,15 @@ function Provider:__init(full)
 
   -- load dataset
   self.trainData = {
-     data = torch.Tensor(500, 3072),
-     labels = torch.Tensor(500),
+     data = torch.Tensor(50000, 3072),
+     labels = torch.Tensor(50000),
      size = function() return trsize end
   }
   local trainData = self.trainData
   for i = 0,4 do
      local subset = torch.load('cifar-10-batches-t7/data_batch_' .. (i+1) .. '.t7', 'ascii')
-     trainData.data[{ {i*100+1, (i+1)*100} }] = subset.data:t()
-     trainData.labels[{ {i*100+1, (i+1)*100} }] = subset.labels
+     trainData.data[{ {i*10000+1, (i+1)*10000} }] = subset.data:t()
+     trainData.labels[{ {i*10000+1, (i+1)*10000} }] = subset.labels
   end
   trainData.labels = trainData.labels + 1
 
