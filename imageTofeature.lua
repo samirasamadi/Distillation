@@ -33,6 +33,7 @@ local provider = torch.load 'provider.t7'
 print(c.blue '==>' ..' loading data')
 provider = torch.load 'provider.t7'
 provider.trainData.data = provider.trainData.data:float()
+print(provider.trainData.data:type())
 
 -- length = provider.trainData.data:size(1):long()
 
