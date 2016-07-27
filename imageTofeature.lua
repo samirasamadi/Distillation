@@ -84,7 +84,7 @@ for t,v in ipairs(indices) do
   
   -- get features
   
-   local output = model:get(43):forward(input:cuda()):squeeze()
+   local output = model:get(53):forward(input:cuda()):squeeze()
    print(output)
    
    break
