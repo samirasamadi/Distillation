@@ -35,14 +35,12 @@ provider = torch.load 'provider.t7'
 provider.trainData.data = provider.trainData.data:float()
 -- provider.trainData.data is a floatTensor
 local indices = torch.randperm(provider.trainData.data:size(1)):long():split(1)
-
+print(indices:size())
 for t,v in ipairs(indices) do
-
   local inputs = provider.trainData.data:index(1,v)
-  targets:copy(provider.trainData.labels:index(1,v))
-  
-  
+  local targets = provider.trainData.labels:index(1,v)
 end
+
 
 
 -- local inputs = provider.trainData.data:index(1, length)
