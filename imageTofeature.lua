@@ -91,7 +91,7 @@ for input in provider.trainData.data do
 	print(input)
 	print('************')
   -- load image
-  -local img = image.load(path, 3, 'float'):mul(255)
+  local img = image.load(path, 3, 'float'):mul(255)
 
   -- resize it to 32x32
   img = image.scale(img, 32, 32)
