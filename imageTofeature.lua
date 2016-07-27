@@ -33,13 +33,14 @@ local provider = torch.load 'provider.t7'
 print(c.blue '==>' ..' loading data')
 provider = torch.load 'provider.t7'
 provider.trainData.data = provider.trainData.data:float()
+print(provider.trainData.data)
 
-length = provider.trainData.data:size(1):long()
+-- length = provider.trainData.data:size(1):long()
 
-local inputs = provider.trainData.data:index(1, length)
-print('inputs:size()', inputs:size())
-local targets = provider.trainData.labels:index(1, length)
-print('targets:size()', targets:size())
+-- local inputs = provider.trainData.data:index(1, length)
+-- print('inputs:size()', inputs:size())
+-- local targets = provider.trainData.labels:index(1, length)
+-- print('targets:size()', targets:size())
 -- local outputs = model:forward(inputs)
 
 -- normalize a given image
