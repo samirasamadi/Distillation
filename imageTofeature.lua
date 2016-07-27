@@ -35,8 +35,9 @@ provider = torch.load 'provider.t7'
 provider.trainData.data = provider.trainData.data:float()
 -- provider.trainData.data is a floatTensor
 
+ print('***********')
  length = provider.trainData.data:size(1):long()
- print(length)
+
 
 -- local inputs = provider.trainData.data:index(1, length)
 -- print('inputs:size()', inputs:size())
