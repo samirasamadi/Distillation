@@ -6,36 +6,35 @@ local tablex = require 'pl.tablex'
 
 opt = lapp[[
 --model                    (default "logs/vgg/trainedModel.net")     model address
---dir                      (default "test")                          directory containing images
 ]]
 
-print(opt)
-print('************')
-print(opt.model)
-print(opt.dir)
-
+print(model)
 
 if #arg < 2 then
   io.stderr:write('Usage: th example_classify.lua [MODEL] [FILE]...\n')
   os.exit(1)
 end
 
---for _, f in ipairs(arg) do
---	print('here')
---	print(f)
-  --if not paths.filep(f) then
-  --  io.stderr:write('file not found: ' .. f .. '\n')
-  --  os.exit(1)
-  --end
-  --end
 
 local model_path = opt.model
-local image_paths = opt.dir
---print(image_paths)
+-- local image_paths = opt.dir
 
--- loads the normalization parameters
+
+
+-- loads the training data
 require 'provider'
 local provider = torch.load 'provider.t7'
+
+print(c.blue '==>' ..' loading data')
+provider = torch.load 'provider.t7'
+provider.trainData.data = provider.trainData.data:float()
+
+local inputs = provider.trainData.data:index(1,v)
+targets:copy(provider.trainData.labels:index(1,v))
+
+-- local outputs = model:forward(inputs)
+
+-- normalize a given image
 
 local function normalize(imgRGB)
 
@@ -62,7 +61,7 @@ local function normalize(imgRGB)
 end
 
 local model = torch.load(model_path)
--- model:add(nn.SoftMax():cuda())
+model:add(nn.SoftMax():cuda())
 model:evaluate()
 
 -- model definition should set numInputDims
@@ -76,10 +75,12 @@ local cls = {'airplane', 'automobile', 'bird', 'cat',
              'deer', 'dog', 'frog', 'horse', 'ship', 'truck'}
 
 features = {}
-for file in paths.files(opt.dir) do
-	local path = "test/"..file
-	print(file)
-	
+-- for file in paths.files(opt.dir) do
+--	local path = "test/"..file
+--	print(file)
+
+for input in inputs do
+	print(input)
   -- load image
   local img = image.load(path, 3, 'float'):mul(255)
 
