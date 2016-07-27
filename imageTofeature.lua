@@ -27,7 +27,7 @@ local model_path = opt.model
 
 
 -- loads the training data
-require 'provider'
+-- require 'provider'
 local provider = torch.load 'provider.t7'
 
 print(c.blue '==>' ..' loading data')
