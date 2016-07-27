@@ -44,32 +44,6 @@ local indices = torch.randperm(provider.trainData.data:size(1)):long():split(1)
 -- print('targets:size()', targets:size())
 -- local outputs = model:forward(inputs)
 
--- normalize a given image
-
-local function normalize(imgRGB)
-
-  -- preprocess trainSet
-  local normalization = nn.SpatialContrastiveNormalization(1, image.gaussian1D(7)):float()
-
-  -- rgb -> yuv
-  local yuv = image.rgb2yuv(imgRGB)
-  -- normalize y locally:
-  yuv[1] = normalization(yuv[{{1}}])
-
-  -- normalize u globally:
-  local mean_u = provider.trainData.mean_u
-  local std_u = provider.trainData.std_u
-  yuv:select(1,2):add(-mean_u)
-  yuv:select(1,2):div(std_u)
-  -- normalize v globally:
-  local mean_v = provider.trainData.mean_v
-  local std_v = provider.trainData.std_v
-  yuv:select(1,3):add(-mean_v)
-  yuv:select(1,3):div(std_v)
-
-  return yuv
-end
-
 local model = torch.load(model_path)
 model:add(nn.SoftMax():cuda())
 model:evaluate()
@@ -110,7 +84,7 @@ for t,v in ipairs(indices) do
   
   -- get features
   
-  local feature = model:get(53):forward(input)
+  local feature = model:forward(input)
   -- print(feature:size())
   
 end
