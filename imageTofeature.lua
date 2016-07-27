@@ -35,8 +35,9 @@ provider = torch.load 'provider.t7'
 provider.trainData.data = provider.trainData.data:float()
 
 local inputs = provider.trainData.data:index(1,v)
-targets:copy(provider.trainData.labels:index(1,v))
-
+print('inputs:size()', inputs:size())
+local targets = provider.trainData.labels:index(1,v)
+print('targets:size()', targets:size())
 -- local outputs = model:forward(inputs)
 
 -- normalize a given image
