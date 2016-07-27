@@ -127,7 +127,7 @@ function train()
       gradParameters:zero()
       
       local outputs = model:forward(inputs)
-	  print('outputs:size()', outputs:size())
+	  print('outputs:size()', outputs:size(), '\n')
       local f = criterion:forward(outputs, targets)
       local df_do = criterion:backward(outputs, targets)
       model:backward(inputs, df_do)
