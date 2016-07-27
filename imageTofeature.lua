@@ -85,7 +85,7 @@ for t,v in ipairs(indices) do
   -- get features
   
    local output = model:forward(input:cuda()):squeeze()
-  -- print(feature:size())
+   print(output)
   
 end
   
