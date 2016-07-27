@@ -1,6 +1,7 @@
 require 'image'
 require 'cudnn'
 require 'cunn'
+local c = require 'trepl.colorize'
 local tablex = require 'pl.tablex'
 
 
@@ -25,7 +26,7 @@ local model_path = opt.model
 require 'provider'
 local provider = torch.load 'provider.t7'
 
-print('loading data')
+print(c.blue '==>' ..' loading data')
 provider = torch.load 'provider.t7'
 provider.trainData.data = provider.trainData.data:float()
 
