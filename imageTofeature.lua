@@ -36,11 +36,6 @@ provider.trainData.data = provider.trainData.data:float()
 -- provider.trainData.data is a floatTensor
 local indices = torch.randperm(provider.trainData.data:size(1)):long():split(1)
 
-for t,v in ipairs(indices) do
-  local inputs = provider.trainData.data:index(1,v)
-  local targets = provider.trainData.labels:index(1,v)
-end
-
 
 
 -- local inputs = provider.trainData.data:index(1, length)
@@ -89,28 +84,35 @@ end
 local cls = {'airplane', 'automobile', 'bird', 'cat',
              'deer', 'dog', 'frog', 'horse', 'ship', 'truck'}
 
-features = {}
+-- features = {}
 -- for file in paths.files(opt.dir) do
 --	local path = "test/"..file
 --	print(file)
 
-for input in provider.trainData.data do
-	print(input)
-	print('************')
-  -- load image
-  local img = image.load(path, 3, 'float'):mul(255)
+-- for input in provider.trainData.data do
+--	print(input)
+--	print('************')
+-- load image
+
+for t,v in ipairs(indices) do
+  local input = provider.trainData.data:index(1,v)
+  local target = provider.trainData.labels:index(1,v)
+  
+  -- local img = image.load(path, 3, 'float'):mul(255)
 
   -- resize it to 32x32
-  img = image.scale(img, 32, 32)
+  -- img = image.scale(img, 32, 32)
   -- normalize
-  img = normalize(img)
+  -- img = normalize(img)
   -- make it batch mode (for BatchNormalization)
-  img = img:view(1, 3, 32, 32)
+  -- img = img:view(1, 3, 32, 32)
   
   -- get features
   
-  local feature = model:get(53):forward(img:cuda()):squeeze() 
+  local feature = model:get(53):forward(input)
   print(feature:size())
+  
+end
   
   
 end
