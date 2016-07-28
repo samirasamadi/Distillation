@@ -63,7 +63,7 @@ for t,v in ipairs(indices) do
 	num = num + 1
 	
 	print(array:type())
-	if(num == 5) do
+	if(num == 5) then
 		break
 	end
 end
