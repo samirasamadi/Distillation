@@ -46,9 +46,9 @@ end
 
 print(c.blue '==>' ..' calculating + saving feature vectors of training set ')
 
-table = {{}}
+table = {}
+num = 1
 for t,v in ipairs(indices) do
-	print('t:', t, 'v:', v)
     local input = provider.trainData.data:index(1,v)
 	-- floatTensor of size 1*3*32*32
    
@@ -60,9 +60,8 @@ for t,v in ipairs(indices) do
     
     -- save this information in a table. Each row is the feature vector + the label for it
 	
-	
-	
-	
+	table[num] = {output, target}
+	print(table[num])
     break
 end
   
