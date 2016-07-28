@@ -63,7 +63,7 @@ for t,v in ipairs(indices) do
 	num = num + 1
 end
 
-torch.save ('\logs\vgg\trainFeatures.dat', array)
+torch.save ('trainFeatures.dat', array)
 --loadedArray = torch.load('array.dat')
 --print(loadedArray[1][1]) 
   
