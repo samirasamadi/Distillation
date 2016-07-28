@@ -70,5 +70,5 @@ for t,v in ipairs(indices) do
 end
 
 torch.save ('array.dat', array)
-  
+loadedArray = torch.load('array.dat') 
   
