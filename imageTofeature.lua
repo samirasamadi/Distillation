@@ -46,7 +46,7 @@ end
 
 print(c.blue '==>' ..' calculating + saving feature vectors of training set ')
 
---table = {}
+table = {}
 --num = 1
 for t,v in ipairs(indices) do
     local input = provider.trainData.data:index(1,v)
