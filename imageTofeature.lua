@@ -68,5 +68,7 @@ for t,v in ipairs(indices) do
 		break
 	end
 end
+
+torch.save ('array.dat', array)
   
   
