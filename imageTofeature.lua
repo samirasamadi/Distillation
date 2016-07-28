@@ -71,5 +71,5 @@ end
 
 torch.save ('array.dat', array)
 loadedArray = torch.load('array.dat')
-print(loadedArray[1][2]) 
+print(loadedArray[1][1]) 
   
