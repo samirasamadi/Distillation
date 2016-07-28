@@ -58,13 +58,14 @@ for t,v in ipairs(indices) do
     local output = model:get(53):forward(input:cuda()):squeeze()
     -- output os a cudaTemsor of size 6*512
     
-    -- save this information in a table. Each row is the feature vector + the label for it
-	
-	--print('here')
+    -- save this information in an array. Each row is the feature vector + the label for it
 	array[num] = {output, target}
-	print(array[num][1])
-	print(array[num][2])
-    break
+	num = num + 1
+	
+	print(array:type())
+	if(num == 5) do
+		break
+	end
 end
   
   
