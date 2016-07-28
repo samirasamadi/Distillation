@@ -61,15 +61,9 @@ for t,v in ipairs(indices) do
     -- save this information in an array. Each row is the feature vector + the label for it
 	array[num] = {output, target}
 	num = num + 1
-	
-	
-	if(num == 5) then
-		print(array)
-		break
-	end
 end
 
-torch.save ('array.dat', array)
-loadedArray = torch.load('array.dat')
-print(loadedArray[1][1]) 
+torch.save ('\logs\vgg\trainFeatures.dat', array)
+--loadedArray = torch.load('array.dat')
+--print(loadedArray[1][1]) 
   
