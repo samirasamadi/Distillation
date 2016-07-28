@@ -60,8 +60,9 @@ for t,v in ipairs(indices) do
     
     -- save this information in a table. Each row is the feature vector + the label for it
 	
+	print('here')
 	table[num] = {output, target}
-	print(table[num])
+	-- print(table[num])
     break
 end
   
