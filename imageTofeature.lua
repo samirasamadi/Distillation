@@ -63,6 +63,7 @@ for t,v in ipairs(indices) do
 	--print('here')
 	array[num] = {output, target}
 	print(array[num][1])
+	print(array[num][2])
     break
 end
   
