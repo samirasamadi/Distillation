@@ -5,6 +5,11 @@ require 'cunn'
 
 --local function featureTolabel(featureVector){
 	
+	-- load the test featureVector
+	local featureVectors = torch.load('trainFeatures.dat')
+	local featureVector = featureVectors[1][1]
+	print(featureVector)
+	
 	-- load the model
 	model_path = "logs/vgg/trainedModel.net"
 	
@@ -18,6 +23,9 @@ require 'cunn'
 	model:evaluate()
 	
 	print(model)
+	
+	local softLabels = model:forward(featureVector:cuda()):squeeze()
+	print(softLabels)
 	--}
 --end
 
