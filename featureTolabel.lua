@@ -15,10 +15,13 @@ require 'cunn'
 	model_path = "logs/vgg/trainedModel.net"
 	
 	local model = torch.load(model_path)
+	print(model)
+	print('**************')
 	
 	for i = 1, 53 do
 		model:remove(1) 
 	end
+	print(model)
 	
 	model:add(nn.SoftMax():cuda())
 	model:evaluate()
