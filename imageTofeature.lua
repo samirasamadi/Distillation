@@ -64,6 +64,6 @@ for t,v in ipairs(indices) do
 end
 
 torch.save ('trainFeatures.dat', array)
-loadedArray = torch.load('array.dat')
+loadedArray = torch.load('trainFeatures.dat')
 print('number of points in the training set', loadedArray:size(1)) 
   
