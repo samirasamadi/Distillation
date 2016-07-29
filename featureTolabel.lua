@@ -8,6 +8,7 @@ require 'cunn'
 	-- load the test featureVector
 	local featureVectors = torch.load('trainFeatures.dat')
 	local featureVector = featureVectors[1][1]
+	print('featureVector', featureVector)
 	
 	
 	-- load the model
