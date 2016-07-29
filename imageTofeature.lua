@@ -52,18 +52,18 @@ for t,v in ipairs(indices) do
     local input = provider.trainData.data:index(1,v)
 	-- floatTensor of size 1*3*32*32
    
-    local target = provider.trainData.labels:index(1,v)
+    local label = provider.trainData.labels:index(1,v)
     -- DoubleTensor of size 1
   
-    local output = model:get(53):forward(input:cuda()):squeeze()
-    -- output os a cudaTemsor of size 6*512
+    local featureTensor = model:get(53):forward(input:cuda()):squeeze()
+    -- output os a cudaTensor of size 6*512
     
     -- save this information in an array. Each row is the feature vector + the label for it
-	array[num] = {output, target}
+	array[num] = {featureTensor, label}
 	num = num + 1
 end
 
 torch.save ('trainFeatures.dat', array)
---loadedArray = torch.load('array.dat')
---print(loadedArray[1][1]) 
+loadedArray = torch.load('array.dat')
+print('number of points in the training set', loadedArray:size(1)) 
   
