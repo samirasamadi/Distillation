@@ -10,7 +10,7 @@ require 'cunn'
 	
 	local model = torch.load(model_path)
 	
-	for i = 1, 52 do
+	for i = 1, 53 do
 		model:remove(1) 
 	end
 	
