@@ -74,12 +74,16 @@ for _, img_path in ipairs(image_paths) do
   local features = model:get(53):forward(img:cuda()):squeeze()
   print('features', features)
   
+  local output1 = model:forward(img:cuda()):squeeze()
+  print('original output', output1)
+  
   for i = 1, 53 do
    	model:remove(1) 
   end
   
-  local output = model:forward(features)
-  print('final output', output)
+  local output2 = model:forward(features)
+  print('output of features', output2)
+  
 
   -- display
   print('Probabilities for '..img_path)
