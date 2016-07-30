@@ -34,7 +34,7 @@ require 'cunn'
 	
 	print(model)
 	
-	local softLabels = model:forward(featureVector:cuda()):squeeze()
+	local softLabels = model:forward(featureVector)
 	print(softLabels)
 	--}
 --end
