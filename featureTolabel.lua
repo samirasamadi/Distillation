@@ -15,17 +15,24 @@ require 'cunn'
 	model_path = "logs/vgg/trainedModel.net"
 	
 	local model = torch.load(model_path)
+	model:add(nn.SoftMax():cuda())
+	model:evaluate()
+	
+	-- model definition should set numInputDims
+	-- hacking around it for the moment
+	local view = model:findModules('nn.View')
+	if #view > 0 then
+	  view[1].numInputDims = 3
+	end
+	
 	print(model)
 	print('**************')
 	
 	for i = 1, 53 do
 		model:remove(1) 
 	end
+	
 	print(model)
-	
-	model:add(nn.SoftMax():cuda())
-	model:evaluate()
-	
 	
 	local softLabels = model:forward(featureVector:cuda()):squeeze()
 	print(softLabels)
