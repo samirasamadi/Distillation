@@ -81,7 +81,7 @@ for _, img_path in ipairs(image_paths) do
    	model:remove(1) 
   end
   
-  local output2 = torch.sum(model:forward(features), 1)
+  local output2 = model:forward(features)
   print('output of features', output2)
   
 
