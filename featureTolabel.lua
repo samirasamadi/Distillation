@@ -35,7 +35,10 @@ require 'cunn'
 	print(model)
 	
 	local softLabels = model:forward(featureVector)
+	local sumedLabels = torch.sum(softLabels, 1)
+	
 	print(softLabels)
+	print(sumedLabels)
 	--}
 --end
 
