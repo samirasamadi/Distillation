@@ -124,6 +124,7 @@ for _, img_path in ipairs(image_paths) do
   print('after layer 4')
   output2 = model:get(1):get(5):forward(output2)
   print('after layer 5')
+  print(output2)
   output2 = model:get(1):get(6):forward(output2)
    print('after layer 6')
   local finalOutput = model:get(2):forward(output2)
