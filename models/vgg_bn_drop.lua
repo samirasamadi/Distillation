@@ -46,9 +46,11 @@ classifier = nn.Sequential()
 classifier:add(nn.Dropout(0.5))
 classifier:add(nn.Linear(512,512))
 classifier:add(nn.BatchNormalization(512))
+print('after batchNormalization')
 classifier:add(nn.ReLU(true))
 classifier:add(nn.Dropout(0.5))
 classifier:add(nn.Linear(512,10))
+
 vgg:add(classifier)
 
 -- initialization from MSR
