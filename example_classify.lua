@@ -80,7 +80,17 @@ for _, img_path in ipairs(image_paths) do
   print(model)
  
   local features = model:forward(img:cuda()):squeeze()
-   print('features', features)
+  print('features', features)
+  
+  
+  model = torch.load(model_path)
+  model:add(nn.SoftMax():cuda())
+  model:evaluate()
+  
+  view = model:findModules('nn.View')
+  if #view > 0 then
+    view[1].numInputDims = 3
+  end
   
   
   --local output1 = model:forward(img:cuda()):squeeze()
