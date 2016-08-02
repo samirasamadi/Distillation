@@ -93,8 +93,8 @@ for _, img_path in ipairs(image_paths) do
   end
   
   
-  --local output1 = model:forward(img:cuda()):squeeze()
-  --print('original output', output1)
+  local output1 = model:forward(img:cuda()):squeeze()
+  print('original output', output1)
   
   --for i = 1, 53 do
   -- 	model:remove(1) 
