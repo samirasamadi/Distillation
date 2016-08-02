@@ -141,8 +141,9 @@ for _, img_path in ipairs(image_paths) do
   
   --print(model:get(2))
   local finalOutput = model3:forward(features:view(1,512))
-  model3:add(nn.SoftMax():cuda())
+  model3:add(nn.SoftMax())
   model3:cuda()
+  print(model3)
   model3:evalutate()
   local finalOutput1 = model3:forward(features:view(1,512))
   
