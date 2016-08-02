@@ -45,13 +45,24 @@ local function normalize(imgRGB)
   return yuv
 end
 
-local model = torch.load(model_path)
-model:add(nn.SoftMax():cuda())
-model:evaluate()
+local model1 = torch.load(model_path)
+model1:add(nn.SoftMax():cuda())
+model1:evaluate()
 
 -- model definition should set numInputDims
 -- hacking around it for the moment
-local view = model:findModules('nn.View')
+local view = model1:findModules('nn.View')
+if #view > 0 then
+  view[1].numInputDims = 3
+end
+
+local model2 = torch.load(model_path)
+model2:add(nn.SoftMax():cuda())
+model2:evaluate()
+
+-- model definition should set numInputDims
+-- hacking around it for the moment
+local view = model2:findModules('nn.View')
 if #view > 0 then
   view[1].numInputDims = 3
 end
@@ -72,24 +83,29 @@ for _, img_path in ipairs(image_paths) do
 
 
   -- get probabilities
-  print(model:get(53))
-  local features = model:get(53):forward(img:cuda()):squeeze()
+  
+  for j=1, 7 do
+	  model1:remove()
+  end
+  
+  print(model1)
+  local features = model1:forward(img:cuda()):squeeze()
   print('features', features)
   
-  local output1 = model:forward(img:cuda()):squeeze()
-  print('original output', output1)
+  local output2 = model2:forward(img:cuda()):squeeze()
+  print('original output', output2)
   
   for i = 1, 53 do
-   	model:remove(1) 
+   	model2:remove(1) 
   end
   -- How should I make features prepared to be input of the network?
-  local output2 = model:forward(features)
-  print('output of features', output2)
+  local output3 = model:forward(features)
+  print('output of features', output3)
   
 
   -- display
-  print('Probabilities for '..img_path)
-  for cl_id, cl in ipairs(cls) do
-    print(string.format('%-10s: %-05.2f%%', cl, output[cl_id] * 100))
-  end
-end
+--  print('Probabilities for '..img_path)
+--  for cl_id, cl in ipairs(cls) do
+--    print(string.format('%-10s: %-05.2f%%', cl, output[cl_id] * 100))
+--  end
+--end
