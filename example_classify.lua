@@ -103,7 +103,7 @@ for _, img_path in ipairs(image_paths) do
   
   local output = model:forward(img:cuda()):squeeze()
   
-  print('original output', output1)
+  print('original output', output)
   print('************')
   
   for i = 1, 53 do
