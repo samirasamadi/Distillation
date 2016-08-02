@@ -46,7 +46,14 @@ end
 
 print(c.blue '==>' ..' calculating + saving feature vectors of training set ')
 
-model1 = model
+model1 = torch.load(model_path)
+model1:add(nn.SoftMax():cuda())
+model1:evaluate()
+
+view = model1:findModules('nn.View')
+if #view > 0 then
+  view[1].numInputDims = 3
+end
 
 for j = 1, 2 do 
   model1:remove()
@@ -58,7 +65,6 @@ print(model)
 
 print('**************')
 print(model1)
-
 
 
 array = {}
