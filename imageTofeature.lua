@@ -73,6 +73,7 @@ for t,v in ipairs(indices) do
 	-- floatTensor of size 1*3*32*32
    
     local label = provider.trainData.labels:index(1,v)
+	print(label)
     -- DoubleTensor of size 1
 	
 	local softLabels = model:forward(input:cuda()):squeeze()
@@ -88,7 +89,7 @@ for t,v in ipairs(indices) do
 	num = num + 1
 	
 	
-	if num > 3 then
+	if num > 1 then
 		break
 	end
 end
