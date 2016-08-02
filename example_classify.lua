@@ -70,7 +70,9 @@ for _, img_path in ipairs(image_paths) do
   -- make it batch mode (for BatchNormalization)
   img = img:view(1, 3, 32, 32)
 
+
   -- get probabilities
+  print(model:get(53))
   local features = model:get(53):forward(img:cuda()):squeeze()
   print('features', features)
   
@@ -80,7 +82,7 @@ for _, img_path in ipairs(image_paths) do
   for i = 1, 53 do
    	model:remove(1) 
   end
-  
+  -- How should I make features prepared to be input of the network?
   local output2 = model:forward(features)
   print('output of features', output2)
   
