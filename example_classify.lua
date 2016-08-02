@@ -81,7 +81,7 @@ for _, img_path in ipairs(image_paths) do
   print('************')
  
   local features = model:forward(img:cuda()):squeeze()
-  print('features', features)
+  --print('features', features)
   print('************')
   
   model = torch.load(model_path)
