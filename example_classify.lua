@@ -91,10 +91,10 @@ for _, img_path in ipairs(image_paths) do
   model:add(nn.SoftMax():cuda())
   model:evaluate()
   
-  view = model:findModules('nn.View')
-  if #view > 0 then
-    view[1].numInputDims = 3
-  end
+  --view = model:findModules('nn.View')
+  --if #view > 0 then
+  --  view[1].numInputDims = 3
+  --end
   
   
   local output1 = model:forward(img:cuda()):squeeze()
