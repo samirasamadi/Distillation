@@ -100,5 +100,5 @@ torch.save ('trainFeatures.dat', array)
 loadedArray = torch.load('trainFeatures.dat')
   
 print(loadedArray[1][1])
-print(loadedArray[1][2])
+print(torch.sum(loadedArray[1][2],1))
 print(loadedArray[1][3])
