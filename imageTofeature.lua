@@ -46,6 +46,21 @@ end
 
 print(c.blue '==>' ..' calculating + saving feature vectors of training set ')
 
+model1 = model
+
+for j = 1, 2 do 
+  model1:remove()
+end
+
+
+print('**************')
+print(model)
+
+print('**************')
+print(model1)
+
+
+
 array = {}
 num = 1
 for t,v in ipairs(indices) do
