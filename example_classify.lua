@@ -113,7 +113,7 @@ for _, img_path in ipairs(image_paths) do
   
   --print(model:get(1):get(1))
   
-  local output2 = model:forward(torch.reshape(features))
+  local output2 = model:forward(torch.reshape(features, 512, 1))
   print('ssssss')
   output2 = model:get(1):get(2):forward(output2)
   output2 = torch.reshape(output2, 512, 1)
