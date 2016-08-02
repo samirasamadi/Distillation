@@ -90,7 +90,7 @@ for _, img_path in ipairs(image_paths) do
   
   print(model1)
   local features = model1:forward(img:cuda()):squeeze()
-  print('features', features)
+  -- print('features', features)
   
   local output2 = model2:forward(img:cuda()):squeeze()
   print('original output', output2)
@@ -98,8 +98,9 @@ for _, img_path in ipairs(image_paths) do
   for i = 1, 53 do
    	model2:remove(1) 
   end
+  
   -- How should I make features prepared to be input of the network?
-  local output3 = model:forward(features)
+  local output3 = model2:forward(features)
   print('output of features', output3)
   
 
