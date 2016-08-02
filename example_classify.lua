@@ -51,7 +51,7 @@ model:evaluate()
 
 -- model definition should set numInputDims
 -- hacking around it for the moment
-local view = model1:findModules('nn.View')
+local view = model:findModules('nn.View')
 if #view > 0 then
   view[1].numInputDims = 3
 end
