@@ -141,8 +141,14 @@ for _, img_path in ipairs(image_paths) do
   
   --print(model:get(2))
   local finalOutput = model3:forward(features:view(1,512))
+  model3:add(nn.SoftMax():cuda())
+  model3:cuda()
+  model3:evalutate()
+  local finalOutput1 = model3:forward(features:view(1,512))
   
   print('finalOutput', finalOutput)
+  print('finalOutput1', finalOutput1)
+
 
   -- display
   --print('Probabilities for '..img_path)
