@@ -45,24 +45,13 @@ local function normalize(imgRGB)
   return yuv
 end
 
-local model1 = torch.load(model_path)
-model1:add(nn.SoftMax():cuda())
-model1:evaluate()
+local model = torch.load(model_path)
+model:add(nn.SoftMax():cuda())
+model:evaluate()
 
 -- model definition should set numInputDims
 -- hacking around it for the moment
 local view = model1:findModules('nn.View')
-if #view > 0 then
-  view[1].numInputDims = 3
-end
-
-local model2 = torch.load(model_path)
-model2:add(nn.SoftMax():cuda())
-model2:evaluate()
-
--- model definition should set numInputDims
--- hacking around it for the moment
-local view = model2:findModules('nn.View')
 if #view > 0 then
   view[1].numInputDims = 3
 end
