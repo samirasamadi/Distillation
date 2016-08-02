@@ -36,7 +36,7 @@ ConvBNReLU(512,512):add(nn.Dropout(0.4))
 ConvBNReLU(512,512):add(nn.Dropout(0.4))
 ConvBNReLU(512,512)
 vgg:add(MaxPooling(2,2,2,2):ceil())
-vgg:add(nn.View(513))
+vgg:add(nn.View(512))
 
 -- print('***********************')
 -- print(vgg)
