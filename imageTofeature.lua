@@ -54,8 +54,17 @@ for t,v in ipairs(indices) do
    
     local label = provider.trainData.labels:index(1,v)
     -- DoubleTensor of size 1
+	
+	local softLabels = model:forward(input:cuda()):squeeze()
+	
+    for j = 1, 2 do 
+  	  model:remove()
+    end
+	
+	print(model)
   
-    local featureTensor = model:get(53):forward(input:cuda()):squeeze()
+    local featureTensor = model:forward(input:cuda()):squeeze()
+	print(featureTensor)
     -- output os a cudaTensor of size 6*512
     
     -- save this information in an array. Each row is the feature vector + the label for it
