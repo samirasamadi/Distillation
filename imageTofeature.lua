@@ -73,27 +73,32 @@ for t,v in ipairs(indices) do
 	-- floatTensor of size 1*3*32*32
    
     local label = provider.trainData.labels:index(1,v)
-	print(label)
+	-- print(label)
     -- DoubleTensor of size 1
 	
 	local softLabels = model:forward(input:cuda()):squeeze()
-	print(softLabels)  
+	--print(softLabels)  
 	-- CudaTensor of size 10
   
     local featureTensor = model1:forward(input:cuda()):squeeze()
-	 print(featureTensor)
-    -- output os a cudaTensor of size 
+	-- print(featureTensor)
+    -- cudaTensor of size 512
     
     -- save this information in an array. Each row is the feature vector + the label for it
 	array[num] = {featureTensor, softLabels, label}
 	num = num + 1
+	print(array)
+	print('***********')
 	
 	
-	if num > 1 then
-		break
-	end
+	--if num > 1 then
+	--	break
+	--end
 end
 
 torch.save ('trainFeatures.dat', array)
 loadedArray = torch.load('trainFeatures.dat')
   
+print(loadedArray[1][1][1])
+print(loadedArray[1][1][2])
+print(loadedArray[1][1][2])
