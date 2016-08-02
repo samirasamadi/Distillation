@@ -16,7 +16,7 @@ opt = lapp[[
 print(opt.model)
 
 if #arg < 2 then
-  io.stderr:write('Usage: th example_classify.lua [MODEL] [FILE]...\n')
+  io.stderr:write('Usage: th imageTofeature.lua [MODEL] [FILE]...\n')
   os.exit(1)
 end
 
@@ -64,12 +64,17 @@ for t,v in ipairs(indices) do
 	print(model)
   
     local featureTensor = model:forward(input:cuda()):squeeze()
-	print(featureTensor)
+	-- print(featureTensor)
     -- output os a cudaTensor of size 6*512
     
     -- save this information in an array. Each row is the feature vector + the label for it
-	array[num] = {featureTensor, label}
+	array[num] = {featureTensor, softLabels, label}
 	num = num + 1
+	
+	
+	if num > 3 then
+		break
+	end
 end
 
 torch.save ('trainFeatures.dat', array)
