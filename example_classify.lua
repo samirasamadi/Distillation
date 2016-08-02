@@ -81,8 +81,6 @@ for _, img_path in ipairs(image_paths) do
   model1:add(nn.SoftMax():cuda())
   model1:evaluate()
 
-  -- model definition should set numInputDims
-  -- hacking around it for the moment
   view = model1:findModules('nn.View')
   if #view > 0 then
     view[1].numInputDims = 3
@@ -102,7 +100,6 @@ for _, img_path in ipairs(image_paths) do
   
   
   local output = model:forward(img:cuda()):squeeze()
-  
   print('original output', output)
   print('************')
   
@@ -115,7 +112,9 @@ for _, img_path in ipairs(image_paths) do
   
   
   --print(model:get(1):get(1))
-  local output2 = model:get(1):get(1):forward(features)
+  
+  local output2 = model:forward(torch.reshape(features))\
+  print('ssssss')
   output2 = model:get(1):get(2):forward(output2)
   output2 = torch.reshape(output2, 512, 1)
   output2 = model:get(1):get(3):forward(output2)
