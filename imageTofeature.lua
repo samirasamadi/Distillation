@@ -59,7 +59,6 @@ for j = 1, 2 do
   model1:remove()
 end
 
-
 print('**************')
 print(model)
 
@@ -81,7 +80,7 @@ for t,v in ipairs(indices) do
     
   
     local featureTensor = model:forward(input:cuda()):squeeze()
-	-- print(featureTensor)
+	 print(featureTensor)
     -- output os a cudaTensor of size 6*512
     
     -- save this information in an array. Each row is the feature vector + the label for it
