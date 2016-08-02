@@ -73,7 +73,7 @@ for _, img_path in ipairs(image_paths) do
 
   -- get probabilities
   
-  for j = 1, 4 do 
+  for j = 1, 2 do 
 	  model:remove()
   end
   
