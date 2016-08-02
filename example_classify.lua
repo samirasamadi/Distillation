@@ -113,7 +113,7 @@ for _, img_path in ipairs(image_paths) do
   print(model)
   print('*****TILL HERE*******')
   
-  local output2 = model:forward(features)
+  local output2 = model:get(1):forward(features)
   print('output of features', output2)
   
 
