@@ -103,41 +103,44 @@ for _, img_path in ipairs(image_paths) do
   print('original output', output)
   print('************')
   
-  for i = 1, 53 do
-   	model:remove(1) 
-  end
+  --for i = 1, 53 do
+  -- 	model:remove(1) 
+  --end
+  model3 = model:get(54)
   
-  print(model)
+  
+  print(model3)
   print('*****TILL HERE*******')
   
   
+  
   --print(model:get(1):get(1))
-  print(model:get(1):get(1))
-  local output2 = model:get(1):get(1):forward(features)
+  --print(model:get(1):get(1))
+  --local output2 = model:get(1):get(1):forward(features)
   
-  print(model:get(1):get(2))
-  output2 = model:get(1):get(2):forward(output2)
+  --print(model:get(1):get(2))
+  --output2 = model:get(1):get(2):forward(output2)
   
-  print(model:get(1):get(3))
-  output2 = torch.reshape(output2, 512, 1)
-  output2 = model:get(1):get(3):forward(output2)
+  --print(model:get(1):get(3))
+  --output2 = torch.reshape(output2, 512, 1)
+  --output2 = model:get(1):get(3):forward(output2)
   
-  print(model:get(1):get(4))
-  local output2 = model:get(1):get(4):forward(output2)
+  --print(model:get(1):get(4))
+  --local output2 = model:get(1):get(4):forward(output2)
   
-  print(model:get(1):get(5))
-  local output2 = model:get(1):get(5):forward(output2)
+  --print(model:get(1):get(5))
+  --local output2 = model:get(1):get(5):forward(output2)
   
-  print(model:get(1):get(6))
-  output2 = torch.reshape(output2, 512)
+  ---print(model:get(1):get(6))
+  --output2 = torch.reshape(output2, 512)
   
   
-  output2 = model:get(1):get(6):forward(output2)
+  --output2 = model:get(1):get(6):forward(output2)
   
-  print(output2)
+  --print(output2)
   
-  print(model:get(2))
-  local finalOutput = model:get(2):forward(output2)
+  --print(model:get(2))
+  local finalOutput = model3:forward(features:view(1,512))
   
   print('finalOutput', finalOutput)
 
