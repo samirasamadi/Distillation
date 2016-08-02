@@ -121,6 +121,10 @@ for _, img_path in ipairs(image_paths) do
   output2 = model:get(1):get(2):forward(output2)
   print('output of ...', output2)
   
+  output2 = model:get(1):get(3):forward(output2)
+  print('output of ...', output2)
+  
+  
   
 
   -- display
