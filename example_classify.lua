@@ -73,6 +73,9 @@ for _, img_path in ipairs(image_paths) do
 
   -- get probabilities
   
+  print(model)
+  print('************')
+  
   for j = 1, 2 do 
 	  model:remove()
   end
