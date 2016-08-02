@@ -133,6 +133,8 @@ for _, img_path in ipairs(image_paths) do
   print(output2)
   output2 = model:get(1):get(6):forward(output2)
   
+  print(output2)
+  
   local finalOutput = model:get(2):forward(output2)
   
   print('finalOutput', finalOutput)
