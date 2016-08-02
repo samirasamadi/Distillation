@@ -91,9 +91,9 @@ for t,v in ipairs(indices) do
 	print('***********')
 	
 	
-	--if num > 1 then
-	--	break
-	--end
+	if num > 1 then
+		break
+	end
 end
 
 torch.save ('trainFeatures.dat', array)
