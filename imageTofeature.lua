@@ -76,12 +76,12 @@ for t,v in ipairs(indices) do
     -- DoubleTensor of size 1
 	
 	local softLabels = model:forward(input:cuda()):squeeze()
-	
-    
+	print(softLabels)  
+	-- CudaTensor of size 10
   
-    local featureTensor = model:forward(input:cuda()):squeeze()
+    local featureTensor = model1:forward(input:cuda()):squeeze()
 	 print(featureTensor)
-    -- output os a cudaTensor of size 6*512
+    -- output os a cudaTensor of size 
     
     -- save this information in an array. Each row is the feature vector + the label for it
 	array[num] = {featureTensor, softLabels, label}
