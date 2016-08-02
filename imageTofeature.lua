@@ -70,15 +70,9 @@ for t,v in ipairs(indices) do
     local label = provider.trainData.labels:index(1,v)
     -- DoubleTensor of size 1
 	
-	print(model)
-	
 	local softLabels = model:forward(input:cuda()):squeeze()
 	
-    for j = 1, 2 do 
-  	  model:remove()
-    end
-	
-	print(model)
+    
   
     local featureTensor = model:forward(input:cuda()):squeeze()
 	-- print(featureTensor)
