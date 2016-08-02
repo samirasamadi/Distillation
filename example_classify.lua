@@ -78,10 +78,11 @@ for _, img_path in ipairs(image_paths) do
   end
   
   print(model)
+  print('************')
  
   local features = model:forward(img:cuda()):squeeze()
   print('features', features)
-  
+  print('************')
   
   model = torch.load(model_path)
   model:add(nn.SoftMax():cuda())
@@ -95,13 +96,17 @@ for _, img_path in ipairs(image_paths) do
   
   local output1 = model:forward(img:cuda()):squeeze()
   print('original output', output1)
+  print('************')
   
-  --for i = 1, 53 do
-  -- 	model:remove(1) 
-  --end
-  -- How should I make features prepared to be input of the network?
-  --local output2 = model:forward(features)
-  --print('output of features', output2)
+  for i = 1, 53 do
+   	model:remove(1) 
+  end
+  
+  print(model)
+  print('************')
+  
+  local output2 = model:forward(features)
+  print('output of features', output2)
   
 
   -- display
