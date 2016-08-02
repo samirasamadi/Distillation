@@ -97,7 +97,7 @@ for _, img_path in ipairs(image_paths) do
   print('************')
  
   local features = model1:forward(img:cuda()):squeeze()
-  --print('features', features)
+  print('features', features)
   print('************')
   
   
