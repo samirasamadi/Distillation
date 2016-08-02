@@ -112,21 +112,27 @@ for _, img_path in ipairs(image_paths) do
   
   
   --print(model:get(1):get(1))
+  print(model:get(1):get(1))
+  local output2 = model:get(1):get(1):forward(features)
   
-  local output2 = model:forward(torch.reshape(features, 512, 1))
-  print('ssssss')
+  print(model:get(1):get(2))
   output2 = model:get(1):get(2):forward(output2)
+  
+  print(model:get(1):get(3))
   output2 = torch.reshape(output2, 512, 1)
   output2 = model:get(1):get(3):forward(output2)
-  print('after layer 3')
-  output2 = model:get(1):get(4):forward(output2)
-  print('after layer 4')
-  output2 = model:get(1):get(5):forward(output2)
-  print('after layer 5')
-  print(output2)
+  
+  print(model:get(1):get(4))
+  local output2 = model:get(1):get(4):forward(output2)
+  
+  print(model:get(1):get(5))
+  local output2 = model:get(1):get(5):forward(output2)
+  
+  print(model:get(1):get(6))
   output2 = torch.reshape(output2, 512)
+  print(output2)
   output2 = model:get(1):get(6):forward(output2)
-   print('after layer 6')
+  
   local finalOutput = model:get(2):forward(output2)
   
   print('finalOutput', finalOutput)
