@@ -108,4 +108,4 @@ for _, img_path in ipairs(image_paths) do
 --  for cl_id, cl in ipairs(cls) do
 --    print(string.format('%-10s: %-05.2f%%', cl, output[cl_id] * 100))
 --  end
---end
+end
