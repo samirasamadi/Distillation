@@ -76,31 +76,33 @@ for _, img_path in ipairs(image_paths) do
   print(model)
   print('************')
   
-  for j = 1, 2 do 
-	  model:remove()
-  end
   
-  print(model)
-  print('************')
- 
-  local features = model:forward(img:cuda()):squeeze()
-  --print('features', features)
-  print('************')
-  
-  model = torch.load(model_path)
-  model:add(nn.SoftMax():cuda())
-  model:evaluate()
-  
-  view = model:findModules('nn.View')
+  model1 = torch.load(model_path)
+  model1:add(nn.SoftMax():cuda())
+  model1:evaluate()
+
+  -- model definition should set numInputDims
+  -- hacking around it for the moment
+  view = model1:findModules('nn.View')
   if #view > 0 then
     view[1].numInputDims = 3
   end
   
   
-  local output1 = model:forward(img:cuda()):squeeze()
+  for j = 1, 2 do 
+	  model1:remove()
+  end
   
-  print(model)
-  print('****************')
+  print(model1)
+  print('************')
+ 
+  local features = model1:forward(img:cuda()):squeeze()
+  --print('features', features)
+  print('************')
+  
+  
+  local output = model:forward(img:cuda()):squeeze()
+  
   print('original output', output1)
   print('************')
   
