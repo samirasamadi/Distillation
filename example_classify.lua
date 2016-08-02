@@ -118,6 +118,10 @@ for _, img_path in ipairs(image_paths) do
   local output2 = model:get(1):get(1):forward(features)
   print('output of ...', output2)
   
+  output2 = model:get(1):get(2):forward(output2)
+  print('output of ...', output2)
+  
+  
 
   -- display
   --print('Probabilities for '..img_path)
