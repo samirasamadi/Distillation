@@ -91,13 +91,15 @@ for t,v in ipairs(indices) do
 	--print('***********')
 	
 	
-	if num > 1 then
-		break
-	end
+	--if num > 1 then
+	--	break
+	--end
 end
 
 torch.save ('points.dat', array)
 print('finish saving')
 loadedArray = torch.load('points.dat')
   
-print(array)
+print(loadedArray[10][1])
+print(loadedArray[10][2])
+print(loadedArray[10][3])
