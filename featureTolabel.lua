@@ -3,12 +3,12 @@ require 'image'
 require 'cudnn'
 require 'cunn'
 
---local function featureTolabel(featureVector){
+local function featureTolabel(featureVector){
 	
 	-- load the test featureVector
-	local featureVectors = torch.load('trainFeatures.dat')
-	local featureVector = featureVectors[1][1]
-	print('featureVector', featureVector)
+	--local featureVectors = torch.load('trainFeatures.dat')
+	--local featureVector = featureVectors[1][1]
+	--print('featureVector', featureVector)
 	
 	
 	-- load the model
@@ -25,21 +25,23 @@ require 'cunn'
 	  view[1].numInputDims = 3
 	end
 	
-	print(model)
-	print('**************')
+	--print(model)
+	--print('**************')
 	
 	local model2 = model:get(54)
     model2:add(nn.SoftMax())
     model2:cuda()
-    print(model2)
+    --print(model2)
     
 	local featureLabels = model2:forward(featureVector:view(1,512))
 	featureLabels = torch.reshape(featureLabels, 10, 1)
-	print(featureLabels)
+	-- print(featureLabels)
 	
 	local softLabels = featureVectors[1][2]
-	print(softLabels)
+	-- print(softLabels)
 	
-		--}
---end
+	return featureLabels
+	
+    }
+end
 
