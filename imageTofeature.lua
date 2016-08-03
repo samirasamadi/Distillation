@@ -72,7 +72,7 @@ for t,v in ipairs(indices) do
     local input = provider.trainData.data:index(1,v)
 	-- floatTensor of size 1*3*32*32
    
-    local label = provider.trainData.labels:index(1,v)
+    local hardLabel = provider.trainData.labels:index(1,v)
 	-- print(label)
     -- DoubleTensor of size 1
 	
@@ -85,7 +85,7 @@ for t,v in ipairs(indices) do
     -- cudaTensor of size 512
     
     -- save this information in an array. Each row is the feature vector + the label for it
-	array[num] = {featureTensor, softLabels, label}
+	array[num] = {featureTensor, softLabels, hardLabel}
 	num = num + 1
 	print(array)
 	print('***********')

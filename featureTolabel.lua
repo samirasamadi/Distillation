@@ -15,8 +15,6 @@ local function featureTolabel(featureVector){
 	model_path = "logs/vgg/trainedModel.net"
 	
 	local model = torch.load(model_path)
-	model:add(nn.SoftMax():cuda())
-	model:evaluate()
 	
 	-- model definition should set numInputDims
 	-- hacking around it for the moment
@@ -26,21 +24,28 @@ local function featureTolabel(featureVector){
 	end
 	
 	--print(model)
-	--print('**************')
 	
 	local model2 = model:get(54)
     model2:add(nn.SoftMax())
     model2:cuda()
+	
     --print(model2)
     
-	local featureLabels = model2:forward(featureVector:view(1,512))
-	featureLabels = torch.reshape(featureLabels, 10, 1)
+	local softLabels_feature = model2:forward(featureVector:view(1,512))
+	softLabels_feature = torch.reshape(softLabels_feature, 10, 1)
+	local max = torch.max(softLabels_feature, 1)
+	local hardLabel_feature  = 1
+	
+	for i = 1, 10 do
+		if torch.eq(softLabels_feature[i], max) then
+			hardLabel_feature = i
+		end
+	end
+
 	-- print(featureLabels)
+	local output = {softLabels_feature, hardLabel_feature}
 	
-	local softLabels = featureVectors[1][2]
-	-- print(softLabels)
-	
-	return featureLabels
+	return output
 	
     }
 end
