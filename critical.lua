@@ -33,9 +33,9 @@ for i = 1, length do
 	for j = i+1, length do
 		print(i, j)
 	    local feature_x = points[i][1]
-		print(feature_x)
+		print(feature_x):size()
 		local feature_y = points[j][1]
-		print(feature_y)
+		print(feature_y):size()
 		
 		local hardlabel_x = points[i][3]
 		local hardlabel_y = points[j][3]
