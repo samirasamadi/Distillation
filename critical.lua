@@ -88,29 +88,29 @@ print(c.blue '==>' ..' calculating critical points ')
 for i = 1, length do
 	for j = i+1, length do
 		print(i, j)
-	    local feature_x = points[i][1]
+	    feature_x = points[i][1]
 		print('feature_x', feature_x)
 		
 		print('points[i][1]', points[i][1])
 		
-		local feature_y = points[j][1]
+		feature_y = points[j][1]
 		print('feature_y', feature_y)
 		
-		local hardlabel_x = points[i][3]
-		local hardlabel_y = points[j][3]
+		hardlabel_x = points[i][3]
+		hardlabel_y = points[j][3]
 		
 		if torch.all(torch.ne(hardlabel_x, hardlabel_y)) then
 			k = k + 1
 		end
 			
-		local iterationsNum = 0
+		iterationsNum = 0
 		while (torch.ne(hardlabel_x, hardlabel_y) and iterationsNum < maxIterations) do
 			
-			local feature_mid = (feature_x+feature_y)
+			feature_mid = (feature_x+feature_y)
 			feature_mid:cmul(torch.Tensor(512):fill(.5):cuda())
 			
 			print(feature_mid)
-			local hardlabel_mid = featureTolabel(feature_mid)[2]
+			hardlabel_mid = featureTolabel(feature_mid)[2]
 			-- the output of featureTolabel is two dimensional. The first dimension is the soft label and the second dimension is the hard label for the feature vector. The hard label is just the index with maximum value in soft label.
 			
 			if torch.ne(hardlabel_x, hardlabel_mid) then
