@@ -28,17 +28,17 @@ require 'cunn'
 	print(model)
 	print('**************')
 	
-	for i = 1, 53 do
-		model:remove(1) 
-	end
+	local model2 = model:get(54)
+    model2:add(nn.SoftMax())
+    model2:cuda()
+    print(model2)
+    
+	local featureLabels = model2:forward(featureVector:view(1,512))
+	print(featureLabels)
 	
-	print(model)
-	
-	local softLabels = model:forward(featureVector)
-	local sumedLabels = torch.sum(softLabels, 1)
-	
+	local softLabels = featureVectors[1][2]
 	print(softLabels)
-	print(sumedLabels)
-	--}
+	
+		--}
 --end
 
