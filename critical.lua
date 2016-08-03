@@ -130,9 +130,14 @@ for i = 1, length do
 		print(criticalPoints[k])
 		print(feature_mid)
 		--criticalSoftLabels[k] = featureTolabel(feature_mid)[1]
-		--output[k] = {criticalPoints[k], criticalSoftLabels[k]}
+		--output[k] = {criticalPoints[k], criticalSoftLabels[k]}	
 		
 	end
+	
+	if k >2 then
+		break	
+	end
+	
 end	
 
 
