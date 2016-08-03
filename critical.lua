@@ -27,7 +27,7 @@ for i = 1, length do
 		end
 		
 		iterationsNum = 0
-		while torch.ne(hardlabel_x, hardlabel_y) or iterationsNum < maxIterations then	
+		while torch.ne(hardlabel_x, hardlabel_y) or iterationsNum < maxIterations do
 			
 			feature_mid = .5*(feature_x+feature_y)
 			hardlabel_mid = featureTolabel(feature_mid)[2]
