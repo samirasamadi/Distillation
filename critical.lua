@@ -1,15 +1,28 @@
+--1 choose two feature vectors from the saved file and do binary serach on them to find the critical point between them. This includes passing the midpoint to featureTolabel function each time and getting the soft and hard lables of the points using that function.
+
 require 'cudnn'
 require 'cunn'
 
---1 choose two feature vectors from the saved file and do binary serach on them to find the critical point between them. This includes passing the midpoint to featureTolabel function each time and getting the soft and hard lables of the points using that function.
+opt = lapp[[
+--model                    (default "logs/vgg/trainedModel.net")     model address
+--trainSize                (default 50000)                           size of training set
+]]
 
+print(opt.model)
+
+if #arg < 2 then
+  io.stderr:write('Usage: th imageTofeature.lua [MODEL] [Size of training set]...\n')
+  os.exit(1)
+end
+
+local model_path = opt.model
 
 points = torch.load('trainFeatures.dat')
 -- points is a table. Each row of the table has three components: featureTensor, softLabels, hardLabel. Use points[i][1] to get feature vector of the ith training point 
 
 
---length = points:size(2)
-print (points)
+length = points:size(2)
+
 	
 criticalPoints = torch.zeros(1, length^2)
 maxIterations = 5
