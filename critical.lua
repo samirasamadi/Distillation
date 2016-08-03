@@ -90,7 +90,8 @@ for i = 1, length do
 		local hardlabel_y = points[j][3]
 		print('hardlabel_y:', hardlabel_y)
 		
-		if torch.ne(hardlabel_x, hardlabel_y) then
+		if torch.all(torch.ne(hardlabel_x, hardlabel_y)) then
+		-- if torch.ne(hardlabel_x, hardlabel_y) then
 			print('here')
 			k = k + 1
 		end
