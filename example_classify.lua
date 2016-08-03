@@ -45,19 +45,8 @@ local function normalize(imgRGB)
   return yuv
 end
 
-local model = torch.load(model_path)
-model:add(nn.SoftMax():cuda())
-model:evaluate()
-
--- model definition should set numInputDims
--- hacking around it for the moment
-local view = model:findModules('nn.View')
-if #view > 0 then
-  view[1].numInputDims = 3
-end
-
-local cls = {'airplane', 'automobile', 'bird', 'cat',
-             'deer', 'dog', 'frog', 'horse', 'ship', 'truck'}
+--local cls = {'airplane', 'automobile', 'bird', 'cat',
+--             'deer', 'dog', 'frog', 'horse', 'ship', 'truck'}
 
 for _, img_path in ipairs(image_paths) do
   -- load image
@@ -72,20 +61,29 @@ for _, img_path in ipairs(image_paths) do
 
 
   -- get probabilities
+  local model = torch.load(model_path)
+  model:add(nn.SoftMax():cuda())
+  model:evaluate()
+
+  -- model definition should set numInputDims
+  -- hacking around it for the moment
+  local view = model:findModules('nn.View')
+  if #view > 0 then
+    view[1].numInputDims = 3
+  end
   
   print(model)
   print('************')
   
   
-  model1 = torch.load(model_path)
+  local model1 = torch.load(model_path)
   model1:add(nn.SoftMax():cuda())
   model1:evaluate()
 
   view = model1:findModules('nn.View')
   if #view > 0 then
     view[1].numInputDims = 3
-  end
-  
+  end 
   
   for j = 1, 2 do 
 	  model1:remove()
@@ -95,58 +93,20 @@ for _, img_path in ipairs(image_paths) do
   print('************')
  
   local features = model1:forward(img:cuda()):squeeze()
-  print('features', features)
-  print('************')
-  
-  
+  --print('features', features)
+  --print('************')
   local output = model:forward(img:cuda()):squeeze()
-  print('original output', output)
-  print('************')
   
-  --for i = 1, 53 do
-  -- 	model:remove(1) 
-  --end
+  
+
   model3 = model:get(54)
-  
-  
   print(model3)
-  print('*****TILL HERE*******')
-  
-  
-  
-  --print(model:get(1):get(1))
-  --print(model:get(1):get(1))
-  --local output2 = model:get(1):get(1):forward(features)
-  
-  --print(model:get(1):get(2))
-  --output2 = model:get(1):get(2):forward(output2)
-  
-  --print(model:get(1):get(3))
-  --output2 = torch.reshape(output2, 512, 1)
-  --output2 = model:get(1):get(3):forward(output2)
-  
-  --print(model:get(1):get(4))
-  --local output2 = model:get(1):get(4):forward(output2)
-  
-  --print(model:get(1):get(5))
-  --local output2 = model:get(1):get(5):forward(output2)
-  
-  ---print(model:get(1):get(6))
-  --output2 = torch.reshape(output2, 512)
-  
-  
-  --output2 = model:get(1):get(6):forward(output2)
-  
-  --print(output2)
-  
-  --print(model:get(2))
-  local finalOutput = model3:forward(features:view(1,512))
   model3:add(nn.SoftMax())
   model3:cuda()
   print(model3)
   local finalOutput1 = model3:forward(features:view(1,512))
   
-  print('finalOutput', finalOutput)
+  print('original output', output)
   print('finalOutput1', finalOutput1)
 
 
