@@ -3,6 +3,7 @@
 require 'image'
 require 'cudnn'
 require 'cunn'
+local c = require 'trepl.colorize'
 
 function featureTolabel(featureVector)
 	
