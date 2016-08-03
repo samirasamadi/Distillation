@@ -102,7 +102,7 @@ for i = 1, length do
 		while (torch.ne(hardlabel_x, hardlabel_y) and iterationsNum < maxIterations) do
 			
 			local feature_mid = (feature_x+feature_y)
-			feature_mid:cmul(torch.Tensor(512):cuda():fill(.5))
+			feature_mid:cmul(torch.Tensor(512):fill(.5):cuda())
 			
 			print(feature_mid)
 			local hardlabel_mid = featureTolabel(feature_mid)[2]
@@ -118,7 +118,7 @@ for i = 1, length do
 		end
 		
 		criticalPoints[k] = feature_mid
-		criticalSoftLabels[k] = featureTolabel(feature_mid)[1]
+		criticalSoftLabels[k] = featureTolabel(criticalPoints[k])[1]
 		output[k] = {criticalPoints[k], criticalSoftLabels[k]}
 		
 	end
