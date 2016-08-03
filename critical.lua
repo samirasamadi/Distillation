@@ -46,7 +46,7 @@ for i = 1, length do
 		while torch.ne(hardlabel_x, hardlabel_y) or iterationsNum < maxIterations do
 			
 			local feature_mid = (feature_x+feature_y)
-			feature_mid:cmul(torch.Tensor(512):fill(.5))
+			feature_mid:cmul(torch.Tensor(512):cuda():fill(.5))
 			
 			local hardlabel_mid = featureTolabel(feature_mid)[2]
 			-- the output of featureTolabel is two dimensional. The first dimension is the soft label and the second dimension is the hard label for the feature vector. The hard label is just the index with maximum value in soft label.
