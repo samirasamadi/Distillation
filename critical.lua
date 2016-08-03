@@ -76,6 +76,9 @@ print('length', length)
 
 	
 local criticalPoints = {}
+local criticalSoftLabels = {}
+local output = {}
+
 local maxIterations = 5
 local k = 0
 
@@ -112,10 +115,15 @@ for i = 1, length do
 					
 			iterationsNum = iterationsNum + 1		 
 		end
+		
 		criticalPoints[k] = feature_mid
+		criticalSoftLabels[k] = featureTolabel(feature_mid)[1]
+		output[k] = {criticalPoints[k], criticalSoftLabels[k]}
+		
 	end
 end	
 
+print(output[1])
 
 
 		 
