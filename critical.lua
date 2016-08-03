@@ -85,17 +85,12 @@ for i = 1, length do
 		local feature_y = points[j][1]
 		
 		local hardlabel_x = points[i][3]
-		print('hardlabel_x:', hardlabel_x)
-		
 		local hardlabel_y = points[j][3]
-		print('hardlabel_y:', hardlabel_y)
 		
 		if torch.all(torch.ne(hardlabel_x, hardlabel_y)) then
-		-- if torch.ne(hardlabel_x, hardlabel_y) then
-			print('here')
 			k = k + 1
 		end
-		print('after here')
+		
 		
 		local iterationsNum = 0
 		while (torch.ne(hardlabel_x, hardlabel_y) and iterationsNum < maxIterations) do
@@ -119,11 +114,9 @@ for i = 1, length do
 		end
 		
 		criticalPoints[k] = feature_mid
-
-			
 	end
 end	
 
-print(criticalPoints)
+
 
 		 
