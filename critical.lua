@@ -92,7 +92,7 @@ for i = 1, length do
 		end
 		
 		local iterationsNum = 0
-		while (torch.ne(hardlabel_x, hardlabel_y) or iterationsNum < maxIterations) do
+		while (torch.ne(hardlabel_x, hardlabel_y) and iterationsNum < maxIterations) do
 			print(iterationsNum)
 			print(maxIterations)
 			
