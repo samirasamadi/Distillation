@@ -76,7 +76,7 @@ print('length', length)
 	
 local criticalPoints = torch.zeros(1, length^2):cuda()
 local maxIterations = 5
-k = 0
+local k = 0
 	
 for i = 1, length do
 	for j = i+1, length do
@@ -88,6 +88,7 @@ for i = 1, length do
 		local hardlabel_y = points[j][3]
 		
 		if torch.ne(hardlabel_x, hardlabel_y) then
+			print('here')
 			k = k + 1
 		end
 		
