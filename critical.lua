@@ -1,5 +1,6 @@
 --1 choose two feature vectors from the saved file and do binary serach on them to find the critical point between them. This includes passing the midpoint to featureTolabel function each time and getting the soft and hard lables of the points using that function.
 
+require 'image'
 require 'cudnn'
 require 'cunn'
 
@@ -64,4 +65,52 @@ for i = 1, length do
 		criticalPoints[1][k] = .5*(feature_x+feature_y) 
 			
 	end
-end			 
+end	
+
+local function featureTolabel(featureVector){
+	
+	-- load the test featureVector
+	--local featureVectors = torch.load('trainFeatures.dat')
+	--local featureVector = featureVectors[1][1]
+	--print('featureVector', featureVector)
+	
+	
+	-- load the model
+	model_path = "logs/vgg/trainedModel.net"
+	
+	local model = torch.load(model_path)
+	
+	-- model definition should set numInputDims
+	-- hacking around it for the moment
+	local view = model:findModules('nn.View')
+	if #view > 0 then
+	  view[1].numInputDims = 3
+	end
+	
+	--print(model)
+	
+	local model2 = model:get(54)
+    model2:add(nn.SoftMax())
+    model2:cuda()
+	
+    --print(model2)
+    
+	local softLabels_feature = model2:forward(featureVector:view(1,512))
+	softLabels_feature = torch.reshape(softLabels_feature, 10, 1)
+	local max = torch.max(softLabels_feature, 1)
+	local hardLabel_feature  = 1
+	
+	for i = 1, 10 do
+		if torch.eq(softLabels_feature[i], max) then
+			hardLabel_feature = i
+		end
+	end
+
+	-- print(featureLabels)
+	local output = {softLabels_feature, hardLabel_feature}
+	
+	return output
+	
+    }
+end
+		 
