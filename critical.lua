@@ -21,7 +21,7 @@ points = torch.load('trainFeatures.dat')
 -- points is a table. Each row of the table has three components: featureTensor, softLabels, hardLabel. Use points[i][1] to get feature vector of the ith training point 
 
 
-length = points:size(2)
+length = opt.trainsize
 
 	
 criticalPoints = torch.zeros(1, length^2)
