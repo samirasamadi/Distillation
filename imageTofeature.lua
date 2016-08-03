@@ -15,8 +15,8 @@ opt = lapp[[
 
 print(opt.model)
 
-if #arg < 2 then
-  io.stderr:write('Usage: th imageTofeature.lua [MODEL] [FILE]...\n')
+if #arg < 1 then
+  io.stderr:write('Usage: th imageTofeature.lua [MODEL]...\n')
   os.exit(1)
 end
 
