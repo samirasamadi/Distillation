@@ -85,7 +85,10 @@ for i = 1, length do
 		local feature_y = points[j][1]
 		
 		local hardlabel_x = points[i][3]
+		print('hardlabel_x:', hardlabel_x)
+		
 		local hardlabel_y = points[j][3]
+		print('hardlabel_y:', hardlabel_y)
 		
 		if torch.ne(hardlabel_x, hardlabel_y) then
 			print('here')
