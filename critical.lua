@@ -112,7 +112,7 @@ for i = 1, length do
 			 
 		end
 		
-		criticalPoints[1][k] = .5*(feature_x+feature_y) 
+		criticalPoints[1][k] = feature_mid
 			
 	end
 end	
