@@ -31,11 +31,11 @@ k = 0
 for i = 1, length do
 	for j = i+1, length do
 
-	    feature_x = points[i][1]
-		feature_y = points[j][1]
+	    local feature_x = points[i][1]
+		local feature_y = points[j][1]
 		
-		hardlabel_x = points[i][3]
-		hardlabel_y = points[j][3]
+		local hardlabel_x = points[i][3]
+		local hardlabel_y = points[j][3]
 		
 		if torch.ne(hardlabel_x, hardlabel_y) then
 			k = k + 1
