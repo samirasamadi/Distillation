@@ -66,16 +66,16 @@ end
 
 local model_path = opt.model
 
-points = torch.load('points.dat')
+local points = torch.load('points.dat')
 -- points is a table. Each row of the table has three components: featureTensor, softLabels, hardLabel. Use points[i][1] to get feature vector of the ith training point 
 
 
-length = opt.trainSize
+local length = opt.trainSize
 print('length', length)
 
 	
-criticalPoints = torch.zeros(1, length^2)
-maxIterations = 5
+local criticalPoints = torch.zeros(1, length^2)
+local maxIterations = 5
 k = 0
 	
 for i = 1, length do
@@ -91,7 +91,7 @@ for i = 1, length do
 			k = k + 1
 		end
 		
-		iterationsNum = 0
+		local iterationsNum = 0
 		while (torch.ne(hardlabel_x, hardlabel_y) or iterationsNum < maxIterations) do
 			print(iterationsNum)
 			
