@@ -50,6 +50,8 @@ function featureTolabel(featureVector)
 	
 end
 
+------------------------------------------------------------------------------------------------
+
 opt = lapp[[
 --model                    (default "logs/vgg/trainedModel.net")     model address
 --trainSize                (default 50)                           size of training set
@@ -91,6 +93,7 @@ for i = 1, length do
 		
 		iterationsNum = 0
 		while torch.ne(hardlabel_x, hardlabel_y) or iterationsNum < maxIterations do
+			print(iterationsNum)
 			
 			local feature_mid = (feature_x+feature_y)
 			feature_mid:cmul(torch.Tensor(512):cuda():fill(.5))
