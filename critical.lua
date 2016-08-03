@@ -77,6 +77,9 @@ print('length', length)
 local criticalPoints = {}
 local maxIterations = 5
 local k = 0
+
+
+print(c.blue '==>' ..' calculating critical points ')
 	
 for i = 1, length do
 	for j = i+1, length do
@@ -90,12 +93,9 @@ for i = 1, length do
 		if torch.all(torch.ne(hardlabel_x, hardlabel_y)) then
 			k = k + 1
 		end
-		
-		
+			
 		local iterationsNum = 0
 		while (torch.ne(hardlabel_x, hardlabel_y) and iterationsNum < maxIterations) do
-			print(iterationsNum)
-			print(maxIterations)
 			
 			local feature_mid = (feature_x+feature_y)
 			feature_mid:cmul(torch.Tensor(512):cuda():fill(.5))
@@ -109,10 +109,8 @@ for i = 1, length do
 				feature_x = feature_mid
 			end	
 					
-			iterationsNum = iterationsNum + 1
-			 
+			iterationsNum = iterationsNum + 1		 
 		end
-		
 		criticalPoints[k] = feature_mid
 	end
 end	
