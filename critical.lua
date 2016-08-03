@@ -94,6 +94,7 @@ for i = 1, length do
 		local iterationsNum = 0
 		while (torch.ne(hardlabel_x, hardlabel_y) or iterationsNum < maxIterations) do
 			print(iterationsNum)
+			print(maxIterations)
 			
 			local feature_mid = (feature_x+feature_y)
 			feature_mid:cmul(torch.Tensor(512):cuda():fill(.5))
