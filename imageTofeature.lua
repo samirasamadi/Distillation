@@ -100,6 +100,4 @@ torch.save ('points.dat', array)
 print('finish saving')
 loadedArray = torch.load('points.dat')
   
-print(loadedArray[10][1])
-print(loadedArray[10][2])
-print(loadedArray[10][3])
+print(array)
