@@ -117,10 +117,10 @@ for i = 1, length do
 			iterationsNum = iterationsNum + 1		 
 		end
 		
-		--criticalPoints[k] = feature_mid
-		--print(criticalPoints[k])
+		criticalPoints[k] = feature_mid:clone()
+		print(criticalPoints[k])
 		print(feature_mid)
-		--criticalSoftLabels[k] = featureTolabel(criticalPoints[k])[1]
+		--criticalSoftLabels[k] = featureTolabel(feature_mid)[1]
 		--output[k] = {criticalPoints[k], criticalSoftLabels[k]}
 		
 	end
