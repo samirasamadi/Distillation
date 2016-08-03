@@ -74,7 +74,7 @@ local length = opt.trainSize
 print('length', length)
 
 	
-local criticalPoints = torch.zeros(1, length^2)
+local criticalPoints = torch.zeros(1, length^2):cuda()
 local maxIterations = 5
 k = 0
 	
