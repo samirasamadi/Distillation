@@ -31,7 +31,7 @@ k = 0
 	
 for i = 1, length do
 	for j = i+1, length do
-
+		print(i, j)
 	    local feature_x = points[i][1]
 		local feature_y = points[j][1]
 		
