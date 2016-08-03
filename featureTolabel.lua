@@ -34,6 +34,7 @@ require 'cunn'
     print(model2)
     
 	local featureLabels = model2:forward(featureVector:view(1,512))
+	featureLabels = torch.reshape(featureLabels, 10, 1)
 	print(featureLabels)
 	
 	local softLabels = featureVectors[1][2]
