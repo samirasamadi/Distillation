@@ -96,8 +96,9 @@ for t,v in ipairs(indices) do
 	end
 end
 
-torch.save ('trainFeatures.dat', array)
-loadedArray = torch.load('trainFeatures.dat')
+torch.save ('points.dat', array)
+print('finish saving')
+loadedArray = torch.load('points.dat')
   
 print(loadedArray[1][1])
 print(loadedArray[1][2])
