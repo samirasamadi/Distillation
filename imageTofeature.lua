@@ -87,8 +87,8 @@ for t,v in ipairs(indices) do
     -- save this information in an array. Each row is the feature vector + the label for it
 	array[num] = {featureTensor, softLabels, hardLabel}
 	num = num + 1
-	print(array)
-	print('***********')
+	--print(array)
+	--print('***********')
 	
 	
 	if num > 1 then
