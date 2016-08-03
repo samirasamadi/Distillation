@@ -2,9 +2,10 @@
 --1 choose two feature vectors from the saved file and do binary serach on them to find the critical point between them. This includes passing the midpoint to featureTolabel function each time and getting the soft and hard lables of the points using that function.
 
 
-trainedFeatureVectors = torch.load('trainFeatures.dat')
--- trainedFeatureVectors is a table. Each row of the table has three components: featureTensor, softLabels, 
-	
+points = torch.load('trainFeatures.dat')
+-- points is a table. Each row of the table has three components: featureTensor, softLabels, hardLabel. Use points[i][1] to get feature vector of the ith training point 
+
+
 length = trainedFeatureVectors:size(2)
 print('*****', length, '*****')
 	
@@ -13,35 +14,36 @@ maxIterations = 5
 k = 0
 	
 for i = 1, length do
-	for j = i+1 in length do
+	for j = i+1, length do
 
-	x = points[1][i]
-		y = points[1][j]
+	    feature_x = points[i][1]
+		feature_y = points[j][1]
 		
-		label_x = labels[i]
-		label_y = labels[j]
+		hardlabel_x = points[i][3]
+		hardlabel_y = points[j][3]
 		
-		if torch.ne(label_x, label_y) then
+		if torch.ne(hardlabel_x, hardlabel_y) then
 			k = k + 1
 		end
 		
 		iterationsNum = 0
-		while torch.ne(label_x, label_y) or iterationsNum < maxIterations then	
+		while torch.ne(hardlabel_x, hardlabel_y) or iterationsNum < maxIterations then	
 			
-			mid = .5*(x+y)
-			label_mid = featureTolabel(mid)[2]
+			feature_mid = .5*(feature_x+feature_y)
+			hardlabel_mid = featureTolabel(feature_mid)[2]
+			-- the output of featureTolabel is two dimensional. The first dimension is the soft label and the second dimension is the hard label for the feature vector. The hard label is just the index with maximum value in soft label.
 			
-			if torch.ne(label_x, label_mid) then
-				y = mid
+			if torch.ne(hardlabel_x, hardlabel_mid) then
+				feature_y = feature_mid
 			else
-				x = mid
+				feature_x = feature_mid
 			end	
 					
 			iterationsNum = iterationsNum + 1
 			 
 		end
 		
-		critical[1][k] = .5*(x+y) 
+		criticalPoints[1][k] = .5*(feature_x+feature_y) 
 			
 	end
 end			 
