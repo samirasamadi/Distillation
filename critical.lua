@@ -67,7 +67,7 @@ for i = 1, length do
 	end
 end	
 
-local function featureTolabel(featureVector){
+local function featureTolabel(featureVector)
 	
 	-- load the test featureVector
 	--local featureVectors = torch.load('trainFeatures.dat')
@@ -110,7 +110,5 @@ local function featureTolabel(featureVector){
 	local output = {softLabels_feature, hardLabel_feature}
 	
 	return output
-	
-    }
 end
 		 
