@@ -5,7 +5,7 @@ require 'cunn'
 
 opt = lapp[[
 --model                    (default "logs/vgg/trainedModel.net")     model address
---trainSize                (default 50000)                           size of training set
+--trainSize                (default 50)                           size of training set
 ]]
 
 print(opt.model)
@@ -17,7 +17,7 @@ end
 
 local model_path = opt.model
 
-points = torch.load('trainFeatures.dat')
+points = torch.load('points.dat')
 -- points is a table. Each row of the table has three components: featureTensor, softLabels, hardLabel. Use points[i][1] to get feature vector of the ith training point 
 
 
