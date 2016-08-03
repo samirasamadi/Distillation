@@ -22,6 +22,7 @@ points = torch.load('trainFeatures.dat')
 
 
 length = opt.trainSize
+print('length', length)
 
 	
 criticalPoints = torch.zeros(1, length^2)
@@ -44,8 +45,8 @@ for i = 1, length do
 		iterationsNum = 0
 		while torch.ne(hardlabel_x, hardlabel_y) or iterationsNum < maxIterations do
 			
-			feature_mid = .5*(feature_x+feature_y)
-			hardlabel_mid = featureTolabel(feature_mid)[2]
+			local feature_mid = .5*(feature_x+feature_y)
+			local hardlabel_mid = featureTolabel(feature_mid)[2]
 			-- the output of featureTolabel is two dimensional. The first dimension is the soft label and the second dimension is the hard label for the feature vector. The hard label is just the index with maximum value in soft label.
 			
 			if torch.ne(hardlabel_x, hardlabel_mid) then
