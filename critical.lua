@@ -1,3 +1,5 @@
+require 'cudnn'
+require 'cunn'
 
 --1 choose two feature vectors from the saved file and do binary serach on them to find the critical point between them. This includes passing the midpoint to featureTolabel function each time and getting the soft and hard lables of the points using that function.
 
