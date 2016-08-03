@@ -54,7 +54,7 @@ end
 
 opt = lapp[[
 --model                    (default "logs/vgg/trainedModel.net")     model address
---trainSize                (default 50)                           size of training set
+--trainSize                (default 10)                           size of training set
 ]]
 
 print(opt.model)
@@ -94,6 +94,7 @@ for i = 1, length do
 			print('here')
 			k = k + 1
 		end
+		print('after here')
 		
 		local iterationsNum = 0
 		while (torch.ne(hardlabel_x, hardlabel_y) and iterationsNum < maxIterations) do
@@ -116,12 +117,12 @@ for i = 1, length do
 			 
 		end
 		
-		print('before')
 		criticalPoints[k] = feature_mid
-		print('after')
+
 			
 	end
 end	
 
+print(criticalPoints)
 
 		 
