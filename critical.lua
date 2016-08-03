@@ -116,7 +116,9 @@ for i = 1, length do
 			 
 		end
 		
+		print('before')
 		criticalPoints[1][k] = feature_mid
+		print('after')
 			
 	end
 end	
