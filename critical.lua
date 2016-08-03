@@ -122,6 +122,10 @@ for i = 1, length do
 			iterationsNum = iterationsNum + 1		 
 		end
 		
+		
+		print('**********')
+		print('feature_mid', feature_mid)
+		
 		criticalPoints[k] = feature_mid:clone()
 		print(criticalPoints[k])
 		print(feature_mid)
