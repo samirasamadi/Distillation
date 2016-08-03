@@ -1,9 +1,10 @@
 -- This should contain a function which gets the feature vector as input and output the soft and hard labels for it
+
 require 'image'
 require 'cudnn'
 require 'cunn'
-
-local function featureTolabel(featureVector){
+	
+function featureTolabel(featureVector)
 	
 	-- load the test featureVector
 	--local featureVectors = torch.load('trainFeatures.dat')
@@ -47,6 +48,5 @@ local function featureTolabel(featureVector){
 	
 	return output
 	
-    }
 end
 
