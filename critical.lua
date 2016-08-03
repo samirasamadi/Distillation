@@ -74,7 +74,7 @@ local length = opt.trainSize
 print('length', length)
 
 	
-local criticalPoints = torch.zeros(1, length^2):cuda()
+local criticalPoints = {}
 local maxIterations = 5
 local k = 0
 	
@@ -117,7 +117,7 @@ for i = 1, length do
 		end
 		
 		print('before')
-		criticalPoints[1][k] = feature_mid
+		criticalPoints[k] = feature_mid
 		print('after')
 			
 	end
