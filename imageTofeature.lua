@@ -85,7 +85,7 @@ for t,v in ipairs(indices) do
 	array[num] = {featureTensor, softLabels, hardLabel}
 	
 	print('num', num)
-	print(array[num][2])
+	--print(array[num][2])
 	num = num + 1
 	--print(array)
 	--print('***********')
