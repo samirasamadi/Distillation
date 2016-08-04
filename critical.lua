@@ -117,7 +117,7 @@ for i = 1, length do
 			end	
 					
 			iterationsNum = iterationsNum + 1	
-			ح	 
+				 
 		end
 		
 		criticalPoints[k] = feature_mid:clone()
