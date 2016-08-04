@@ -68,7 +68,7 @@ for t,v in ipairs(indices) do
 	-- floatTensor of size 1*3*32*32
    
     local hardLabel = provider.trainData.labels:index(1,v)
-	print(label)
+	print(hardLabel)
     -- DoubleTensor of size 1
 	
 	local softLabels = model:forward(input:cuda()):squeeze()
