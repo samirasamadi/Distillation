@@ -82,14 +82,7 @@ for t,v in ipairs(indices) do
     -- cudaTensor of size 512
     
     -- save this information in an array. Each row is the feature vector + the label for it
-	table.insert(array, num, {featureTensor, softLabels, hardLabel})
-	
-	
-	for i = 1, #array do
-		print(array[i][2])
-	end
-	
-	
+	table.insert(array, {f = featureTensor, sl = softLabels, hl = hardLabel})
 	
 	num = num + 1
 	
@@ -99,9 +92,9 @@ for t,v in ipairs(indices) do
 	
 end
 
-print(array[1][2])
-print(array[2][2])
-print(array[3][2])
+print(array[1].sl)
+print(array[2].sl)
+print(array[3].sl)
 
 --print(torch.all(torch.eq(array[1][1], array[2][1])))
 --print(c.blue '==>' ..' saving feature vectors of training set ')
