@@ -109,7 +109,7 @@ for i = 1, length do
 			feature_mid = (feature_x+feature_y)
 			feature_mid:cmul(torch.Tensor(512):fill(.5):cuda())
 			
-			print(feature_mid)
+			-- print(feature_mid)
 			hardlabel_mid = featureTolabel(feature_mid)[2]
 			-- the output of featureTolabel is two dimensional. The first dimension is the soft label and the second dimension is the hard label for the feature vector. The hard label is just the index with maximum value in soft label.
 			
@@ -122,16 +122,9 @@ for i = 1, length do
 			iterationsNum = iterationsNum + 1		 
 		end
 		
-		
-		print('**********')
-		print('feature_mid', feature_mid)
-		
 		criticalPoints[k] = feature_mid:clone()
-		print(criticalPoints[k])
-		print(feature_mid)
-		--criticalSoftLabels[k] = featureTolabel(feature_mid)[1]
-		--output[k] = {criticalPoints[k], criticalSoftLabels[k]}	
-		
+		criticalSoftLabels[k] = featureTolabel(feature_mid)[1]
+		output[k] = {criticalPoints[k], criticalSoftLabels[k]}		
 	end
 	
 	if k >2 then
@@ -140,6 +133,8 @@ for i = 1, length do
 	
 end	
 
+
+print(output)
 
 
 
