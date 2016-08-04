@@ -62,27 +62,25 @@ end
 --print(model1)
 
 
-array = {}
+t = {}
 num = 1
 for t,v in ipairs(indices) do
     input = provider.trainData.data:index(1,v)
-	--print('input', input)
 	-- floatTensor of size 1*3*32*32
    
     hardLabel = provider.trainData.labels:index(1,v)
-	--print(hardLabel)
     -- DoubleTensor of size 1
 	
 	softLabels = model:forward(input:cuda()):squeeze()
-	--print(softLabels)  
 	-- CudaTensor of size 10
   
     featureTensor = model1:forward(input:cuda()):squeeze()
-	-- print(featureTensor)
     -- cudaTensor of size 512
+	
+	tmp = {featureTensor, softLabels, hardLabel}
     
     -- save this information in an array. Each row is the feature vector + the label for it
-	table.insert(array, {f = featureTensor, sl = softLabels, hl = hardLabel})
+	table.insert(t, tmp)
 	
 	num = num + 1
 	
@@ -92,9 +90,9 @@ for t,v in ipairs(indices) do
 	
 end
 
-print(array[1].sl)
-print(array[2].sl)
-print(array[3].sl)
+print(t[1][2])
+print(t[2][2])
+print(t[3][2])
 
 --print(torch.all(torch.eq(array[1][1], array[2][1])))
 --print(c.blue '==>' ..' saving feature vectors of training set ')
