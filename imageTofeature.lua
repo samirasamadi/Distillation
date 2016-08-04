@@ -62,7 +62,7 @@ end
 --print(model1)
 
 
-t = {}
+stupidtable = {}
 num = 1
 for t,v in ipairs(indices) do
     input = provider.trainData.data:index(1,v)
@@ -80,7 +80,7 @@ for t,v in ipairs(indices) do
 	tmp = {featureTensor, softLabels, hardLabel}
     
     -- save this information in an array. Each row is the feature vector + the label for it
-	table.insert(t, tmp)
+	table.insert(stupidtable, tmp)
 	
 	num = num + 1
 	
@@ -90,9 +90,9 @@ for t,v in ipairs(indices) do
 	
 end
 
-print(t[1][2])
-print(t[2][2])
-print(t[3][2])
+print(stupidtable[1][2])
+print(stupidtable[2][2])
+print(stupidtable[3][2])
 
 --print(torch.all(torch.eq(array[1][1], array[2][1])))
 --print(c.blue '==>' ..' saving feature vectors of training set ')
