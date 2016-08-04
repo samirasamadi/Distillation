@@ -86,7 +86,7 @@ for t,v in ipairs(indices) do
 	--print('***********')
 	
 	
-	if num > 2 then
+	if num > 3 then
 		break
 	end
 end
