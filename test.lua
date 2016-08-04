@@ -1,6 +1,10 @@
-sentence = { "hello", "there", "my", "name", "is", "drakehawke" }
+mytable = {}
 
-table.insert( sentence, "lol" )
-table.insert( sentence, 6, "not" )
+for i=1, 3 do
+	
+	tmp = {i, i*i}
+	table.insert{mytable, tmp}
+		
+end
 
-print(sentence)
+print(mytable)

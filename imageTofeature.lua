@@ -90,6 +90,7 @@ for t,v in ipairs(indices) do
 	
 end
 
+print('*************')
 print(stupidtable[1][2])
 print(stupidtable[2][2])
 print(stupidtable[3][2])
