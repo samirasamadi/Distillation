@@ -62,7 +62,7 @@ end
 --print(model1)
 
 
-array = {{}}
+array = {}
 num = 1
 for t,v in ipairs(indices) do
     input = provider.trainData.data:index(1,v)
@@ -82,7 +82,7 @@ for t,v in ipairs(indices) do
     -- cudaTensor of size 512
     
     -- save this information in an array. Each row is the feature vector + the label for it
-	array[#array+1] =  {featureTensor, softLabels, hardLabel}
+	table.insert(array, num, {featureTensor, softLabels, hardLabel})
 	
 	
 	
