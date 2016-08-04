@@ -55,7 +55,7 @@ end
 
 opt = lapp[[
 --model                    (default "logs/vgg/trainedModel.net")     model address
---trainSize                (default 10)                           size of training set
+--trainSize                (default 2)                           size of training set
 ]]
 
 print(opt.model)
@@ -121,7 +121,9 @@ for i = 1, length do
 		end
 		
 		criticalPoints[k] = feature_mid:clone()
+		print('critical point:', criticalPoints[k])
 		criticalSoftLabels[k] = featureTolabel(feature_mid)[1]
+		print('critical soft labels:', criticalSoftLabels[k])
 		output[k] = {criticalPoints[k], criticalSoftLabels[k]}		
 	end
 	
