@@ -127,14 +127,10 @@ for i = 1, length do
 		output[k] = {criticalPoints[k], criticalSoftLabels[k]}		
 	end
 	
-	if k >2 then
-		break	
-	end
-	
 end	
 
 
-print(output)
+print(output[1])
 
 
 
