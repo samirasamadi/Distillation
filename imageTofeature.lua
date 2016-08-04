@@ -59,7 +59,7 @@ for j = 1, 2 do
   model1:remove()
 end
 
-print(model1)
+--print(model1)
 
 
 array = {}
@@ -83,23 +83,19 @@ for t,v in ipairs(indices) do
     
     -- save this information in an array. Each row is the feature vector + the label for it
 	array[num] = {featureTensor, softLabels, hardLabel}
+	
 	print('num', num)
 	print(array[num][2])
 	num = num + 1
 	--print(array)
 	--print('***********')
-	
-	
-	if num > 3 then
-		break
-	end
-	
 end
+
 print(array[1][2])
 print(array[2][2])
 print(array[3][2])
 
-print(torch.all(torch.eq(array[1][1], array[2][1])))
+--print(torch.all(torch.eq(array[1][1], array[2][1])))
 --print(c.blue '==>' ..' saving feature vectors of training set ')
 --torch.save ('points.dat', array)
 --print('finish saving')
