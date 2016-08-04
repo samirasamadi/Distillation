@@ -68,11 +68,11 @@ for t,v in ipairs(indices) do
 	-- floatTensor of size 1*3*32*32
    
     local hardLabel = provider.trainData.labels:index(1,v)
-	print(hardLabel)
+	--print(hardLabel)
     -- DoubleTensor of size 1
 	
 	local softLabels = model:forward(input:cuda()):squeeze()
-	print(softLabels)  
+	--print(softLabels)  
 	-- CudaTensor of size 10
   
     local featureTensor = model1:forward(input:cuda()):squeeze()
@@ -95,6 +95,5 @@ torch.save ('points.dat', array)
 print('finish saving')
 loadedArray = torch.load('points.dat')
   
-print(loadedArray[10][1])
-print(loadedArray[10][2])
-print(loadedArray[10][3])
+print(loadedArray[1][1]-loadedArray[2][1])
+print(loadedArray[1][1]-loadedArray[3][1])
