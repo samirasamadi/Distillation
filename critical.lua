@@ -113,7 +113,7 @@ for i = 1, length do
 			hardlabel_mid = featureTolabel(feature_mid)[2]
 			-- the output of featureTolabel is two dimensional. The first dimension is the soft label and the second dimension is the hard label for the feature vector. The hard label is just the index with maximum value in soft label.
 			
-			if torch.ne(hardlabel_x, hardlabel_mid) then
+			if torch.all(torch.ne(hardlabel_x, hardlabel_mid)) then
 				feature_y = feature_mid:clone()
 			else
 				feature_x = feature_mid:clone()
