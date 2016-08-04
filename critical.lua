@@ -14,7 +14,7 @@ function featureTolabel(featureVector)
 	
 	
 	-- load the model
-	model_path = "logs/vgg/trainedModel.net"
+	local model_path = "logs/vgg/trainedModel.net"
 	
 	local model = torch.load(model_path)
 	
@@ -36,7 +36,8 @@ function featureTolabel(featureVector)
 	local softLabels_feature = model2:forward(featureVector:view(1,512))
 	
 	softLabels_feature = torch.reshape(softLabels_feature, 10, 1)
-	max = torch.max(softLabels_feature, 1)
+	local max = torch.max(softLabels_feature, 1)
+	local hardLabel_feature = 1
 	
 	for i = 1, 10 do
 		if torch.all(torch.eq(softLabels_feature[i], max)) then

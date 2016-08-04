@@ -20,26 +20,26 @@ if #arg < 1 then
   os.exit(1)
 end
 
-local model_path = opt.model
+model_path = opt.model
 
 
 -- loads the training data
-local provider = torch.load 'provider.t7'
+provider = torch.load 'provider.t7'
 
 print(c.blue '==>' ..' loading data')
 provider = torch.load 'provider.t7'
 provider.trainData.data = provider.trainData.data:float()
 -- provider.trainData.data is a floatTensor
-local indices = torch.randperm(provider.trainData.data:size(1)):long():split(1)
+indices = torch.randperm(provider.trainData.data:size(1)):long():split(1)
 
 
-local model = torch.load(model_path)
+model = torch.load(model_path)
 model:add(nn.SoftMax():cuda())
 model:evaluate()
 
 -- model definition should set numInputDims
 -- hacking around it for the moment
-local view = model:findModules('nn.View')
+view = model:findModules('nn.View')
 if #view > 0 then
   view[1].numInputDims = 3
 end
@@ -63,19 +63,19 @@ end
 array = {}
 num = 1
 for t,v in ipairs(indices) do
-    local input = provider.trainData.data:index(1,v)
-	-- print(input)
+    input = provider.trainData.data:index(1,v)
+	print('input', input)
 	-- floatTensor of size 1*3*32*32
    
-    local hardLabel = provider.trainData.labels:index(1,v)
+    hardLabel = provider.trainData.labels:index(1,v)
 	--print(hardLabel)
     -- DoubleTensor of size 1
 	
-	local softLabels = model:forward(input:cuda()):squeeze()
+	softLabels = model:forward(input:cuda()):squeeze()
 	--print(softLabels)  
 	-- CudaTensor of size 10
   
-    local featureTensor = model1:forward(input:cuda()):squeeze()
+    featureTensor = model1:forward(input:cuda()):squeeze()
 	-- print(featureTensor)
     -- cudaTensor of size 512
     
