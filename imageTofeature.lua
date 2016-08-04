@@ -81,7 +81,7 @@ for t,v in ipairs(indices) do
     print('tmp', tmp[2])
 	
     -- save this information in an array. Each row is the feature vector + the label for it
-	table.insert(stupidtable, tmp)
+	table.insert(stupidtable, num, tmp)
 	
 	for k = 1, num do
 		print(stupidtable[k][2])
