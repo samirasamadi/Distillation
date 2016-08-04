@@ -63,7 +63,7 @@ end
 
 
 array = {}
---num = 1
+num = 1
 for t,v in ipairs(indices) do
     input = provider.trainData.data:index(1,v)
 	--print('input', input)
@@ -86,6 +86,7 @@ for t,v in ipairs(indices) do
 	
 	
 	
+	num = num + 1
 	
 	if num > 3 then
 		break
