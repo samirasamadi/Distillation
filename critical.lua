@@ -36,6 +36,7 @@ function featureTolabel(featureVector)
 	local softLabels_feature = model2:forward(featureVector:view(1,512))
 	softLabels_feature = torch.reshape(softLabels_feature, 10, 1)
 	local max = torch.max(softLabels_feature, 1)
+	print('max value is', max)
 	local hardLabel_feature  = 1
 	
 	for i = 1, 10 do
