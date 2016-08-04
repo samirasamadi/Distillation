@@ -93,7 +93,7 @@ for t,v in ipairs(indices) do
 	end
 end
 
-print('difference:', array[1][1]-array[2][1])
+print('difference:', array[1][2]-array[2][2])
 --print(c.blue '==>' ..' saving feature vectors of training set ')
 --torch.save ('points.dat', array)
 --print('finish saving')
