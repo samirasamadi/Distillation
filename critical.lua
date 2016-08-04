@@ -88,12 +88,12 @@ print(c.blue '==>' ..' calculating critical points ')
 for i = 1, length do
 	for j = i+1, length do
 		print(i, j)
-	    feature_x = points[i][1]
+	    feature_x = points[i][1]:clone()
 		
-		feature_y = points[j][1]
+		feature_y = points[j][1]:clone()
 		
-		hardlabel_x = points[i][3]
-		hardlabel_y = points[j][3]
+		hardlabel_x = points[i][3]:clone()
+		hardlabel_y = points[j][3]:clone()
 		
 		if torch.all(torch.ne(hardlabel_x, hardlabel_y)) then
 			k = k + 1
