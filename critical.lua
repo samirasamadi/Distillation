@@ -55,7 +55,7 @@ end
 
 opt = lapp[[
 --model                    (default "logs/vgg/trainedModel.net")     model address
---trainSize                (default 2)                           size of training set
+--trainSize                (default 3)                           size of training set
 ]]
 
 print(opt.model)
