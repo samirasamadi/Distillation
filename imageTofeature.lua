@@ -85,6 +85,11 @@ for t,v in ipairs(indices) do
 	table.insert(array, num, {featureTensor, softLabels, hardLabel})
 	
 	
+	for i = 1, #array do
+		print(array[i][2])
+	end
+	
+	
 	
 	num = num + 1
 	
