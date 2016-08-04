@@ -89,12 +89,12 @@ for i = 1, length do
 	for j = i+1, length do
 		print(i, j)
 	    feature_x = points[i][1]
-		print('feature_x', feature_x)
+		-- print('feature_x', feature_x)
 		
-		print('points[i][1]', points[i][1])
+		-- print('points[i][1]', points[i][1])
 		
 		feature_y = points[j][1]
-		print('feature_y', feature_y)
+		--print('feature_y', feature_y)
 		
 		hardlabel_x = points[i][3]
 		hardlabel_y = points[j][3]
@@ -130,7 +130,7 @@ for i = 1, length do
 end	
 
 
-print(output[1])
+print(output)
 
 
 
