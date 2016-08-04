@@ -89,6 +89,10 @@ for t,v in ipairs(indices) do
 	num = num + 1
 	--print(array)
 	--print('***********')
+	
+	if num > 4 then
+		break	
+	end
 end
 
 print(array[1][2])
