@@ -7,4 +7,6 @@ for i=1, 3 do
 		
 end
 
-print(mytable)
+print(mytable[1][2])
+print(mytable[2][2])
+print(mytable[3][2])
