@@ -92,8 +92,8 @@ for t,v in ipairs(indices) do
 		break
 	end
 end
-print(array[1][1])
-print(array[2][1])
+print(array[1][2])
+print(array[2][2])
 print(torch.all(torch.eq(array[1][1], array[2][1])))
 --print(c.blue '==>' ..' saving feature vectors of training set ')
 --torch.save ('points.dat', array)
