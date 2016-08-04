@@ -66,7 +66,7 @@ array = {}
 num = 1
 for t,v in ipairs(indices) do
     input = provider.trainData.data:index(1,v)
-	print('input', input)
+	--print('input', input)
 	-- floatTensor of size 1*3*32*32
    
     hardLabel = provider.trainData.labels:index(1,v)
@@ -92,10 +92,12 @@ for t,v in ipairs(indices) do
 		break
 	end
 end
-print(c.blue '==>' ..' saving feature vectors of training set ')
-torch.save ('points.dat', array)
-print('finish saving')
-loadedArray = torch.load('points.dat')
+
+print('difference:', array[1][1]-array[2][1])
+--print(c.blue '==>' ..' saving feature vectors of training set ')
+--torch.save ('points.dat', array)
+--print('finish saving')
+--loadedArray = torch.load('points.dat')
   
-print(loadedArray[1][1]-loadedArray[2][1])
-print(loadedArray[1][1]-loadedArray[3][1])
+--print(loadedArray[1][1]-loadedArray[2][1])
+--print(loadedArray[1][1]-loadedArray[3][1])
