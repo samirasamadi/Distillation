@@ -3,7 +3,7 @@ mytable = {}
 for i=1, 3 do
 	a = torch.Tensor(3):fill(i)
 	b = torch.Tensor(1):fill(i*i)
-	tmp = {a, b
+	tmp = {a, b}
 	table.insert(mytable, tmp)		
 end
 
