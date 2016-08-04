@@ -82,10 +82,8 @@ for t,v in ipairs(indices) do
     -- cudaTensor of size 512
     
     -- save this information in an array. Each row is the feature vector + the label for it
-	-- tmp = {featureTensor, softLabels, hardLabel}
-	array[num][1] = featureTensor 
-	array[num][2] = softLabels
-	array[num][3] = hardLabel
+	tmp = {featureTensor, softLabels, hardLabel}
+	array[num] = tmp:clone()
 	
 	
 	print('num', num)
