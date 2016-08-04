@@ -62,7 +62,7 @@ end
 --print(model1)
 
 
-array = {}
+array = {{}}
 num = 1
 for t,v in ipairs(indices) do
     input = provider.trainData.data:index(1,v)
