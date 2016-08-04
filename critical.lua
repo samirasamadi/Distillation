@@ -131,7 +131,8 @@ end
 
 
 print(output)
-
+print(output[1][2])
+print(output[1][3])
 
 
 		 
