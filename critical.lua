@@ -89,12 +89,8 @@ for i = 1, length do
 	for j = i+1, length do
 		print(i, j)
 	    feature_x = points[i][1]
-		-- print('feature_x', feature_x)
-		
-		-- print('points[i][1]', points[i][1])
 		
 		feature_y = points[j][1]
-		--print('feature_y', feature_y)
 		
 		hardlabel_x = points[i][3]
 		hardlabel_y = points[j][3]
@@ -104,9 +100,10 @@ for i = 1, length do
 		end
 			
 		iterationsNum = 0
-		while (torch.ne(hardlabel_x, hardlabel_y) and iterationsNum < maxIterations) do
+		while (torch.all(torch.ne(hardlabel_x, hardlabel_y)) and iterationsNum < maxIterations) do
 			
-			feature_mid = (feature_x+feature_y)
+			tmp =  feature_x + feature_y
+			feature_mid = tmp:clone()
 			feature_mid:cmul(torch.Tensor(512):fill(.5):cuda())
 			
 			-- print(feature_mid)
@@ -119,7 +116,8 @@ for i = 1, length do
 				feature_x = feature_mid:clone()
 			end	
 					
-			iterationsNum = iterationsNum + 1		 
+			iterationsNum = iterationsNum + 1	
+			ح	 
 		end
 		
 		criticalPoints[k] = feature_mid:clone()
