@@ -96,9 +96,9 @@ for t,v in ipairs(indices) do
 end
 
 print('*************')
-print(stupidtable[1][2])
-print(stupidtable[2][2])
-print(stupidtable[3][2])
+print(stupidtable[1][2][1])
+print(stupidtable[2][2][1])
+print(stupidtable[3][2][1])
 
 --print(torch.all(torch.eq(array[1][1], array[2][1])))
 --print(c.blue '==>' ..' saving feature vectors of training set ')
