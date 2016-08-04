@@ -59,6 +59,8 @@ for j = 1, 2 do
   model1:remove()
 end
 
+print(model1)
+
 
 array = {}
 num = 1
