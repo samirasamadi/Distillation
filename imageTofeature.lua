@@ -59,17 +59,12 @@ for j = 1, 2 do
   model1:remove()
 end
 
-print('**************')
-print(model)
-
-print('**************')
-print(model1)
-
 
 array = {}
 num = 1
 for t,v in ipairs(indices) do
     local input = provider.trainData.data:index(1,v)
+	print(input)
 	-- floatTensor of size 1*3*32*32
    
     local hardLabel = provider.trainData.labels:index(1,v)
@@ -91,9 +86,9 @@ for t,v in ipairs(indices) do
 	--print('***********')
 	
 	
-	--if num > 1 then
-	--	break
-	--end
+	if num > 2 then
+		break
+	end
 end
 print(c.blue '==>' ..' saving feature vectors of training set ')
 torch.save ('points.dat', array)
