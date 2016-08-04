@@ -82,7 +82,11 @@ for t,v in ipairs(indices) do
     -- cudaTensor of size 512
     
     -- save this information in an array. Each row is the feature vector + the label for it
-	array[num] = {featureTensor, softLabels, hardLabel}
+	-- tmp = {featureTensor, softLabels, hardLabel}
+	array[num][1] = featureTensor 
+	array[num][2] = softLabels
+	array[num][3] = hardLabel
+	
 	
 	print('num', num)
 	--print(array[num][2])
@@ -90,6 +94,10 @@ for t,v in ipairs(indices) do
 	--print(array)
 	--print('***********')
 	
+	
+	if num > 5 then
+		break
+	end
 	
 end
 
