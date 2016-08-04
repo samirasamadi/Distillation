@@ -63,7 +63,7 @@ end
 
 
 stupidtable = {}
-nummm = 1
+num = 1
 for t,v in ipairs(indices) do
     input = provider.trainData.data:index(1,v)
 	-- floatTensor of size 1*3*32*32
@@ -83,9 +83,13 @@ for t,v in ipairs(indices) do
     -- save this information in an array. Each row is the feature vector + the label for it
 	table.insert(stupidtable, tmp)
 	
-	nummm = nummm + 1
+	for k = 1, num do
+		print(stupidtable[k][2])
+	end
 	
-	if nummm > 3 then
+	num = num + 1
+	
+	if num > 3 then
 		break
 	end
 	
