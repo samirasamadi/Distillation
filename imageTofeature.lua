@@ -83,6 +83,8 @@ for t,v in ipairs(indices) do
     
     -- save this information in an array. Each row is the feature vector + the label for it
 	array[num] = {featureTensor, softLabels, hardLabel}
+	print('num', num)
+	print(array[num][2])
 	num = num + 1
 	--print(array)
 	--print('***********')
