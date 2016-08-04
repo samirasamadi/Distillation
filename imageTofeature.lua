@@ -63,7 +63,7 @@ end
 
 
 array = {}
-num = 1
+--num = 1
 for t,v in ipairs(indices) do
     input = provider.trainData.data:index(1,v)
 	--print('input', input)
@@ -82,19 +82,12 @@ for t,v in ipairs(indices) do
     -- cudaTensor of size 512
     
     -- save this information in an array. Each row is the feature vector + the label for it
-	table.insert(array, {featureTensor, softLabels, hardLabel})
-	
-	print('num', num)
-	for i = 1, num do
-		print(array[i][2])
-	end
-	print('*************')
-	num = num + 1
-	--print(array)
-	--print('***********')
+	array[#array+1] =  {featureTensor, softLabels, hardLabel})
 	
 	
-	if num > 5 then
+	
+	
+	if num > 3 then
 		break
 	end
 	
