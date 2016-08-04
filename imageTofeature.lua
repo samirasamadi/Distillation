@@ -77,7 +77,7 @@ for t,v in ipairs(indices) do
     featureTensor = model1:forward(input:cuda()):squeeze()
     -- cudaTensor of size 512
 	
-	tmp = {featureTensor, softLabels, hardLabel}
+	tmp = {{featureTensor}, {softLabels}, {hardLabel}}
     print('tmp', tmp[2])
 	
     -- save this information in an array. Each row is the feature vector + the label for it
