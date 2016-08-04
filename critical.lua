@@ -37,13 +37,10 @@ function featureTolabel(featureVector)
 	
 	softLabels_feature = torch.reshape(softLabels_feature, 10, 1)
 	max = torch.max(softLabels_feature, 1)
-	print('max value is', max)
 	
 	for i = 1, 10 do
 		if torch.all(torch.eq(softLabels_feature[i], max)) then
 			hardLabel_feature = i
-			print('softLabels_feature[i]', softLabels_feature[i])
-			print('inside if, hardLabel_feature', hardLabel_feature)
 		end
 	end
 
