@@ -72,7 +72,7 @@ for t,v in ipairs(indices) do
     -- DoubleTensor of size 1
 	
 	local softLabels = model:forward(input:cuda()):squeeze()
-	--print(softLabels)  
+	print(softLabels)  
 	-- CudaTensor of size 10
   
     local featureTensor = model1:forward(input:cuda()):squeeze()
