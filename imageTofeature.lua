@@ -79,6 +79,7 @@ for t,v in ipairs(indices) do
 	local hardLabel = torch.Tensor(1):fill(1):cuda()
 	
 	for i = 1, 10 do
+		print('inside for')
 		if torch.all(torch.eq(softLabels[i], max)) then
 			hardLabel = i
 		end
