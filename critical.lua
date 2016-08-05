@@ -79,7 +79,6 @@ print('length', length)
 local criticalPoints = {}
 local criticalSoftLabels = {}
 local output = {}
-tmpTable = {}
 
 local maxIterations = 5
 local k = 0
@@ -133,7 +132,7 @@ for i = 1, length do
 		criticalSoftLabels[k] = featureTolabel(feature_mid)[1]
 		--print('critical soft labels:', criticalSoftLabels[k])
 		
-		table.insert(output, {criticalPoints[k], criticalSoftLabels[k]}:clone()}	
+		table.insert(output, {criticalPoints[k], criticalSoftLabels[k]}:clone())	
 	end
 	
 end	
