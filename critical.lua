@@ -56,7 +56,7 @@ end
 
 opt = lapp[[
 --model                    (default "logs/vgg/trainedModel.net")     model address
---trainSize                (default 3)                           size of training set
+--trainSize                (default 5)                           size of training set
 ]]
 
 print(opt.model)
@@ -89,7 +89,6 @@ print(c.blue '==>' ..' calculating critical points ')
 for i = 1, length do
 	for j = i+1, length do
 		print(i, j)
-		print(points[i][1] - points[j][1])
 		
 	    feature_x = points[i][1]:clone()
 		
