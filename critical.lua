@@ -32,9 +32,6 @@ function featureTolabel(featureVector)
     model2:cuda()
 	model2:evaluate()
 	
-    print('inside featureTolabel model2')
-	print(model2)
-    
 	local softLabels_feature = model2:forward(featureVector:view(1,512))
 	
 	softLabels_feature = torch.reshape(softLabels_feature, 10, 1)
@@ -85,14 +82,14 @@ for i = 1, length do
 	for j = i+1, length do
 		
 	    feature_x = points[i][1]:clone()
-		
-		
-		feature_y = points[j][1]:clone()
-		
+		feature_y = points[j][1]:clone()	
 		
 		hardlabel_x = points[i][3]:clone()
 		hardlabel_y = points[j][3]:clone()
-		--print('(hardlabel_x, hardlabel_y)', hardlabel_x, hardlabel_y)
+		
+		softlabel_x = points[i][2]:clone()
+		softlabel_y = points[j][2]:clone()
+		
 		
 		if torch.all(torch.ne(hardlabel_x, hardlabel_y)) then
 			k = k+1
@@ -109,7 +106,13 @@ for i = 1, length do
 				hardlabel_mid = featureTolabel(feature_mid)[2]
 				-- the output of featureTolabel is two dimensional. The first dimension is the soft label and the second dimension is the hard label for the feature vector. The hard label is just the index with maximum value in soft label.
 				
-			
+				print('softlabel_x', softalabel_x)
+				print('hardlabel_x', hardlabel_x)
+				print('*************************')
+				print('softlabel_y', softalabel_y)
+				print('hardlabel_y', hardlabel_y)
+				print('softlabel_mid', softlabel_mid)
+				
 				if torch.all(torch.ne(hardlabel_x, hardlabel_mid)) then
 					feature_y = feature_mid:clone()
 				else
