@@ -80,6 +80,7 @@ for t,v in ipairs(indices) do
 	
 	for i = 1, 10 do
 		print('inside for')
+		print('softLabels[i]', softLabels[i])
 		if torch.all(torch.eq(softLabels[i], max)) then
 			print('inside if')
 			hardLabel = i
