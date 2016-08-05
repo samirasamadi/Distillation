@@ -80,9 +80,8 @@ criticalPoints = {}
 criticalSoftLabels = {}
 output = {}
 
-maxIterations = 5
+maxIterations = 10
 k = 0
-
 
 print(c.blue '==>' ..' calculating critical points ')
 	
@@ -103,13 +102,13 @@ for i = 1, length do
 			
 			iterationsNum = 0
 			while ( torch.all(torch.ne(hardlabel_x, hardlabel_y)) and iterationsNum < maxIterations ) do
-				print('inside while')
+				--print('inside while')
 			
 				tmp =  feature_x + feature_y
 		    	feature_mid = tmp:clone()
-				print('here')
+				--print('here')
 				feature_mid:cmul(torch.Tensor(512):fill(.5):cuda())
-				print('feature_mid', feature_mid)
+				--print('feature_mid', feature_mid)
 			
 				-- print(feature_mid)
 				softlabel_mid = featureTolabel(feature_mid)[1]
@@ -138,7 +137,7 @@ for i = 1, length do
 	end
 	
 end	
-
+print('Printing values')
 --print(k)
 --print(output)
 print(output[1][2])
