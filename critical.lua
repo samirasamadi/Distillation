@@ -67,6 +67,8 @@ if #arg < 2 then
 end
 
 model_path = opt.model
+local model = torch.load(model_path)
+print(model)
 
 points = torch.load('points_table.dat')
 -- points is a table. Each row of the table has three components: featureTensor, softLabels, hardLabel. Use points[i][1] to get feature vector of the ith training point 
