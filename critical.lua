@@ -90,6 +90,12 @@ for i = 1, length do
 		softlabel_x = points[i][2]:clone()
 		softlabel_y = points[j][2]:clone()
 		
+		print('softlabel_x\n', softlabel_x)
+		print('hardlabel_x\n', hardlabel_x)
+		print('*************************')
+		print('softlabel_y\n', softlabel_y)
+		print('hardlabel_y\n', hardlabel_y)
+		
 		
 		if torch.all(torch.ne(hardlabel_x, hardlabel_y)) then
 			k = k+1
@@ -106,14 +112,6 @@ for i = 1, length do
 				hardlabel_mid = featureTolabel(feature_mid)[2]
 				-- the output of featureTolabel is two dimensional. The first dimension is the soft label and the second dimension is the hard label for the feature vector. The hard label is just the index with maximum value in soft label.
 				
-				print('softlabel_x\n', softlabel_x)
-				print('hardlabel_x\n', hardlabel_x)
-				print('*************************')
-				print('softlabel_y\n', softlabel_y)
-				print('hardlabel_y\n', hardlabel_y)
-				print('*************************')
-				print('softlabel_mid\n', softlabel_mid)
-				print('hardlabel_mid\n', hardlabel_mid)
 				
 				if torch.all(torch.ne(hardlabel_x, hardlabel_mid)) then
 					feature_y = feature_mid:clone()
