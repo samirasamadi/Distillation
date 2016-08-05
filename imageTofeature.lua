@@ -74,7 +74,7 @@ for t,v in ipairs(indices) do
 	local softLabels = model:forward(input:cuda()):squeeze()
 	-- CudaTensor of size 10
 	
-	local max = torch.max(softLabels, 1)
+	local max = torch.max(torch.reshape(softLabels, 10), 1)
 	print('max', max)
 	local hardLabel = 1
 	
