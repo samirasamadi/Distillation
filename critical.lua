@@ -132,13 +132,13 @@ for i = 1, length do
 	end
 	
 end	
-print('k', k)
-print('Printing values')
-print(output[1][2])
-print(output[2][2])
-print(output[3][2])
-print(output[4][2])
-print(output[5][2])
-print(output[6][2])
+--print('k', k)
+--print('Printing values')
+--print(output[1][2])
+--print(output[2][2])
+--print(output[3][2])
+--print(output[4][2])
+--print(output[5][2])
+--print(output[6][2])
 
 		 
