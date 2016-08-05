@@ -56,7 +56,7 @@ end
 
 opt = lapp[[
 --model                    (default "logs/vgg/trainedModel.net")     model address
---trainSize                (default 20)                           size of training set
+--trainSize                (default 10)                           size of training set
 ]]
 
 print(opt.model)
@@ -87,7 +87,7 @@ print(c.blue '==>' ..' calculating critical points ')
 	
 for i = 1, length do
 	for j = i+1, length do
-		print(i, j)
+		--print(i, j)
 		
 	    feature_x = points[i][1]:clone()
 		
@@ -97,7 +97,7 @@ for i = 1, length do
 		
 		hardlabel_x = points[i][3]:clone()
 		hardlabel_y = points[j][3]:clone()
-		print('(hardlabel_x, hardlabel_y)', hardlabel_x, hardlabel_y)
+		--print('(hardlabel_x, hardlabel_y)', hardlabel_x, hardlabel_y)
 		
 		if torch.all(torch.ne(hardlabel_x, hardlabel_y)) then
 			k = k+1
