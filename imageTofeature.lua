@@ -62,7 +62,7 @@ end
 --print(model1)
 
 
-stupidtable = {}
+points_table = {}
 num = 1
 for t,v in ipairs(indices) do
     input = provider.trainData.data:index(1,v)
@@ -77,15 +77,10 @@ for t,v in ipairs(indices) do
     featureTensor = model1:forward(input:cuda()):squeeze()
     -- cudaTensor of size 512
 	
-	tmp = {{featureTensor}, {softLabels}, {hardLabel}}
-    print('tmp', tmp[2])
-	
+	tmp = {featureTensor, softLabels, hardLabel}
+    	
     -- save this information in an array. Each row is the feature vector + the label for it
-	table.insert(stupidtable, num, tmp)
-	
-	for k = 1, num do
-		print(stupidtable[k][2])
-	end
+	table.insert(points_table, num, tmp)
 	
 	num = num + 1
 	
@@ -96,9 +91,9 @@ for t,v in ipairs(indices) do
 end
 
 print('*************')
-print(stupidtable[1][2][1])
-print(stupidtable[2][2][1])
-print(stupidtable[3][2][1])
+print(points_table[1][2])
+print(points_table[2][2])
+print(points_table[3][2])
 
 --print(torch.all(torch.eq(array[1][1], array[2][1])))
 --print(c.blue '==>' ..' saving feature vectors of training set ')
