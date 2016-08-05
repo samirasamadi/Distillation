@@ -75,6 +75,7 @@ for t,v in ipairs(indices) do
 	-- CudaTensor of size 10
 	
 	local max = torch.max(softLabels, 1)
+	print('max', max)
 	local hardLabel = torch.Tensor(1):fill(1)
 	
 	for i = 1, 10 do
