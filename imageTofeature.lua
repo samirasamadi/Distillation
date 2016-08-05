@@ -76,7 +76,7 @@ for t,v in ipairs(indices) do
 	
 	local max = torch.max(softLabels, 1)
 	print('max', max)
-	local hardLabel = torch.Tensor(1):fill(1):cuda()
+	local hardLabel = 1
 	
 	for i = 1, 10 do
 		print('inside for')
