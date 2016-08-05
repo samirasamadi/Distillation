@@ -100,41 +100,42 @@ for i = 1, length do
 		hardlabel_x = points[i][3]:clone()
 		hardlabel_y = points[j][3]:clone()
 		
-		--if torch.all(torch.ne(hardlabel_x, hardlabel_y)) then
-		--	k = k + 1
-		--end
+		if torch.all(torch.ne(hardlabel_x, hardlabel_y)) then
 			
-		iterationsNum = 0
-		while ( torch.all(torch.ne(hardlabel_x, hardlabel_y)) and iterationsNum < maxIterations ) do
+			iterationsNum = 0
+			while ( torch.all(torch.ne(hardlabel_x, hardlabel_y)) and iterationsNum < maxIterations ) do
+				print('inside while')
 			
-			tmp =  feature_x + feature_y
-		    feature_mid = tmp:clone()
-			print('here')
-			feature_mid:cmul(torch.Tensor(512):fill(.5):cuda())
-			print('feature_mid', feature_mid)
+				tmp =  feature_x + feature_y
+		    	feature_mid = tmp:clone()
+				print('here')
+				feature_mid:cmul(torch.Tensor(512):fill(.5):cuda())
+				print('feature_mid', feature_mid)
 			
-			-- print(feature_mid)
-			softlabel_mid = featureTolabel(feature_mid)[1]
-			hardlabel_mid = featureTolabel(feature_mid)[2]
-			-- the output of featureTolabel is two dimensional. The first dimension is the soft label and the second dimension is the hard label for the feature vector. The hard label is just the index with maximum value in soft label.
+				-- print(feature_mid)
+				softlabel_mid = featureTolabel(feature_mid)[1]
+				hardlabel_mid = featureTolabel(feature_mid)[2]
+				-- the output of featureTolabel is two dimensional. The first dimension is the soft label and the second dimension is the hard label for the feature vector. The hard label is just the index with maximum value in soft label.
+				
 			
-			
-			if torch.all(torch.ne(hardlabel_x, hardlabel_mid)) then
-				feature_y = feature_mid:clone()
-			else
-				feature_x = feature_mid:clone()
-			end	
+				if torch.all(torch.ne(hardlabel_x, hardlabel_mid)) then
+					feature_y = feature_mid:clone()
+				else
+					feature_x = feature_mid:clone()
+				end	
 					
-			iterationsNum = iterationsNum + 1	
+				iterationsNum = iterationsNum + 1	
 				 
+			end
+		
+			criticalPoints[k] = feature_mid:clone()
+			--print('critical point:', criticalPoints[k])
+			criticalSoftLabels[k] = featureTolabel(feature_mid)[1]
+			--print('critical soft labels:', criticalSoftLabels[k])
+		
+			table.insert(output, {criticalPoints[k], criticalSoftLabels[k]})	
 		end
-		
-		criticalPoints[k] = feature_mid:clone()
-		--print('critical point:', criticalPoints[k])
-		criticalSoftLabels[k] = featureTolabel(feature_mid)[1]
-		--print('critical soft labels:', criticalSoftLabels[k])
-		
-		table.insert(output, {criticalPoints[k], criticalSoftLabels[k]})	
+	
 	end
 	
 end	
