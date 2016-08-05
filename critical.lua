@@ -102,8 +102,8 @@ for i = 1, length do
 				feature_mid:cmul(torch.Tensor(512):fill(.5):cuda())
 				
 			
-				softlabel_mid = featureTolabel(feature_mid)[1]
-				hardlabel_mid = featureTolabel(feature_mid)[2]
+				softlabel_mid = featureTolabel(feature_mid)[1]:clone()
+				hardlabel_mid = featureTolabel(feature_mid)[2]:clone()
 				-- the output of featureTolabel is two dimensional. The first dimension is the soft label and the second dimension is the hard label for the feature vector. The hard label is just the index with maximum value in soft label.
 				
 				print('softlabel_x', softlabel_x)
@@ -111,7 +111,9 @@ for i = 1, length do
 				print('*************************')
 				print('softlabel_y', softlabel_y)
 				print('hardlabel_y', hardlabel_y)
+				print('*************************')
 				print('softlabel_mid', softlabel_mid)
+				print('hardlabel_mid', hardlabel_mid)
 				
 				if torch.all(torch.ne(hardlabel_x, hardlabel_mid)) then
 					feature_y = feature_mid:clone()
