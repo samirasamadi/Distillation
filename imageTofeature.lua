@@ -77,11 +77,14 @@ for t,v in ipairs(indices) do
     featureTensor = model1:forward(input:cuda()):squeeze()
     -- cudaTensor of size 512
 	
-	tmp = {featureTensor, softLabels, hardLabel}
-    	
+	tmp = {}
+	{featureTensor, softLabels, hardLabel}
+	table.insert(tmp, featureTensor)
+    table.insert(tmp, softLabels)
+	table.insert(tmp, hardLabel)
+	
     -- save this information in an array. Each row is the feature vector + the label for it
-	table.insert(points_table, num, tmp)
-	print(points_table[num][2])
+	table.insert(points_table, tmp)
 	
 	num = num + 1
 	
