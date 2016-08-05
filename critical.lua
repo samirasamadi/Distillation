@@ -30,6 +30,7 @@ function featureTolabel(featureVector)
 	local model2 = model:get(54)
     model2:add(nn.SoftMax())
     model2:cuda()
+	model2:evaluate()
 	
     --print(model2)
     
