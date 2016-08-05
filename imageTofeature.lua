@@ -95,7 +95,7 @@ for t,v in ipairs(indices) do
 	local tmp = {}
 	table.insert(tmp, featureTensor:clone())
     table.insert(tmp, softLabels:clone())
-	table.insert(tmp, hardLabel:clone())
+	table.insert(tmp, hardLabel)
 	
 	
     -- save this information in an array. Each row is the feature vector + the label for it
