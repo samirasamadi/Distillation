@@ -68,19 +68,28 @@ for t,v in ipairs(indices) do
     local input = provider.trainData.data:index(1,v)
 	-- floatTensor of size 1*3*32*32
    
-    local hardLabel = provider.trainData.labels:index(1,v)
+    --local hardLabel = provider.trainData.labels:index(1,v)
     -- DoubleTensor of size 1
 	
 	local softLabels = model:forward(input:cuda()):squeeze()
 	-- CudaTensor of size 10
-  
+	
+	local max = torch.max(softLabels, 1)
+	local hardLabel = 1
+	
+	for i = 1, 10 do
+		if torch.all(torch.eq(softLabels[i], max)) then
+			hardLabel = i
+		end
+	end 
+	
     local featureTensor = model1:forward(input:cuda()):squeeze()
     -- cudaTensor of size 512
 	
 	local tmp = {}
 	table.insert(tmp, featureTensor:clone())
     table.insert(tmp, softLabels:clone())
-	table.insert(tmp, hardLabel:clone())
+	table.insert(tmp, hardLabel)
 	
 	
     -- save this information in an array. Each row is the feature vector + the label for it
