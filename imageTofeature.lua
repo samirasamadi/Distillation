@@ -85,9 +85,6 @@ for t,v in ipairs(indices) do
 		end
 	end 
 	
-	print(softLabels)
-	print(hardLabel)
-	
     local featureTensor = model1:forward(input:cuda()):squeeze()
     -- cudaTensor of size 512
 	
