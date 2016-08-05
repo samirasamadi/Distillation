@@ -109,6 +109,7 @@ for i = 1, length do
 			
 			local tmp =  (feature_x + feature_y)
 			local feature_mid = tmp:clone()
+			print('here')
 			local feature_mid:cmul(torch.Tensor(512):fill(.5):cuda())
 			
 			-- print(feature_mid)
