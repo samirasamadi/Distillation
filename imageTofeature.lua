@@ -75,7 +75,7 @@ for t,v in ipairs(indices) do
 	-- CudaTensor of size 10
 	
 	local max = torch.max(softLabels, 1)
-	local hardLabel = 1
+	local hardLabel = torch.Tensor(1):fill(1)
 	
 	for i = 1, 10 do
 		if torch.all(torch.eq(softLabels[i], max)) then
@@ -89,7 +89,7 @@ for t,v in ipairs(indices) do
 	local tmp = {}
 	table.insert(tmp, featureTensor:clone())
     table.insert(tmp, softLabels:clone())
-	table.insert(tmp, hardLabel)
+	table.insert(tmp, hardLabel:clone())
 	
 	
     -- save this information in an array. Each row is the feature vector + the label for it
