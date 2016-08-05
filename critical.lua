@@ -47,7 +47,6 @@ function featureTolabel(featureVector)
 		end
 	end
 
-	-- print(featureLabels)
 	local output = {softLabels_feature, hardLabel_feature}
 	
 	return output
@@ -59,8 +58,6 @@ end
 opt = lapp[[
 --trainSize                (default 5)                           size of training set
 ]]
-
-print(opt.model)
 
 if #arg < 1 then
   io.stderr:write('Usage: th ciritcsl.lua [Size of training set]...\n')
@@ -86,7 +83,6 @@ print(c.blue '==>' ..' calculating critical points ')
 	
 for i = 1, length do
 	for j = i+1, length do
-		--print(i, j)
 		
 	    feature_x = points[i][1]:clone()
 		
@@ -103,15 +99,12 @@ for i = 1, length do
 			
 			iterationsNum = 0
 			while ( torch.all(torch.ne(hardlabel_x, hardlabel_y)) and iterationsNum < maxIterations ) do
-				--print('inside while')
 			
 				tmp =  feature_x + feature_y
 		    	feature_mid = tmp:clone()
-				--print('here')
 				feature_mid:cmul(torch.Tensor(512):fill(.5):cuda())
-				--print('feature_mid', feature_mid)
+				
 			
-				-- print(feature_mid)
 				softlabel_mid = featureTolabel(feature_mid)[1]
 				hardlabel_mid = featureTolabel(feature_mid)[2]
 				-- the output of featureTolabel is two dimensional. The first dimension is the soft label and the second dimension is the hard label for the feature vector. The hard label is just the index with maximum value in soft label.
@@ -126,11 +119,9 @@ for i = 1, length do
 				iterationsNum = iterationsNum + 1	
 				 
 			end
-			--print('outside while')
+			
 			criticalPoints[k] = feature_mid:clone()
-			--print('critical point:', criticalPoints[k])
 			criticalSoftLabels[k] = featureTolabel(feature_mid)[1]
-			--print('critical soft labels:', criticalSoftLabels[k])
 		
 			table.insert(output, {criticalPoints[k], criticalSoftLabels[k]})	
 		end
@@ -140,8 +131,6 @@ for i = 1, length do
 end	
 print('k', k)
 print('Printing values')
---print(k)
---print(output)
 print(output[1][2])
 print(output[2][2])
 print(output[3][2])

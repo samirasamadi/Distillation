@@ -48,7 +48,7 @@ print(c.blue '==>' ..' calculating feature vectors of training set ')
 
 model1 = torch.load(model_path)
 model1:add(nn.SoftMax():cuda())
-model1:evaluate()
+
 
 view = model1:findModules('nn.View')
 if #view > 0 then
@@ -59,7 +59,7 @@ for j = 1, 2 do
   model1:remove()
 end
 
---print(model1)
+model1:evaluate()
 
 
 points_table = {}
@@ -82,28 +82,14 @@ for t,v in ipairs(indices) do
     table.insert(tmp, softLabels:clone())
 	table.insert(tmp, hardLabel:clone())
 	
-	--print(tmp[2])
 	
     -- save this information in an array. Each row is the feature vector + the label for it
 	table.insert(points_table, tmp)
 	
 	num = num + 1
 	
-	--if num > 3 then
-	--	break
-	--end
 end
 
---print('*************')
---print(points_table[1][2])
---print(points_table[2][2])
---print(points_table[3][2])
-
---print(torch.all(torch.eq(array[1][1], array[2][1])))
 print(c.blue '==>' ..' saving feature vectors of training set ')
 torch.save ('points_table.dat', points_table)
 print('finish saving')
---loadedArray = torch.load('points.dat')
-  
---print(loadedArray[1][1]-loadedArray[2][1])
---print(loadedArray[1][1]-loadedArray[3][1])
