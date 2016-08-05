@@ -32,7 +32,8 @@ function featureTolabel(featureVector)
     model2:cuda()
 	model2:evaluate()
 	
-    --print(model2)
+    print('inside featureTolabel model2')
+	print(model2)
     
 	local softLabels_feature = model2:forward(featureVector:view(1,512))
 	
@@ -56,28 +57,23 @@ end
 ------------------------------------------------------------------------------------------------
 
 opt = lapp[[
---model                    (default "logs/vgg/trainedModel.net")     model address
 --trainSize                (default 5)                           size of training set
 ]]
 
 print(opt.model)
 
-if #arg < 2 then
-  io.stderr:write('Usage: th ciritcsl.lua [MODEL] [Size of training set]...\n')
+if #arg < 1 then
+  io.stderr:write('Usage: th ciritcsl.lua [Size of training set]...\n')
   os.exit(1)
 end
 
 model_path = opt.model
-local model = torch.load(model_path)
-print(model)
 
 points = torch.load('points_table.dat')
 -- points is a table. Each row of the table has three components: featureTensor, softLabels, hardLabel. Use points[i][1] to get feature vector of the ith training point 
 
-
 length = opt.trainSize
 print('length', length)
-
 	
 criticalPoints = {}
 criticalSoftLabels = {}
