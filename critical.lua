@@ -105,12 +105,12 @@ for i = 1, length do
 		--end
 			
 		iterationsNum = 0
-		while (torch.all(torch.ne(hardlabel_x, hardlabel_y)) and iterationsNum < maxIterations) do
+		while ( torch.all(torch.ne(hardlabel_x, hardlabel_y)) and iterationsNum < maxIterations ) do
 			
 			local tmp =  (feature_x + feature_y)
 			local feature_mid = tmp:clone()
 			print('here')
-			local feature_mid:cmul(torch.Tensor(512):fill(.5):cuda())
+			feature_mid:cmul(torch.Tensor(512):fill(.5):cuda())
 			
 			-- print(feature_mid)
 			local softlabel_mid = featureTolabel(feature_mid)[1]
