@@ -91,14 +91,14 @@ for i = 1, length do
 		print(i, j)
 		print(points[i][1] - points[j][1])
 		
-	    local feature_x = points[i][1]:clone()
+	    feature_x = points[i][1]:clone()
 		
 		
-		local feature_y = points[j][1]:clone()
+		feature_y = points[j][1]:clone()
 		
 		
-		local hardlabel_x = points[i][3]:clone()
-		local hardlabel_y = points[j][3]:clone()
+		hardlabel_x = points[i][3]:clone()
+		hardlabel_y = points[j][3]:clone()
 		
 		--if torch.all(torch.ne(hardlabel_x, hardlabel_y)) then
 		--	k = k + 1
@@ -107,14 +107,14 @@ for i = 1, length do
 		iterationsNum = 0
 		while ( torch.all(torch.ne(hardlabel_x, hardlabel_y)) and iterationsNum < maxIterations ) do
 			
-			local tmp =  (feature_x + feature_y)
+			tmp =  (feature_x + feature_y)
 		    feature_mid = tmp:clone()
 			print('here')
 			feature_mid:cmul(torch.Tensor(512):fill(.5):cuda())
 			
 			-- print(feature_mid)
-			local softlabel_mid = featureTolabel(feature_mid)[1]
-			local hardlabel_mid = featureTolabel(feature_mid)[2]
+			softlabel_mid = featureTolabel(feature_mid)[1]
+			hardlabel_mid = featureTolabel(feature_mid)[2]
 			-- the output of featureTolabel is two dimensional. The first dimension is the soft label and the second dimension is the hard label for the feature vector. The hard label is just the index with maximum value in soft label.
 			
 			
