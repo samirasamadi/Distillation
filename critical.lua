@@ -95,7 +95,8 @@ for i = 1, length do
 		print('*************************')
 		print('softlabel_y\n', softlabel_y)
 		print('hardlabel_y\n', hardlabel_y)
-		
+		print('*************************')
+		print('*************************')
 		
 		if torch.all(torch.ne(hardlabel_x, hardlabel_y)) then
 			k = k+1
