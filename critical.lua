@@ -97,9 +97,12 @@ for i = 1, length do
 		
 		hardlabel_x = points[i][3]:clone()
 		hardlabel_y = points[j][3]:clone()
+		print('hardlabel_x', hardlabel_x)
+		print('hardlabel_y', hardlabel_y)
 		
 		if torch.all(torch.ne(hardlabel_x, hardlabel_y)) then
 			k = k+1
+			print('inside if')
 			
 			iterationsNum = 0
 			while ( torch.all(torch.ne(hardlabel_x, hardlabel_y)) and iterationsNum < maxIterations ) do
