@@ -127,7 +127,7 @@ for i = 1, length do
 				iterationsNum = iterationsNum + 1	
 				 
 			end
-		
+			print('outside while')
 			criticalPoints[k] = feature_mid:clone()
 			--print('critical point:', criticalPoints[k])
 			criticalSoftLabels[k] = featureTolabel(feature_mid)[1]
