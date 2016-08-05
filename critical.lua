@@ -138,9 +138,9 @@ end
 
 --print(k)
 --print(output)
---print(output[1][2])
---print(output[2][2])
---print(output[3][2])
---print(output[4][2])
+print(output[1][2])
+print(output[2][2])
+print(output[3][2])
+print(output[4][2])
 
 		 
