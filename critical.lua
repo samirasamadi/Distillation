@@ -87,7 +87,7 @@ print(c.blue '==>' ..' calculating critical points ')
 	
 for i = 1, length do
 	for j = i+1, length do
-		-- print(i, j)
+		print(i, j)
 		
 	    feature_x = points[i][1]:clone()
 		
@@ -101,8 +101,6 @@ for i = 1, length do
 		
 		if torch.all(torch.ne(hardlabel_x, hardlabel_y)) then
 			k = k+1
-			print('inside if\n******************')
-			
 			
 			iterationsNum = 0
 			while ( torch.all(torch.ne(hardlabel_x, hardlabel_y)) and iterationsNum < maxIterations ) do
