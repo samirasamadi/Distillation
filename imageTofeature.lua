@@ -81,6 +81,7 @@ for t,v in ipairs(indices) do
     	
     -- save this information in an array. Each row is the feature vector + the label for it
 	table.insert(points_table, num, tmp)
+	print(points_table[num][2])
 	
 	num = num + 1
 	
