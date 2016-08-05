@@ -87,7 +87,7 @@ print(c.blue '==>' ..' calculating critical points ')
 	
 for i = 1, length do
 	for j = i+1, length do
-		print(i, j)
+		-- print(i, j)
 		
 	    feature_x = points[i][1]:clone()
 		
@@ -99,6 +99,7 @@ for i = 1, length do
 		hardlabel_y = points[j][3]:clone()
 		
 		if torch.all(torch.ne(hardlabel_x, hardlabel_y)) then
+			k = k+1
 			
 			iterationsNum = 0
 			while ( torch.all(torch.ne(hardlabel_x, hardlabel_y)) and iterationsNum < maxIterations ) do
@@ -125,7 +126,7 @@ for i = 1, length do
 				iterationsNum = iterationsNum + 1	
 				 
 			end
-			print('outside while')
+			--print('outside while')
 			criticalPoints[k] = feature_mid:clone()
 			--print('critical point:', criticalPoints[k])
 			criticalSoftLabels[k] = featureTolabel(feature_mid)[1]
@@ -137,6 +138,7 @@ for i = 1, length do
 	end
 	
 end	
+print('k', k)
 print('Printing values')
 --print(k)
 --print(output)
