@@ -77,7 +77,7 @@ for t,v in ipairs(indices) do
     featureTensor = model1:forward(input:cuda()):squeeze()
     -- cudaTensor of size 512
 	
-	tmp = {}
+	local tmp = {}
 	table.insert(tmp, featureTensor)
     table.insert(tmp, softLabels)
 	table.insert(tmp, hardLabel)
