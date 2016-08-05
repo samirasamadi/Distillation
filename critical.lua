@@ -103,7 +103,7 @@ for i = 1, length do
 				
 			
 				softlabel_mid = featureTolabel(feature_mid)[1]:clone()
-				hardlabel_mid = featureTolabel(feature_mid)[2]:clone()
+				hardlabel_mid = featureTolabel(feature_mid)[2]
 				-- the output of featureTolabel is two dimensional. The first dimension is the soft label and the second dimension is the hard label for the feature vector. The hard label is just the index with maximum value in soft label.
 				
 				print('softlabel_x', softlabel_x)
