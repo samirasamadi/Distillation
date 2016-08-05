@@ -77,17 +77,16 @@ for t,v in ipairs(indices) do
 	softLabels = torch.reshape(softLabels, 10, 1)
 	
 	local max = torch.max(softLabels, 1)
-	print('max', max)
 	local hardLabel = 1
 	
 	for i = 1, 10 do
-		print('inside for')
-		print('softLabels[i]', softLabels[i])
 		if torch.all(torch.eq(softLabels[i], max)) then
-			print('inside if')
 			hardLabel = i
 		end
 	end 
+	
+	print(softLabels)
+	print(hardLabel)
 	
     local featureTensor = model1:forward(input:cuda()):squeeze()
     -- cudaTensor of size 512
