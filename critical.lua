@@ -107,7 +107,7 @@ for i = 1, length do
 		iterationsNum = 0
 		while ( torch.all(torch.ne(hardlabel_x, hardlabel_y)) and iterationsNum < maxIterations ) do
 			
-			tmp =  (feature_x + feature_y)
+			tmp =  feature_x + feature_y
 		    feature_mid = tmp:clone()
 			print('here')
 			feature_mid:cmul(torch.Tensor(512):fill(.5):cuda())
