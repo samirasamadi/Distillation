@@ -66,22 +66,22 @@ if #arg < 2 then
   os.exit(1)
 end
 
-local model_path = opt.model
+model_path = opt.model
 
-local points = torch.load('points_table.dat')
+points = torch.load('points_table.dat')
 -- points is a table. Each row of the table has three components: featureTensor, softLabels, hardLabel. Use points[i][1] to get feature vector of the ith training point 
 
 
-local length = opt.trainSize
+length = opt.trainSize
 print('length', length)
 
 	
-local criticalPoints = {}
-local criticalSoftLabels = {}
-local output = {}
+criticalPoints = {}
+criticalSoftLabels = {}
+output = {}
 
-local maxIterations = 5
-local k = 0
+maxIterations = 5
+k = 0
 
 
 print(c.blue '==>' ..' calculating critical points ')
@@ -111,6 +111,7 @@ for i = 1, length do
 		    feature_mid = tmp:clone()
 			print('here')
 			feature_mid:cmul(torch.Tensor(512):fill(.5):cuda())
+			print('feature_mid', feature_mid)
 			
 			-- print(feature_mid)
 			softlabel_mid = featureTolabel(feature_mid)[1]
