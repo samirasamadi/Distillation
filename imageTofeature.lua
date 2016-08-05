@@ -65,16 +65,16 @@ end
 points_table = {}
 num = 1
 for t,v in ipairs(indices) do
-    local input = provider.trainData.data:index(1,v):clone()
+    local input = provider.trainData.data:index(1,v)
 	-- floatTensor of size 1*3*32*32
    
-    local hardLabel = provider.trainData.labels:index(1,v):clone()
+    local hardLabel = provider.trainData.labels:index(1,v)
     -- DoubleTensor of size 1
 	
-	local softLabels = model:forward(input:cuda()):squeeze():clone()
+	local softLabels = model:forward(input:cuda()):squeeze()
 	-- CudaTensor of size 10
   
-    local featureTensor = model1:forward(input:cuda()):squeeze():clone()
+    local featureTensor = model1:forward(input:cuda()):squeeze()
     -- cudaTensor of size 512
 	
 	local tmp = {}
