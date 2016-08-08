@@ -98,7 +98,10 @@ for i = 1, length do
 		print('*************************')
 		print('*************************')
 		
+		
+		print('before if')
 		if torch.ne(hardlabel_x, hardlabel_y) then
+			print('after if')
 			k = k+1
 			
 			iterationsNum = 0
