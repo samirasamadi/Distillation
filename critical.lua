@@ -53,7 +53,7 @@ end
 ------------------------------------------------------------------------------------------------
 
 opt = lapp[[
---trainSize                (default 5)                           size of training set
+--trainSize                (default 10)                           size of training set
 ]]
 
 if #arg < 1 then
@@ -144,5 +144,8 @@ print(output[3][2])
 print(output[4][2])
 print(output[5][2])
 print(output[6][2])
+print(output[7][2])
+print(output[8][2])
+print(output[9][2])
 
 		 
