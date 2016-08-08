@@ -93,7 +93,6 @@ for t,v in ipairs(indices) do
     table.insert(tmp, softLabels:clone())
 	table.insert(tmp, hardLabel)
 	
-	
     -- save this information in an array. Each row is the feature vector + the label for it
 	table.insert(points_table, tmp)
 	

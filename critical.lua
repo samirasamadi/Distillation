@@ -84,8 +84,8 @@ for i = 1, length do
 	    feature_x = points[i][1]:clone()
 		feature_y = points[j][1]:clone()	
 		
-		hardlabel_x = points[i][3]:clone()
-		hardlabel_y = points[j][3]:clone()
+		hardlabel_x = points[i][3]
+		hardlabel_y = points[j][3] 
 		
 		softlabel_x = points[i][2]:clone()
 		softlabel_y = points[j][2]:clone()
