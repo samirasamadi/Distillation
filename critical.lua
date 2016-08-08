@@ -101,7 +101,7 @@ for i = 1, length do
 		
 		print('before if')
 		if hardlabel_x ~= hardlabel_y then
-			print('after if')
+			print('inside if')
 			k = k+1
 			
 			iterationsNum = 0
@@ -132,7 +132,7 @@ for i = 1, length do
 		
 			table.insert(output, {criticalPoints[k], criticalSoftLabels[k]})	
 		end
-	
+		print('after if')
 	end
 	
 end	
