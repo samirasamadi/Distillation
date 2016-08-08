@@ -17,6 +17,7 @@ function featureTolabel(featureVector)
 	local model_path = "logs/vgg/trainedModel.net"
 	
 	local model = torch.load(model_path)
+	print(model)
 	
 	-- model definition should set numInputDims
 	-- hacking around it for the moment
