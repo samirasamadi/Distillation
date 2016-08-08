@@ -98,7 +98,7 @@ for i = 1, length do
 		print('*************************')
 		print('*************************')
 		
-		if torch.all(torch.ne(hardlabel_x, hardlabel_y)) then
+		if torch.ne(hardlabel_x, hardlabel_y) then
 			k = k+1
 			
 			iterationsNum = 0
