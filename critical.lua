@@ -100,7 +100,7 @@ for i = 1, length do
 		
 		
 		print('before if')
-		if torch.ne(hardlabel_x, hardlabel_y) then
+		if hardlabel_x ~= hardlabel_y then
 			print('after if')
 			k = k+1
 			
