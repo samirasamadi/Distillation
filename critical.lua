@@ -73,7 +73,7 @@ criticalPoints = {}
 criticalSoftLabels = {}
 output = {}
 
-maxIterations = 3
+maxIterations = 10
 k = 0
 
 print(c.blue '==>' ..' calculating critical points ')
