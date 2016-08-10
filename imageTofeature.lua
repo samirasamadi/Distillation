@@ -22,17 +22,6 @@ end
 
 model_path = opt.model
 
-
--- loads the training data
-provider = torch.load 'provider.t7'
-
-print(c.blue '==>' ..' loading data')
-provider = torch.load 'provider.t7'
-provider.trainData.data = provider.trainData.data:float()
--- provider.trainData.data is a floatTensor
-indices = torch.randperm(provider.trainData.data:size(1)):long():split(1)
-
-
 model = torch.load(model_path)
 model:add(nn.SoftMax():cuda())
 model:evaluate()
@@ -59,9 +48,28 @@ for j = 1, 2 do
   model1:remove()
 end
 
-parameters,gradParameters = model۱:getParameters()
+parameters,gradParameters = model1:getParameters()
 print('parameters of the network is', parameters)
 
+
+-------------------------------------------------
+
+
+
+
+
+
+-- loads the training data
+provider = torch.load 'provider.t7'
+
+print(c.blue '==>' ..' loading data')
+provider = torch.load 'provider.t7'
+provider.trainData.data = provider.trainData.data:float()
+-- provider.trainData.data is a floatTensor
+indices = torch.randperm(provider.trainData.data:size(1)):long():split(1)
+
+
+----------------------------------
 model1:evaluate()
 
 
