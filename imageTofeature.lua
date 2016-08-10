@@ -85,7 +85,8 @@ for t,v in ipairs(indices) do
 	--	end
 	--end 
 	
-    local featureTensor = model1:forward(input:cuda()):squeeze()
+    local featureTensor = model1:forward(input:cuda()):squeeze():double()
+	print("featureTensor", featureTensor)
     -- cudaTensor of size 512
 	
 	local tmp = {}

@@ -87,7 +87,6 @@ testLogger.showPlot = false
 
 parameters,gradParameters = model:getParameters()
 
-
 print(c.blue'==>' ..' setting criterion')
 criterion = cast(nn.CrossEntropyCriterion())
 
@@ -99,7 +98,6 @@ optimState = {
   momentum = opt.momentum,
   learningRateDecay = opt.learningRateDecay,
 }
-
 
 function train()
   model:training()
