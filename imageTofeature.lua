@@ -101,5 +101,5 @@ for t,v in ipairs(indices) do
 end
 
 print(c.blue '==>' ..' saving feature vectors of training set ')
-torch.save ('points_table.dat', feature_originalLabels)
+torch.save ('feature_origibalLabels.dat', feature_originalLabels)
 print('finish saving')
