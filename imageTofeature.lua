@@ -98,6 +98,11 @@ for t,v in ipairs(indices) do
 	table.insert(feature_originalLabels, tmp)
 	
 	num = num + 1	
+	
+	if num > 2 then
+		break
+		
+	end
 end
 
 print(c.blue '==>' ..' saving feature vectors of training set ')
