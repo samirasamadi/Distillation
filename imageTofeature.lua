@@ -62,13 +62,13 @@ end
 model1:evaluate()
 
 
-points_table = {}
+feature_originalLabels = {}
 num = 1
 for t,v in ipairs(indices) do
     local input = provider.trainData.data:index(1,v)
 	-- floatTensor of size 1*3*32*32
    
-    --local hardLabel = provider.trainData.labels:index(1,v)
+    local hardLabel = provider.trainData.labels:index(1,v)
     -- DoubleTensor of size 1
 	
 	local softLabels = model:forward(input:cuda()):squeeze()
@@ -77,13 +77,13 @@ for t,v in ipairs(indices) do
 	softLabels = torch.reshape(softLabels, 10, 1)
 	
 	local max = torch.max(softLabels, 1)
-	local hardLabel = 1
+	-- local hardLabel = 1
 	
-	for i = 1, 10 do
-		if torch.all(torch.eq(softLabels[i], max)) then
-			hardLabel = i
-		end
-	end 
+	--for i = 1, 10 do
+	--	if torch.all(torch.eq(softLabels[i], max)) then
+	--		hardLabel = i
+	--	end
+	--end 
 	
     local featureTensor = model1:forward(input:cuda()):squeeze()
     -- cudaTensor of size 512
@@ -94,12 +94,11 @@ for t,v in ipairs(indices) do
 	table.insert(tmp, hardLabel)
 	
     -- save this information in an array. Each row is the feature vector + the label for it
-	table.insert(points_table, tmp)
+	table.insert(feature_originalLabels, tmp)
 	
-	num = num + 1
-	
+	num = num + 1	
 end
 
 print(c.blue '==>' ..' saving feature vectors of training set ')
-torch.save ('points_table.dat', points_table)
+torch.save ('points_table.dat', feature_originalLabels)
 print('finish saving')
