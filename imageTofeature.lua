@@ -60,7 +60,7 @@ for j = 1, 2 do
 end
 
 parameters,gradParameters = model۱:getParameters()
-print(parameters)
+print('parameters of the network is', parameters)
 
 model1:evaluate()
 
