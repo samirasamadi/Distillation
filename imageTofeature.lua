@@ -48,8 +48,10 @@ for j = 1, 2 do
   model1:remove()
 end
 
+print(model1)
+
 parameters,gradParameters = model1:getParameters()
-print('parameters of the network is', parameters)
+print('parameters of the model1 is', parameters:dim())
 
 
 -------------------------------------------------
