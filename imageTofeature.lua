@@ -52,6 +52,12 @@ print(model1)
 
 parameters,gradParameters = model1:getParameters()
 print('parameters of the model1 is', parameters:size())
+print('************************************************')
+
+model2 = model:get(54)
+print(model2)
+parameters2,gradParameters2 = model2:getParameters()
+print('parameters of the model2 is', parameters2:size())
 
 
 -------------------------------------------------
