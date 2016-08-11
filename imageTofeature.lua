@@ -51,7 +51,7 @@ end
 print(model1)
 
 parameters,gradParameters = model1:getParameters()
-print('parameters of the model1 is', parameters:dim(2))
+print('parameters of the model1 is', parameters:size(2))
 
 
 -------------------------------------------------
