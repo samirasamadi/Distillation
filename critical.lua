@@ -91,18 +91,9 @@ for i = 1, length do
 		softlabel_x = points[i][2]:clone()
 		softlabel_y = points[j][2]:clone()
 		
-		--print('softlabel_x\n', softlabel_x)
-		--print('hardlabel_x\n', hardlabel_x)
-		--print('*************************')
-		--print('softlabel_y\n', softlabel_y)
-		--print('hardlabel_y\n', hardlabel_y)
-		--print('*************************')
-		--print('*************************')
-		
 		
 		-- print('before if')
 		if hardlabel_x ~= hardlabel_y then
-			-- print('inside if')
 			k = k+1
 			
 			iterationsNum = 0
@@ -124,8 +115,7 @@ for i = 1, length do
 					feature_x = feature_mid:clone()
 				end	
 					
-				iterationsNum = iterationsNum + 1	
-				 
+				iterationsNum = iterationsNum + 1		 
 			end
 			
 			criticalPoints[k] = feature_mid:clone()
@@ -133,20 +123,14 @@ for i = 1, length do
 		
 			table.insert(output, {criticalPoints[k], criticalSoftLabels[k]})	
 		end
-		-- print('after if')
 	end
 	
 end	
-print('k', k)
-print('Printing values')
-print(output[1][2])
-print(output[2][2])
-print(output[3][2])
-print(output[4][2])
-print(output[5][2])
-print(output[6][2])
-print(output[7][2])
-print(output[8][2])
-print(output[9][2])
+
+print(c.blue '==>' ..' saving fature vectors of critical points')
+torch.save ('criticalPoints.dat', output)
+print('finish saving')
+
+
 
 		 
