@@ -29,9 +29,9 @@ provider = torch.load 'provider.t7'
 print(c.blue '==>' ..' loading data')
 provider = torch.load 'provider.t7'
 --provider.trainData.data = provider.trainData.data:float()
-provider.testData.data = provider.testData.data:float()
+provider.trainData.data = provider.trainData.data:float()
 -- provider.trainData.data is a floatTensor
-indices = torch.randperm(provider.testData.data:size(1)):long():split(1)
+indices = torch.randperm(provider.trainData.data:size(1)):long():split(1)
 
 
 model = torch.load(model_path)
@@ -63,7 +63,7 @@ end
 model1:evaluate()
 
 
-testPoints_table = {}
+train_featureTable = {}
 num = 1
 for t,v in ipairs(indices) do
     local input = provider.testData.data:index(1,v)
@@ -97,12 +97,12 @@ for t,v in ipairs(indices) do
 	table.insert(tmp, hardLabel)
 	
     -- save this information in an array. Each row is the feature vector + the label for it
-	table.insert(testPoints_table, tmp)
+	table.insert(train_featureTable, tmp)
 	
 	num = num + 1	
 	
 end
 
 print(c.blue '==>' ..' saving feature vectors of training set ')
-torch.save ('testPoints_table.dat', testPoints_table)
+torch.save ('train_featureTable.dat', train_featureTable)
 print('finish saving')
