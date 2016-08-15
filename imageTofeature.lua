@@ -72,7 +72,7 @@ for t,v in ipairs(indices) do
     local hardLabel = provider.testData.labels:index(1,v)
     -- DoubleTensor of size 1
 	
-	local softLabels = model:forward(input:cuda()):squeeze():double()
+	local softLabels = model:forward(input:cuda()):squeeze()
 	-- CudaTensor of size 10
 	
 	softLabels = torch.reshape(softLabels, 10, 1)
@@ -87,7 +87,7 @@ for t,v in ipairs(indices) do
 	--	end
 	--end 
 	
-    local featureTensor = model1:forward(input:cuda()):squeeze():double()
+    local featureTensor = model1:forward(input:cuda()):squeeze()
 	
     -- cudaTensor of size 512
 	
