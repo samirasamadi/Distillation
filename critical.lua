@@ -54,7 +54,7 @@ end
 ------------------------------------------------------------------------------------------------
 
 opt = lapp[[
---trainSize                (default 10)                           size of training set
+--trainSize                (default 50000)                           size of training set
 ]]
 
 if #arg < 1 then
@@ -92,7 +92,6 @@ for i = 1, length do
 		softlabel_y = points[j][2]:clone()
 		
 		
-		-- print('before if')
 		if hardlabel_x ~= hardlabel_y then
 			k = k+1
 			
