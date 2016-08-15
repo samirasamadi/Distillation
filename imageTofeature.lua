@@ -66,10 +66,10 @@ model1:evaluate()
 train_featureTable = {}
 num = 1
 for t,v in ipairs(indices) do
-    local input = provider.testData.data:index(1,v)
+    local input = provider.trainData.data:index(1,v)
 	-- floatTensor of size 1*3*32*32
    
-    local hardLabel = provider.testData.labels:index(1,v)
+    local hardLabel = provider.trainData.labels:index(1,v)
     -- DoubleTensor of size 1
 	
 	local softLabels = model:forward(input:cuda()):squeeze()
