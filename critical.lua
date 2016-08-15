@@ -17,7 +17,7 @@ function featureTolabel(featureVector)
 	local model_path = "logs/vgg/trainedModel.net"
 	
 	local model = torch.load(model_path)
-	print(model)
+	-- print(model)
 	
 	-- model definition should set numInputDims
 	-- hacking around it for the moment
@@ -68,7 +68,7 @@ points = torch.load('train_featureTable.dat')
 -- points is a table. Each row of the table has three components: featureTensor, softLabels, hardLabel. Use points[i][1] to get feature vector of the ith training point 
 
 length = opt.trainSize
-print('length', length)
+ print('length', length)
 	
 criticalPoints = {}
 criticalSoftLabels = {}
