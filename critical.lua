@@ -123,11 +123,10 @@ for i = 1, length do
 			table.insert(output, {criticalPoints[k], criticalSoftLabels[k]})	
 		end
 	end
-	
 end	
 
 print(c.blue '==>' ..' saving fature vectors of critical points')
-torch.save ('criticalPoints.dat', output)
+torch.save ('criticalPoints_feature.dat', output)
 print('finish saving')
 
 
