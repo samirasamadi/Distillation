@@ -45,7 +45,7 @@ model:get(2).updateGradInput = function(input) return end
 print(model)
 print('**************')
 
-local model2 = model:get(2)
+local model2 = model:get(2):get(54)
 print(model2)
 print('**************')
 model2:add(nn.SoftMax())
