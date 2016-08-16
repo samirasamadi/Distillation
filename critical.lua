@@ -94,6 +94,7 @@ for i = 1, length do
 		
 		
 		if hardlabel_x ~= hardlabel_y then
+			print(hardlabel_x, hardlabel_y)
 			k = k+1
 			
 			iterationsNum = 0
