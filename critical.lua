@@ -81,6 +81,7 @@ print(c.blue '==>' ..' calculating critical points ')
 	
 for i = 1, length do
 	for j = i+1, length do
+		print(k)
 		
 	    feature_x = points[i][1]:clone()
 		feature_y = points[j][1]:clone()	
