@@ -46,11 +46,12 @@ print(model)
 print('**************')
 
 local model2 = model:get(54)
+print(model2)
+print('**************')
 model2:add(nn.SoftMax())
 model2:cuda()
 
-print(model2)
-print('**************')
+
 
 
 if opt.backend == 'cudnn' then
