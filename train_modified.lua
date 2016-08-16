@@ -42,6 +42,9 @@ model:add(cast(nn.Copy('torch.FloatTensor', torch.type(cast(torch.Tensor())))))
 model:add(cast(dofile('models/'..opt.model..'.lua')))
 model:get(2).updateGradInput = function(input) return end
 
+print(model)
+print('**************')
+
 local model2 = model:get(54)
 model2:add(nn.SoftMax())
 model2:cuda()
