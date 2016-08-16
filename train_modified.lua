@@ -46,10 +46,10 @@ print(model)
 print('**************')
 
 local model2 = model:get(2):get(54)
-print(model2)
-print('**************')
 model2:add(nn.SoftMax())
 model2:cuda()
+print(model2)
+print('**************')
 
 
 
