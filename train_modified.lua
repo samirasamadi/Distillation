@@ -20,27 +20,6 @@ opt = lapp[[
 
 print(opt)
 
-do -- data augmentation module
-  local BatchFlip,parent = torch.class('nn.BatchFlip', 'nn.Module')
-
-  function BatchFlip:__init()
-    parent.__init(self)
-    self.train = true
-  end
-
-  function BatchFlip:updateOutput(input)
-    if self.train then
-      local bs = input:size(1)
-      local flip_mask = torch.randperm(bs):le(bs/2)
-      for i=1,input:size(1) do
-        if flip_mask[i] == 1 then image.hflip(input[i], input[i]) end
-      end
-    end
-    self.output:set(input)
-    return self.output
-  end
-end
-
 local function cast(t)
    if opt.type == 'cuda' then
       require 'cunn'
@@ -57,12 +36,18 @@ end
 
 print(c.blue '==>' ..' configuring model')
 local model = nn.Sequential()
-model:add(nn.BatchFlip():float())
 model:add(cast(nn.Copy('torch.FloatTensor', torch.type(cast(torch.Tensor())))))
 
--- here it goes inside vgg_bn_drop
+-- here it goes inside the model
 model:add(cast(dofile('models/'..opt.model..'.lua')))
 model:get(2).updateGradInput = function(input) return end
+
+local model2 = model:get(54)
+model2:add(nn.SoftMax())
+model2:cuda()
+
+print(model2)
+
 
 if opt.backend == 'cudnn' then
    require 'cudnn'
@@ -73,24 +58,26 @@ end
 -- print(model)
 
 print(c.blue '==>' ..' loading data')
-provider = torch.load 'provider.t7'
-provider.trainData.data = provider.trainData.data:float()
-provider.testData.data = provider.testData.data:float()
+
+points = torch.load('train_featureTable.dat')
+
+--feature_i  = points[i][1]:clone()
+--hardlabel_i = points[i][3]
 
 confusion = optim.ConfusionMatrix(10)
 
 print('Will save at '..opt.save)
 paths.mkdir(opt.save)
-testLogger = optim.Logger(paths.concat(opt.save, 'test.log'))
+testLogger = optim.Logger(paths.concat(opt.save, 'test_modified.log'))
 testLogger:setNames{'% mean class accuracy (train set)', '% mean class accuracy (test set)'}
 testLogger.showPlot = false
 
 parameters,gradParameters = model:getParameters()
 
 print(c.blue'==>' ..' setting criterion')
-criterion = cast(nn.CrossEntropyCriterion())
+criterion = cast(nn.DistillationCriterion())
 
-
+ 
 print(c.blue'==>' ..' configuring optimizer')
 optimState = {
   learningRate = opt.learningRate,
