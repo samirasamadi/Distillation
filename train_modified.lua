@@ -47,6 +47,7 @@ model2:add(nn.SoftMax())
 model2:cuda()
 
 print(model2)
+print('**************')
 
 
 if opt.backend == 'cudnn' then
