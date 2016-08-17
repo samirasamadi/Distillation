@@ -89,7 +89,8 @@ function train()
   -- drop learning rate every "epoch_step" epochs
   if epoch % opt.epoch_step == 0 then optimState.learningRate = optimState.learningRate/2 end
   
-  print(c.blue '==>'.." online epoch # " .. epoch ..)
+  
+  print(c.blue '==>'.." online epoch # " .. epoch ..']')
 
   local targets = cast(torch.FloatTensor(opt.batchSize))
   print('targets are', targets)
