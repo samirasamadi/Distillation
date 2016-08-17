@@ -120,10 +120,12 @@ function train()
       if x ~= parameters then parameters:copy(x) end
       gradParameters:zero()
 	  
-      print('before output')
+      
       local outputs = model2:forward(inputs:view(1,512))
-	  print('after output')
-	  print('outputs is', outputs, '\n')
+	  outputs:view(10,1)
+	  print('output is', output)
+	  -- outputs is a torch.CudaTensor of size 1x10
+	  
 	  
       local f = criterion:forward(outputs, targets)
       local df_do = criterion:backward(outputs, targets)
