@@ -104,22 +104,22 @@ function train()
   -- ipairs do a single iteration over elements of the array (here indices)
 	  
   for k = 1, opt.trainSize do
-	  print('inside for')
+	  
 	  index = indices[k]
-	  print('index is', index)
+	  
   	
 	-- it's inputs and not input and targets and not target since we might take batches of input for gradient descent.
-	local inputs =  trainPoints[k][1]:clone()
+	local inputs =  trainPoints[index][1]:clone()
 	print('input is', inputs)
 	
-	local targets = trainPoints[k][2]:clone()
+	local targets = trainPoints[index][2]:clone()
 	print('target is', targets)
 
     local feval = function(x)
       if x ~= parameters then parameters:copy(x) end
       gradParameters:zero()
       
-      local outputs = model:forward(inputs)
+      local outputs = model2:forward(inputs)
 	  print('outputs is', outputs, '\n')
       local f = criterion:forward(outputs, targets)
       local df_do = criterion:backward(outputs, targets)
