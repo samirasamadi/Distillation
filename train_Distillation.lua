@@ -53,6 +53,7 @@ end
 local model2 = model:get(2):get(54)
 model2:add(nn.SoftMax())
 model2:cuda()
+model2:evaluate()
 print(model2)
 
 print(c.blue '==>' ..' loading data')
@@ -121,7 +122,7 @@ function train()
       gradParameters:zero()
 	  print('after if')
       
-      local outputs = model2:forward(inputs)
+      local outputs = model2:forward(inputs:view(1,512))
 	  print('outputs is', outputs, '\n')
 	  
       local f = criterion:forward(outputs, targets)
