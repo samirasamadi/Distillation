@@ -103,10 +103,10 @@ function train()
   local tic = torch.tic()
   -- ipairs do a single iteration over elements of the array (here indices)
 	  
-  k = 0
-  for t,v in ipairs(indices) do
-    xlua.progress(t, #indices)
-	k =  k + 1
+  
+  for k in indices do
+    -- xlua.progress(t, #indices)
+	peint(k)
 
     -- local inputs = provider.trainData.data:index(1,v)
     -- targets:copy(provider.trainData.labels:index(1,v))
