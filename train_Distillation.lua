@@ -38,7 +38,6 @@ end
 
 print(c.blue '==>' ..' configuring model')
 local model = nn.Sequential()
-model:add(nn.BatchFlip():float())
 model:add(cast(nn.Copy('torch.FloatTensor', torch.type(cast(torch.Tensor())))))
 
 -- here it goes inside vgg_bn_drop
