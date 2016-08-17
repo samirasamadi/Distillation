@@ -97,9 +97,8 @@ function train()
   -- local targets = cast(torch.FloatTensor(opt.trainSize))
 
   local indices = torch.randperm(opt.trainSize)
-  print('indices are ', indices)
-  -- remove last element so that all the batches have equal size
-  -- indices[#indices] = nil
+  -- indices is a torch double Tensor of size 1000 (1000*1)
+  
 
   local tic = torch.tic()
   -- ipairs do a single iteration over elements of the array (here indices)
@@ -111,18 +110,19 @@ function train()
   	
 	-- it's inputs and not input and targets and not target since we might take batches of input for gradient descent.
 	local inputs =  trainPoints[index][1]:clone()
-	print('input is', inputs)
+	-- input is torch.CudaTensor of size 512 (512*1)
 	
 	local targets = trainPoints[index][2]:clone()
-	print('target is', targets)
+	-- targets is torch.CudaTensor of size 10x1
 
     local feval = function(x)
-		print('inaise feval')
+	
       if x ~= parameters then parameters:copy(x) end
       gradParameters:zero()
-	  print('after if')
-      
+	  
+      print('before output')
       local outputs = model2:forward(inputs:view(1,512))
+	  print('after output')
 	  print('outputs is', outputs, '\n')
 	  
       local f = criterion:forward(outputs, targets)
