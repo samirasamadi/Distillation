@@ -123,7 +123,7 @@ function train()
       
       local outputs = model2:forward(inputs:view(1,512))
 	  print('output is', outputs)
-	  outputs:view(10,1)
+	  outputs:view(10)
 	  print('output is', outputs)
 	  -- outputs is a torch.CudaTensor of size 1x10
 	  
