@@ -122,13 +122,11 @@ function train()
 	  
       
       local outputs = model2:forward(inputs:view(1,512))
-	  print('output is', outputs)
 	  outputs = torch.reshape(outputs, 10, 1):cuda()
-	   print('output is', outputs)
-	  -- outputs is a torch.CudaTensor of size 1x10
-	  
+	  -- outputs is a torch.CudaTensor of size 10x1
 	  
       local f = criterion:forward(outputs, targets)
+	  print('f is', f)
       local df_do = criterion:backward(outputs, targets)
       model:backward(inputs, df_do)
 
