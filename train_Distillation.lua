@@ -53,13 +53,13 @@ end
 local model2 = model:get(2):get(54)
 model2:add(nn.SoftMax())
 model2:cuda()
-model2:evaluate()
 print(model2)
 
 print(c.blue '==>' ..' loading data')
 trainPoints = torch.load('criticalPoints_feature.dat')
 -- criticalPoints is a table. At each row: the first element is the feature vector for that critical point and the second element is soft label of that critical point.
-testpoints = torch.load('testFeature_originalLabels.dat')
+testPoints = torch.load('testFeature_originalLabels.dat')
+-- testPoints is a table. The first element is the feature vector, the second element is softLabels, the third element is hardLabels
 
 confusion = optim.ConfusionMatrix(10)
 
@@ -93,8 +93,6 @@ function train()
   
   print(c.blue '==>'.." online epoch # " .. epoch ..']')
 
-  -- It does not matter what we put here for targets. It will be over written in the training loop. Don't get confused about what this statement means!
-  -- local targets = cast(torch.FloatTensor(opt.trainSize))
 
   local indices = torch.randperm(opt.trainSize)
   -- indices is a torch double Tensor of size 1000 (1000*1)
@@ -132,8 +130,8 @@ function train()
 	  
       model2:backward(inputs, df_do)
 	  
-	  print('after backward')
-
+	  confusion:batchAdd(outputs, targets)
+	  print('after batchAdd')
       return f,gradParameters
     end
     optim.sgd(feval, parameters, optimState)
@@ -152,11 +150,11 @@ end
 
 function test()
   -- disable flips, dropouts and batch normalization
-  model:evaluate()
+  model2:evaluate()
   print(c.blue '==>'.." testing")
-  local bs = 125
-  for i=1,provider.testData.data:size(1),bs do
-    local outputs = model:forward(provider.testData.data:narrow(1,i,bs))
+  
+  for i=1, opt.testSize do
+    local outputs = model2:forward(testpoints[i][3])
     confusion:batchAdd(outputs, provider.testData.labels:narrow(1,i,bs))
   end
 
