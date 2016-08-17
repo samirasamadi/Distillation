@@ -96,7 +96,7 @@ function train()
 
   print('targets are', targets)
   -- What is targets?
-  local indices = torch.randperm(opt.trainSize:long())
+  local indices = torch.randperm(opt.trainSize)
   print('indices are ', indices)
   -- remove last element so that all the batches have equal size
   indices[#indices] = nil
