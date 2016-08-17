@@ -116,7 +116,7 @@ function train()
 	print('target is', targets)
 
     local feval = function(x)
-		inside('feval')
+		print('inaise feval')
       if x ~= parameters then parameters:copy(x) end
       gradParameters:zero()
       
