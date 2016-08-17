@@ -96,6 +96,9 @@ function train()
   -- local targets = cast(torch.FloatTensor(opt.trainSize))
 
   --local indices = torch.randperm(opt.trainSize)
+  provider = torch.load 'provider.t7'
+  provider.trainData.data = provider.trainData.data:float()
+  provider.testData.data = provider.testData.data:float()
   local indices = torch.randperm(provider.trainData.data:size(1)):long():split(opt.batchSize)
   print('indices are ', indices)
   -- remove last element so that all the batches have equal size
