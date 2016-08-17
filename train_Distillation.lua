@@ -6,6 +6,7 @@ local c = require 'trepl.colorize'
 
 opt = lapp[[
    -s,--save                  (default "logs")      subdirectory to save logs
+   -b,--batchSize             (default 128)          batch size
    -r,--learningRate          (default 1)        learning rate
    --learningRateDecay        (default 1e-7)      learning rate decay
    --weightDecay              (default 0.0005)      weightDecay
@@ -88,7 +89,7 @@ function train()
   -- drop learning rate every "epoch_step" epochs
   if epoch % opt.epoch_step == 0 then optimState.learningRate = optimState.learningRate/2 end
   
-  print(c.blue '==>'.." online epoch # " .. epoch .. ']')
+  print(c.blue '==>'.." online epoch # " .. epoch .. )
 
   local targets = cast(torch.FloatTensor(opt.batchSize))
   print('targets are', targets)
