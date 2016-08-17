@@ -68,7 +68,7 @@ testLogger = optim.Logger(paths.concat(opt.save, 'test_Distillation.log'))
 testLogger:setNames{'% mean class accuracy (train set)', '% mean class accuracy (test set)'}
 testLogger.showPlot = false
 
-parameters,gradParameters = model:getParameters()
+parameters,gradParameters = model2:getParameters()
 
 print(c.blue'==>' ..' setting criterion')
 criterion = cast(nn.CrossEntropyCriterion())
@@ -116,11 +116,13 @@ function train()
 	print('target is', targets)
 
     local feval = function(x)
+		inside('feval')
       if x ~= parameters then parameters:copy(x) end
       gradParameters:zero()
       
       local outputs = model2:forward(inputs)
 	  print('outputs is', outputs, '\n')
+	  
       local f = criterion:forward(outputs, targets)
       local df_do = criterion:backward(outputs, targets)
       model:backward(inputs, df_do)
