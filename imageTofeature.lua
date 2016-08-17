@@ -45,7 +45,7 @@ if #view > 0 then
   view[1].numInputDims = 3
 end
 
-print(c.blue '==>' ..' calculating feature vectors of training set ')
+print(c.blue '==>' ..' calculating feature vectors ')
 
 model1 = torch.load(model_path)
 model1:add(nn.SoftMax():cuda())
@@ -103,6 +103,6 @@ for t,v in ipairs(indices) do
 	
 end
 
-print(c.blue '==>' ..' saving feature vectors of training set ')
-torch.save ('testFeature_originalLabels', train_featureTable)
+print(c.blue '==>' ..' saving feature vectors ')
+torch.save ('testFeature_originalLabels.dat', train_featureTable)
 print('finish saving')
