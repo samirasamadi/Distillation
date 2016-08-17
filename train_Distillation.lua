@@ -103,7 +103,7 @@ function train()
   local tic = torch.tic()
   -- ipairs do a single iteration over elements of the array (here indices)
 	  
-  for k in opt.trainSize do
+  for k = 1, opt.trainSize do
 	  print('inside for')
 	  index = indices[k]
 	  print('index is', index)
