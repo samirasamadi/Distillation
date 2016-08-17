@@ -98,7 +98,7 @@ function train()
   local indices = torch.randperm(opt.trainSize)
   print('indices are ', indices)
   -- remove last element so that all the batches have equal size
-  indices[#indices] = nil
+  -- indices[#indices] = nil
 
   local tic = torch.tic()
   -- ipairs do a single iteration over elements of the array (here indices)
