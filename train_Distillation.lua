@@ -96,10 +96,6 @@ function train()
   -- local targets = cast(torch.FloatTensor(opt.trainSize))
 
   --local indices = torch.randperm(opt.trainSize)
-  provider = torch.load 'provider.t7'
-  provider.trainData.data = provider.trainData.data:float()
-  provider.testData.data = provider.testData.data:float()
-  local indices = torch.randperm(provider.trainData.data:size(1)):long():split(opt.batchSize)
   print('indices are ', indices)
   -- remove last element so that all the batches have equal size
   -- indices[#indices] = nil
@@ -107,15 +103,11 @@ function train()
   local tic = torch.tic()
   -- ipairs do a single iteration over elements of the array (here indices)
 	  
-  for t,v in ipairs(indices) do
+  for k in opt.trainSize do
 	  print('inside for')
-  --for k in indices do
-    -- xlua.progress(t, #indices)
-	--print(k)
-
-    -- local inputs = provider.trainData.data:index(1,v)
-    -- targets:copy(provider.trainData.labels:index(1,v))
-	
+	  index = indices[k]
+	  print('index is', index)
+  	
 	-- it's inputs and not input and targets and not target since we might take batches of input for gradient descent.
 	local inputs =  trainPoints[k][1]:clone()
 	print('input is', inputs)
