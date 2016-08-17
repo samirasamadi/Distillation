@@ -128,7 +128,11 @@ function train()
       local f = criterion:forward(outputs, targets)
 	  print('f is', f)
       local df_do = criterion:backward(outputs, targets)
+	  print(df_do)
+	  
       model:backward(inputs, df_do)
+	  
+	  print('after backward')
 
       confusion:batchAdd(outputs, targets)
 
