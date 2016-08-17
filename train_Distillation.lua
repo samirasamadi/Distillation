@@ -92,7 +92,7 @@ function train()
   print(c.blue '==>'.." online epoch # " .. epoch .. ' [batchSize = ' .. opt.batchSize .. ']')
 
   local targets = cast(torch.FloatTensor(opt.batchSize))
-  print(targets)
+  print('targets are', targets)
   -- What is targets?
   local indices = torch.randperm(opt.trainSize:long():split(opt.batchSize)
   -- remove last element so that all the batches have equal size
