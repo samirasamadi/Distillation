@@ -56,7 +56,7 @@ model2:cuda()
 print(model2)
 
 print(c.blue '==>' ..' loading data')
-criticalPoints = torch.load('criticalPoints_feature.dat')
+trainPoints = torch.load('criticalPoints_feature.dat')
 -- criticalPoints is a table. At each row: the first element is the feature vector for that critical point and the second element is soft label of that critical point.
 testpoints = torch.load('testFeature_originalLabels.dat')
 
@@ -92,28 +92,38 @@ function train()
   
   print(c.blue '==>'.." online epoch # " .. epoch ..']')
 
-  local targets = cast(torch.FloatTensor(opt.trainSize))
+  -- It does not matter what we put here for targets. It will be over written in the training loop. Don't get confused about what this statement means!
+  -- local targets = cast(torch.FloatTensor(opt.trainSize))
 
-  print('targets are', targets)
-  -- What is targets?
   local indices = torch.randperm(opt.trainSize)
   print('indices are ', indices)
   -- remove last element so that all the batches have equal size
   indices[#indices] = nil
 
   local tic = torch.tic()
+  -- ipairs do a single iteration over elements of the array (here indices)
+	  
+  k = 0
   for t,v in ipairs(indices) do
     xlua.progress(t, #indices)
+	k =  k + 1
 
-    local inputs = provider.trainData.data:index(1,v)
-    targets:copy(provider.trainData.labels:index(1,v))
+    -- local inputs = provider.trainData.data:index(1,v)
+    -- targets:copy(provider.trainData.labels:index(1,v))
+	
+	-- it's inputs and not input and targets and not target since we might take batches of input for gradient descent.
+	local inputs =  trainPoints[k][1]:clone()
+	print('input is', inputs)
+	
+	local targets = trainPoints[k][2]:clone()
+	print('target is', targets)
 
     local feval = function(x)
       if x ~= parameters then parameters:copy(x) end
       gradParameters:zero()
       
       local outputs = model:forward(inputs)
-	  print('outputs:size()', outputs:size(), '\n')
+	  print('outputs is', outputs, '\n')
       local f = criterion:forward(outputs, targets)
       local df_do = criterion:backward(outputs, targets)
       model:backward(inputs, df_do)
