@@ -130,11 +130,9 @@ function train()
       local df_do = criterion:backward(outputs, targets)
 	  print(df_do)
 	  
-      model:backward(inputs, df_do)
+      model2:backward(inputs, df_do)
 	  
 	  print('after backward')
-
-      confusion:batchAdd(outputs, targets)
 
       return f,gradParameters
     end
