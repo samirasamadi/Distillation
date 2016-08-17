@@ -92,7 +92,7 @@ function train()
   
   print(c.blue '==>'.." online epoch # " .. epoch ..']')
 
-  local targets = cast(torch.FloatTensor(opt.batchSize))
+  local targets = cast(torch.FloatTensor(opt.trainSize))
 
   print('targets are', targets)
   -- What is targets?

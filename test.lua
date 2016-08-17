@@ -1,5 +1,4 @@
-for i = 1, 10 do
-	hardLabel = i
-end
-	
-print(hardLabel) 
+a = {"one", "two", "three"}
+    for i, v in ipairs(a) do
+      print(i, v)
+    end
