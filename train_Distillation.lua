@@ -6,7 +6,6 @@ local c = require 'trepl.colorize'
 
 opt = lapp[[
    -s,--save                  (default "logs")      subdirectory to save logs
-   -b,--batchSize             (default 128)          batch size
    -r,--learningRate          (default 1)        learning rate
    --learningRateDecay        (default 1e-7)      learning rate decay
    --weightDecay              (default 0.0005)      weightDecay
@@ -16,6 +15,8 @@ opt = lapp[[
    --max_epoch                (default 300)           maximum number of iterations
    --backend                  (default nn)            backend
    --type                     (default cuda)          cuda/float/cl
+   --trainSize               (default 1000)          How many critical points do we want to train the network on?
+   --testSize                (default 100)           How many test points do we want to evaluate the network on?
 ]]
 
 print(opt)
@@ -55,6 +56,9 @@ model2:cuda()
 print(model2)
 
 print(c.blue '==>' ..' loading data')
+criticalPoints = torch.load('criticalPoints_feature.dat')
+-- criticalPoints is a table. At each row: the first element is the feature vector for that critical point and the second element is soft label of that critical point.
+testpoints = torch.load('testFeature_originalLabels.dat')
 
 confusion = optim.ConfusionMatrix(10)
 
@@ -88,7 +92,9 @@ function train()
   print(c.blue '==>'.." online epoch # " .. epoch .. ' [batchSize = ' .. opt.batchSize .. ']')
 
   local targets = cast(torch.FloatTensor(opt.batchSize))
-  local indices = torch.randperm(provider.trainData.data:size(1)):long():split(opt.batchSize)
+  print(targets)
+  -- What is targets?
+  local indices = torch.randperm(opt.trainSize:long():split(opt.batchSize)
   -- remove last element so that all the batches have equal size
   indices[#indices] = nil
 
