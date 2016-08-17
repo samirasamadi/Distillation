@@ -94,7 +94,7 @@ function train()
   local targets = cast(torch.FloatTensor(opt.batchSize))
   print('targets are', targets)
   -- What is targets?
-  local indices = torch.randperm(opt.trainSize:long():split(opt.batchSize)
+  local indices = torch.randperm(opt.trainSize:long())
   -- remove last element so that all the batches have equal size
   indices[#indices] = nil
 
