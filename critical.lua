@@ -64,7 +64,7 @@ end
 
 model_path = opt.model
 
-points = torch.load('train_featureTable.dat')
+points = torch.load('trainFeature_learntLabels.dat')
 -- points is a table. Each row of the table has three components: featureTensor, softLabels, hardLabel. Use points[i][1] to get feature vector of the ith training point 
 
 length = opt.trainSize

@@ -20,26 +20,6 @@ opt = lapp[[
 
 print(opt)
 
-do -- data augmentation module
-  local BatchFlip,parent = torch.class('nn.BatchFlip', 'nn.Module')
-
-  function BatchFlip:__init()
-    parent.__init(self)
-    self.train = true
-  end
-
-  function BatchFlip:updateOutput(input)
-    if self.train then
-      local bs = input:size(1)
-      local flip_mask = torch.randperm(bs):le(bs/2)
-      for i=1,input:size(1) do
-        if flip_mask[i] == 1 then image.hflip(input[i], input[i]) end
-      end
-    end
-    self.output:set(input)
-    return self.output
-  end
-end
 
 local function cast(t)
    if opt.type == 'cuda' then
@@ -69,19 +49,18 @@ if opt.backend == 'cudnn' then
    cudnn.convert(model:get(3), cudnn)
 end
 
-
--- print(model)
+local model2 = model:get(2):get(54)
+model2:add(nn.SoftMax())
+model2:cuda()
+print(model2)
 
 print(c.blue '==>' ..' loading data')
-provider = torch.load 'provider.t7'
-provider.trainData.data = provider.trainData.data:float()
-provider.testData.data = provider.testData.data:float()
 
 confusion = optim.ConfusionMatrix(10)
 
 print('Will save at '..opt.save)
 paths.mkdir(opt.save)
-testLogger = optim.Logger(paths.concat(opt.save, 'test.log'))
+testLogger = optim.Logger(paths.concat(opt.save, 'test_Distillation.log'))
 testLogger:setNames{'% mean class accuracy (train set)', '% mean class accuracy (test set)'}
 testLogger.showPlot = false
 
