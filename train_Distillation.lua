@@ -119,6 +119,7 @@ function train()
 		print('inaise feval')
       if x ~= parameters then parameters:copy(x) end
       gradParameters:zero()
+	  print('after if')
       
       local outputs = model2:forward(inputs)
 	  print('outputs is', outputs, '\n')
