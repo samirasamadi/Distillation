@@ -95,7 +95,7 @@ function train()
   -- It does not matter what we put here for targets. It will be over written in the training loop. Don't get confused about what this statement means!
   -- local targets = cast(torch.FloatTensor(opt.trainSize))
 
-  --local indices = torch.randperm(opt.trainSize)
+  local indices = torch.randperm(opt.trainSize)
   print('indices are ', indices)
   -- remove last element so that all the batches have equal size
   -- indices[#indices] = nil
