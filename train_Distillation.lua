@@ -95,7 +95,8 @@ function train()
   -- It does not matter what we put here for targets. It will be over written in the training loop. Don't get confused about what this statement means!
   -- local targets = cast(torch.FloatTensor(opt.trainSize))
 
-  local indices = torch.randperm(opt.trainSize)
+  --local indices = torch.randperm(opt.trainSize)
+  local indices = torch.randperm(provider.trainData.data:size(1)):long():split(opt.batchSize)
   print('indices are ', indices)
   -- remove last element so that all the batches have equal size
   -- indices[#indices] = nil
@@ -103,10 +104,11 @@ function train()
   local tic = torch.tic()
   -- ipairs do a single iteration over elements of the array (here indices)
 	  
-  
-  for k in indices do
+  for t,v in ipairs(indices) do
+	  print('inside for')
+  --for k in indices do
     -- xlua.progress(t, #indices)
-	peint(k)
+	--print(k)
 
     -- local inputs = provider.trainData.data:index(1,v)
     -- targets:copy(provider.trainData.labels:index(1,v))
