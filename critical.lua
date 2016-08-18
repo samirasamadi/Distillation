@@ -1,4 +1,4 @@
---1 choose two feature vectors from the saved file and do binary serach on them to find the critical point between them. This includes passing the midpoint to featureTolabel function each time and getting the soft and hard lables of the points using that function.
+--1 choose two feature vectors from the train points and do binary serach on them to find the critical point between them. This includes passing the midpoint to featureTolabel function each time and getting the soft and hard lables of the points using that function.
 
 require 'image'
 require 'cudnn'
@@ -6,13 +6,7 @@ require 'cunn'
 local c = require 'trepl.colorize'
 
 function featureTolabel(featureVector)
-	
-	-- load the test featureVector
-	--local featureVectors = torch.load('trainFeatures.dat')
-	--local featureVector = featureVectors[1][1]
-	--print('featureVector', featureVector)
-	
-	
+		
 	-- load the model
 	local model_path = "logs/vgg/trainedModel.net"
 	

@@ -42,29 +42,19 @@ model:add(cast(nn.Copy('torch.FloatTensor', torch.type(cast(torch.Tensor())))))
 model:add(cast(dofile('models/'..opt.model..'.lua')))
 model:get(2).updateGradInput = function(input) return end
 
-print(model)
-print('**************')
-
-local model2 = model:get(2):get(54)
-model2:add(nn.SoftMax())
-model2:cuda()
-print(model2)
-print('**************')
-
-
-
-
 if opt.backend == 'cudnn' then
    require 'cudnn'
    cudnn.convert(model:get(3), cudnn)
 end
 
-
--- print(model)
+local model2 = model:get(2):get(54)
+model2:add(nn.SoftMax())
+model2:cuda()
+print(model2)
 
 print(c.blue '==>' ..' loading data')
 
-points = torch.load('train_featureTable.dat')
+points_all = torch.load('train_featureTable.dat')
 
 --feature_i  = points[i][1]:clone()
 --hardlabel_i = points[i][3]

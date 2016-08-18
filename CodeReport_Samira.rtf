@@ -1,7 +1,104 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-\margl1440\margr1440\vieww35160\viewh19000\viewkind0
+{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset0 LucidaGrande;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+\margl1440\margr1440\vieww37840\viewh21320\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-\f0\fs36 \cf0 \'97 }
+\f0\fs48 \cf2 MAIN FILES:
+\fs36 \
+\
+\'97  
+\b \CocoaLigature0 cifar-10-batches-t7
+\b0  :  original data. contains the images in the CIFAR-10.\
+\
+\'97 
+\b provider.lua
+\b0  :  I ran this file at the beginning of my experiment. It does some preprocessing on the data like normalizing the images. After running this file, it generates 
+\b \cf0 provider.t7
+\b0 . After this step, we will work with provider.t7 to load training and test points. We don\'92t work with 
+\b cifar-10-batches-t7 
+\b0 anymore
+\b .
+\b0 \
+\
+\'97 
+\b provider.t7 : 
+\b0 Contains the preprocessed images. See the explanation of 
+\b provider.lua.\
+\
+\'97 models : 
+\b0 This folder contain the models. We use 
+\b vgg_bn_drop
+\b0 .\
+\
+\'97 
+\b logs
+\b0  : This folder contains the result of experiments like the plots and the report. The important file in this folder is 
+\b logs/vgg/trainedModel.net
+\b0 . This is the model that I trained (with accuracy 91% on the test set). In our experiments, we work with saved model.\
+\
+\'97 
+\b train.lua : 
+\b0 This is the original code for training the network. It saves the trained network in 
+\b logs/vgg/trainedModel.net.
+\b0 \
+\
+\'97 
+\b \cf2 imageTofeature.lua : 
+\b0 This code converts a set of images to features that the saved network generates. I used this code to get features of train and test images. These features are saved as \cf0 trainFeature_originalLabels.dat, trainFeature_learntLabels.dat, testFeature_learntLabels.dat, testFeature_originalLabels.dat.\
+\
+\'97 
+\b trainFeature_originalLabels.dat : 
+\b0 This is the output of 
+\b imageTofeature.lua 
+\b0  when the input is the train set. This data set is a table. Each row of the table has three components: featureTensor, softLabels, hardLabel (\ul original label of the point\ulnone ). To load this file do points = torch.load('trainFeature_originalLabels.dat\'92). Use points[i][1], points[i][2], points[i][3] to get feature vector, soft labels and original hard label of the i^\{th\} training point.\
+\
+\'97 
+\b trainFeature_learntLabels.dat : 
+\b0 This is the output of 
+\b imageTofeature.lua 
+\b0  when the input is the train set. This data set is a table. Each row of the table has three components: featureTensor, softLabels, hardLabel (\ul the index of softLabels with maximum value\ulnone ).  To load this file do points = torch.load('trainFeature_learntLabels.dat\'92). Use points[i][1], points[i][2], points[i][3] to get feature vector, soft labels and network generated hard label of the i^\{th\} training point.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \'97 
+\b testFeature_originalLabels.dat : 
+\b0 This is the output of 
+\b imageTofeature.lua 
+\b0  when the input is the test set. This data set is a table. Each row of the table has three components: featureTensor, softLabels, hardLabel (\ul original label of the point\ulnone ). To load this file do points = torch.load('testFeature_originalLabels.dat\'92). Use points[i][1], points[i][2], points[i][3] to get feature vector, soft labels and original hard label of the i^\{th\} training point.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf0 \'97 
+\f0\b\fs36 testFeature_learntLabels.dat : 
+\b0 This is the output of 
+\b imageTofeature.lua 
+\b0  when the input is the test set. This data set is a table. Each row of the table has three components: featureTensor, softLabels, hardLabel (\ul the index of softLabels with maximum value\ulnone ).  To load this file do points = torch.load('testFeature_learntLabels.dat\'92). Use points[i][1], points[i][2], points[i][3] to get feature vector, soft labels and network generated hard label of the i^\{th\} training point.
+\b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+
+\f1\b0\fs22 \
+
+\f0\fs36 \'97 
+\b critical.lua : 
+\b0 \
+\
+
+\f2\fs48 TESTING
+\f0  :\
+\
+\'97 
+\b\fs36 \cf2 example_classify.lua : 
+\b0 This code is for testing the network. You can input an image to it and get the output probabilities of each class. There is a folder 
+\b test 
+\b0 which contains some 32*32 images and I use them as input to this code.
+\fs48 \cf0 \
+\
+\'97 
+\b\fs36 test : 
+\b0 This folder contains a few images that I picked myself to test the code on them. I use them as input to 
+\b example_classify.lua .\
+\
+\'97 }
